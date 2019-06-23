@@ -1,9 +1,93 @@
-type MyType {
+type User {
+  id: ID!
+  username: String
+  birthDate: String!
+  firstName: String
+  lastName: String
+  mobilePhone: String
+  email: String
+  amgId: String!
+  images(filter: ModelUserImagesFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelUserImagesConnection
+  companies(filter: ModelCompanyFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelCompanyConnection
+}
+
+type UserImages {
+  id: ID!
+  url: String!
+  owner: String
+  user: User
+}
+
+type Company {
+  id: ID!
+  owner: String
+  user: User
+  name: String!
+  address: String
+  latlng: String
+  website: String
+  images(filter: ModelCompanyImagesFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelCompanyImagesConnection
+}
+
+type CompanyImages {
+  id: ID!
+  url: String!
+  owner: String
+  company: Company
+}
+
+type Package {
   id: ID!
   title: String!
+  price: Int!
+  description: String
+  level: String!
+}
+
+type Post {
+  id: ID!
   content: String!
-  price: Int
-  rating: Float
+  enableComment: Boolean
+  tags: [String!]
+  location: Location
+  images(filter: ModelPostImageFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelPostImageConnection
+  comments(filter: ModelCommentFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelCommentConnection
+  owner: String
+  createdAt: String!
+  updatedAt: String
+}
+
+type Location {
+  placeName: String!
+  placeLatLng: String!
+}
+
+type PostImage {
+  id: ID!
+  url: String!
+  post: Post
+}
+
+type Comment {
+  id: ID!
+  content: String!
+  post: Post
+  owner: String
+}
+
+type Event {
+  id: ID!
+  title: String!
+  startTime: String!
+  endTime: String!
+  description: String
+  images(filter: ModelEventImageFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelEventImageConnection
+}
+
+type EventImage {
+  id: ID!
+  url: String!
+  event: Event
 }
 
 enum ModelSortDirection {
@@ -11,8 +95,8 @@ enum ModelSortDirection {
   DESC
 }
 
-type ModelMyTypeConnection {
-  items: [MyType]
+type ModelUserConnection {
+  items: [User]
   nextToken: String
 }
 
@@ -71,50 +155,447 @@ input ModelBooleanFilterInput {
   eq: Boolean
 }
 
-input ModelMyTypeFilterInput {
+input ModelUserFilterInput {
   id: ModelIDFilterInput
-  title: ModelStringFilterInput
-  content: ModelStringFilterInput
-  price: ModelIntFilterInput
-  rating: ModelFloatFilterInput
-  and: [ModelMyTypeFilterInput]
-  or: [ModelMyTypeFilterInput]
-  not: ModelMyTypeFilterInput
+  username: ModelStringFilterInput
+  birthDate: ModelStringFilterInput
+  firstName: ModelStringFilterInput
+  lastName: ModelStringFilterInput
+  mobilePhone: ModelStringFilterInput
+  email: ModelStringFilterInput
+  amgId: ModelStringFilterInput
+  and: [ModelUserFilterInput]
+  or: [ModelUserFilterInput]
+  not: ModelUserFilterInput
 }
 
 type Query {
-  getMyType(id: ID!): MyType
-  listMyTypes(filter: ModelMyTypeFilterInput, limit: Int, nextToken: String): ModelMyTypeConnection
+  getUser(id: ID!): User
+  listUsers(filter: ModelUserFilterInput, limit: Int, nextToken: String): ModelUserConnection
+  getUserImages(id: ID!): UserImages
+  listUserImagess(filter: ModelUserImagesFilterInput, limit: Int, nextToken: String): ModelUserImagesConnection
+  getCompany(id: ID!): Company
+  listCompanys(filter: ModelCompanyFilterInput, limit: Int, nextToken: String): ModelCompanyConnection
+  getCompanyImages(id: ID!): CompanyImages
+  listCompanyImagess(filter: ModelCompanyImagesFilterInput, limit: Int, nextToken: String): ModelCompanyImagesConnection
+  getPackage(id: ID!): Package
+  listPackages(filter: ModelPackageFilterInput, limit: Int, nextToken: String): ModelPackageConnection
+  getPost(id: ID!): Post
+  listPosts(filter: ModelPostFilterInput, limit: Int, nextToken: String): ModelPostConnection
+  getPostImage(id: ID!): PostImage
+  listPostImages(filter: ModelPostImageFilterInput, limit: Int, nextToken: String): ModelPostImageConnection
+  getComment(id: ID!): Comment
+  listComments(filter: ModelCommentFilterInput, limit: Int, nextToken: String): ModelCommentConnection
+  getEvent(id: ID!): Event
+  listEvents(filter: ModelEventFilterInput, limit: Int, nextToken: String): ModelEventConnection
+  getEventImage(id: ID!): EventImage
+  listEventImages(filter: ModelEventImageFilterInput, limit: Int, nextToken: String): ModelEventImageConnection
 }
 
-input CreateMyTypeInput {
+input CreateUserInput {
   id: ID
-  title: String!
-  content: String!
-  price: Int
-  rating: Float
+  username: String
+  birthDate: String!
+  firstName: String
+  lastName: String
+  mobilePhone: String
+  email: String
+  amgId: String!
 }
 
-input UpdateMyTypeInput {
+input UpdateUserInput {
   id: ID!
-  title: String
-  content: String
-  price: Int
-  rating: Float
+  username: String
+  birthDate: String
+  firstName: String
+  lastName: String
+  mobilePhone: String
+  email: String
+  amgId: String
 }
 
-input DeleteMyTypeInput {
+input DeleteUserInput {
   id: ID
 }
 
 type Mutation {
-  createMyType(input: CreateMyTypeInput!): MyType
-  updateMyType(input: UpdateMyTypeInput!): MyType
-  deleteMyType(input: DeleteMyTypeInput!): MyType
+  createUser(input: CreateUserInput!): User
+  updateUser(input: UpdateUserInput!): User
+  deleteUser(input: DeleteUserInput!): User
+  createUserImages(input: CreateUserImagesInput!): UserImages
+  updateUserImages(input: UpdateUserImagesInput!): UserImages
+  deleteUserImages(input: DeleteUserImagesInput!): UserImages
+  createCompany(input: CreateCompanyInput!): Company
+  updateCompany(input: UpdateCompanyInput!): Company
+  deleteCompany(input: DeleteCompanyInput!): Company
+  createCompanyImages(input: CreateCompanyImagesInput!): CompanyImages
+  updateCompanyImages(input: UpdateCompanyImagesInput!): CompanyImages
+  deleteCompanyImages(input: DeleteCompanyImagesInput!): CompanyImages
+  createPackage(input: CreatePackageInput!): Package
+  updatePackage(input: UpdatePackageInput!): Package
+  deletePackage(input: DeletePackageInput!): Package
+  createPost(input: CreatePostInput!): Post
+  updatePost(input: UpdatePostInput!): Post
+  deletePost(input: DeletePostInput!): Post
+  createPostImage(input: CreatePostImageInput!): PostImage
+  updatePostImage(input: UpdatePostImageInput!): PostImage
+  deletePostImage(input: DeletePostImageInput!): PostImage
+  createComment(input: CreateCommentInput!): Comment
+  updateComment(input: UpdateCommentInput!): Comment
+  deleteComment(input: DeleteCommentInput!): Comment
+  createEvent(input: CreateEventInput!): Event
+  updateEvent(input: UpdateEventInput!): Event
+  deleteEvent(input: DeleteEventInput!): Event
+  createEventImage(input: CreateEventImageInput!): EventImage
+  updateEventImage(input: UpdateEventImageInput!): EventImage
+  deleteEventImage(input: DeleteEventImageInput!): EventImage
 }
 
 type Subscription {
-  onCreateMyType: MyType @aws_subscribe(mutations: ["createMyType"])
-  onUpdateMyType: MyType @aws_subscribe(mutations: ["updateMyType"])
-  onDeleteMyType: MyType @aws_subscribe(mutations: ["deleteMyType"])
+  onCreateUser: User @aws_subscribe(mutations: ["createUser"])
+  onUpdateUser: User @aws_subscribe(mutations: ["updateUser"])
+  onDeleteUser: User @aws_subscribe(mutations: ["deleteUser"])
+  onCreateUserImages: UserImages @aws_subscribe(mutations: ["createUserImages"])
+  onUpdateUserImages: UserImages @aws_subscribe(mutations: ["updateUserImages"])
+  onDeleteUserImages: UserImages @aws_subscribe(mutations: ["deleteUserImages"])
+  onCreateCompany: Company @aws_subscribe(mutations: ["createCompany"])
+  onUpdateCompany: Company @aws_subscribe(mutations: ["updateCompany"])
+  onDeleteCompany: Company @aws_subscribe(mutations: ["deleteCompany"])
+  onCreateCompanyImages: CompanyImages @aws_subscribe(mutations: ["createCompanyImages"])
+  onUpdateCompanyImages: CompanyImages @aws_subscribe(mutations: ["updateCompanyImages"])
+  onDeleteCompanyImages: CompanyImages @aws_subscribe(mutations: ["deleteCompanyImages"])
+  onCreatePackage: Package @aws_subscribe(mutations: ["createPackage"])
+  onUpdatePackage: Package @aws_subscribe(mutations: ["updatePackage"])
+  onDeletePackage: Package @aws_subscribe(mutations: ["deletePackage"])
+  onCreatePost: Post @aws_subscribe(mutations: ["createPost"])
+  onUpdatePost: Post @aws_subscribe(mutations: ["updatePost"])
+  onDeletePost: Post @aws_subscribe(mutations: ["deletePost"])
+  onCreatePostImage: PostImage @aws_subscribe(mutations: ["createPostImage"])
+  onUpdatePostImage: PostImage @aws_subscribe(mutations: ["updatePostImage"])
+  onDeletePostImage: PostImage @aws_subscribe(mutations: ["deletePostImage"])
+  onCreateComment: Comment @aws_subscribe(mutations: ["createComment"])
+  onUpdateComment: Comment @aws_subscribe(mutations: ["updateComment"])
+  onDeleteComment: Comment @aws_subscribe(mutations: ["deleteComment"])
+  onCreateEvent: Event @aws_subscribe(mutations: ["createEvent"])
+  onUpdateEvent: Event @aws_subscribe(mutations: ["updateEvent"])
+  onDeleteEvent: Event @aws_subscribe(mutations: ["deleteEvent"])
+  onCreateEventImage: EventImage @aws_subscribe(mutations: ["createEventImage"])
+  onUpdateEventImage: EventImage @aws_subscribe(mutations: ["updateEventImage"])
+  onDeleteEventImage: EventImage @aws_subscribe(mutations: ["deleteEventImage"])
+}
+
+type ModelUserImagesConnection {
+  items: [UserImages]
+  nextToken: String
+}
+
+input ModelUserImagesFilterInput {
+  id: ModelIDFilterInput
+  url: ModelStringFilterInput
+  owner: ModelStringFilterInput
+  and: [ModelUserImagesFilterInput]
+  or: [ModelUserImagesFilterInput]
+  not: ModelUserImagesFilterInput
+}
+
+input CreateUserImagesInput {
+  id: ID
+  url: String!
+  owner: String
+  userImagesUserId: ID
+}
+
+input UpdateUserImagesInput {
+  id: ID!
+  url: String
+  owner: String
+  userImagesUserId: ID
+}
+
+input DeleteUserImagesInput {
+  id: ID
+}
+
+type ModelCompanyConnection {
+  items: [Company]
+  nextToken: String
+}
+
+input ModelCompanyFilterInput {
+  id: ModelIDFilterInput
+  owner: ModelStringFilterInput
+  name: ModelStringFilterInput
+  address: ModelStringFilterInput
+  latlng: ModelStringFilterInput
+  website: ModelStringFilterInput
+  and: [ModelCompanyFilterInput]
+  or: [ModelCompanyFilterInput]
+  not: ModelCompanyFilterInput
+}
+
+input CreateCompanyInput {
+  id: ID
+  owner: String
+  name: String!
+  address: String
+  latlng: String
+  website: String
+  companyUserId: ID
+}
+
+input UpdateCompanyInput {
+  id: ID!
+  owner: String
+  name: String
+  address: String
+  latlng: String
+  website: String
+  companyUserId: ID
+}
+
+input DeleteCompanyInput {
+  id: ID
+}
+
+type ModelCompanyImagesConnection {
+  items: [CompanyImages]
+  nextToken: String
+}
+
+input ModelCompanyImagesFilterInput {
+  id: ModelIDFilterInput
+  url: ModelStringFilterInput
+  owner: ModelStringFilterInput
+  and: [ModelCompanyImagesFilterInput]
+  or: [ModelCompanyImagesFilterInput]
+  not: ModelCompanyImagesFilterInput
+}
+
+input CreateCompanyImagesInput {
+  id: ID
+  url: String!
+  owner: String
+  companyImagesCompanyId: ID
+}
+
+input UpdateCompanyImagesInput {
+  id: ID!
+  url: String
+  owner: String
+  companyImagesCompanyId: ID
+}
+
+input DeleteCompanyImagesInput {
+  id: ID
+}
+
+type ModelPackageConnection {
+  items: [Package]
+  nextToken: String
+}
+
+input ModelPackageFilterInput {
+  id: ModelIDFilterInput
+  title: ModelStringFilterInput
+  price: ModelIntFilterInput
+  description: ModelStringFilterInput
+  level: ModelStringFilterInput
+  and: [ModelPackageFilterInput]
+  or: [ModelPackageFilterInput]
+  not: ModelPackageFilterInput
+}
+
+input CreatePackageInput {
+  id: ID
+  title: String!
+  price: Int!
+  description: String
+  level: String!
+}
+
+input UpdatePackageInput {
+  id: ID!
+  title: String
+  price: Int
+  description: String
+  level: String
+}
+
+input DeletePackageInput {
+  id: ID
+}
+
+input LocationInput {
+  placeName: String!
+  placeLatLng: String!
+}
+
+type ModelPostConnection {
+  items: [Post]
+  nextToken: String
+}
+
+input ModelPostFilterInput {
+  id: ModelIDFilterInput
+  content: ModelStringFilterInput
+  enableComment: ModelBooleanFilterInput
+  tags: ModelStringFilterInput
+  owner: ModelStringFilterInput
+  createdAt: ModelStringFilterInput
+  updatedAt: ModelStringFilterInput
+  and: [ModelPostFilterInput]
+  or: [ModelPostFilterInput]
+  not: ModelPostFilterInput
+}
+
+input CreatePostInput {
+  id: ID
+  content: String!
+  enableComment: Boolean
+  tags: [String!]
+  location: LocationInput
+  owner: String
+  createdAt: String!
+  updatedAt: String
+}
+
+input UpdatePostInput {
+  id: ID!
+  content: String
+  enableComment: Boolean
+  tags: [String!]
+  location: LocationInput
+  owner: String
+  createdAt: String
+  updatedAt: String
+}
+
+input DeletePostInput {
+  id: ID
+}
+
+type ModelPostImageConnection {
+  items: [PostImage]
+  nextToken: String
+}
+
+input ModelPostImageFilterInput {
+  id: ModelIDFilterInput
+  url: ModelStringFilterInput
+  and: [ModelPostImageFilterInput]
+  or: [ModelPostImageFilterInput]
+  not: ModelPostImageFilterInput
+}
+
+input CreatePostImageInput {
+  id: ID
+  url: String!
+  postImagePostId: ID
+}
+
+input UpdatePostImageInput {
+  id: ID!
+  url: String
+  postImagePostId: ID
+}
+
+input DeletePostImageInput {
+  id: ID
+}
+
+type ModelCommentConnection {
+  items: [Comment]
+  nextToken: String
+}
+
+input ModelCommentFilterInput {
+  id: ModelIDFilterInput
+  content: ModelStringFilterInput
+  owner: ModelStringFilterInput
+  and: [ModelCommentFilterInput]
+  or: [ModelCommentFilterInput]
+  not: ModelCommentFilterInput
+}
+
+input CreateCommentInput {
+  id: ID
+  content: String!
+  owner: String
+  commentPostId: ID
+}
+
+input UpdateCommentInput {
+  id: ID!
+  content: String
+  owner: String
+  commentPostId: ID
+}
+
+input DeleteCommentInput {
+  id: ID
+}
+
+type ModelEventConnection {
+  items: [Event]
+  nextToken: String
+}
+
+input ModelEventFilterInput {
+  id: ModelIDFilterInput
+  title: ModelStringFilterInput
+  startTime: ModelStringFilterInput
+  endTime: ModelStringFilterInput
+  description: ModelStringFilterInput
+  and: [ModelEventFilterInput]
+  or: [ModelEventFilterInput]
+  not: ModelEventFilterInput
+}
+
+input CreateEventInput {
+  id: ID
+  title: String!
+  startTime: String!
+  endTime: String!
+  description: String
+}
+
+input UpdateEventInput {
+  id: ID!
+  title: String
+  startTime: String
+  endTime: String
+  description: String
+}
+
+input DeleteEventInput {
+  id: ID
+}
+
+type ModelEventImageConnection {
+  items: [EventImage]
+  nextToken: String
+}
+
+input ModelEventImageFilterInput {
+  id: ModelIDFilterInput
+  url: ModelStringFilterInput
+  and: [ModelEventImageFilterInput]
+  or: [ModelEventImageFilterInput]
+  not: ModelEventImageFilterInput
+}
+
+input CreateEventImageInput {
+  id: ID
+  url: String!
+  eventImageEventId: ID
+}
+
+input UpdateEventImageInput {
+  id: ID!
+  url: String
+  eventImageEventId: ID
+}
+
+input DeleteEventImageInput {
+  id: ID
 }
