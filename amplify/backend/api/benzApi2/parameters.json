@@ -1,0 +1,12 @@
+{
+    "AppSyncApiName": "benzApi2",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authcognito8db2a3d8",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "APIKeyExpirationEpoch": "-1",
+    "DynamoDBModelTableReadIOPS": "1",
+    "DynamoDBModelTableWriteIOPS": "1"
+}

@@ -1,0 +1,9 @@
+{
+    "bucketName": "benzapi20c9256afa6574d26b0c38a2f904e8b4c",
+    "authPolicyName": "s3_amplify_0a2d87ff",
+    "unauthPolicyName": "s3_amplify_0a2d87ff",
+    "authRoleName": "benzapi2-20190623114543-authRole",
+    "unauthRoleName": "benzapi2-20190623114543-unauthRole",
+    "authPermissions": "rw",
+    "unauthPermissions": ""
+}

@@ -1,0 +1,152 @@
+type User 
+  @model
+  @auth(rules: [
+    {allow: groups , groups: ["Users"]},
+    {allow: owner, ownerField: "username" , queries: null , mutations: [create , update, delete]}
+  ])
+{
+  id: ID!
+  username: String
+  birthDate: String!
+  firstName: String
+  lastName: String
+  mobilePhone: String
+  email: String
+  amgId: String!
+  images: [UserImages] @connection(name:"UserImages")
+  companies: [Company] @connection(name:"UserCompanies")
+  # posts: [Post] @connection(name: "UserPosts")
+}
+
+type UserImages
+  @model
+  @auth(rules: [
+    {allow: groups , groups: ["Users"]},
+    {allow: owner, ownerField: "owner" , queries: null , mutations: [create , update, delete]}
+  ])
+{
+  id: ID!
+  url: String!
+  owner: String
+  user: User @connection(name: "UserImages")
+}
+
+type Company 
+  @model
+  @auth(
+    rules: [
+      {allow: groups , groups: ["Users"]},
+      {allow: owner , ownerField: "owner"  , queries: null , mutations: [create , update , delete]}
+    ]
+  )
+{
+  id: ID!
+  owner: String
+  user: User @connection(name:"UserCompanies")
+  name: String!
+  address: String
+  latlng: String
+  website: String
+  images: [CompanyImages] @connection(name: "CompanyImages")
+}
+
+type CompanyImages
+  @model
+  @auth(rules: [
+    {allow: groups , groups: ["Users"]},
+    {allow: owner , ownerField: "owner"  , queries: null , mutations: [create , update , delete]}
+  ])
+{
+  id: ID!
+  url: String!
+  owner: String
+  company: Company @connection(name: "CompanyImages")
+}
+
+type Package
+  @model
+  @auth(rules: [
+    {allow: groups, groups: ["Admins"]}
+  ])
+{
+  id: ID!
+  title: String!
+  price: Int!
+  description: String
+  level: String!
+}
+
+type Post
+  @model
+  @auth(
+    rules: [
+      {allow: owner, ownerField: "owner"  , queries: null , mutations: [create , update , delete]},
+      {allow: groups, groups: ["Admins" , "Users"]}
+    ]) 
+{
+  id: ID!
+  content: String!
+  enableComment: Boolean
+  tags: [String!]
+  location: Location
+  images: [PostImage] @connection(name: "PostImages")
+  comments: [Comment] @connection(name: "PostComments")
+  # owner: String! @connection(name: "UserPosts")
+  owner: String
+  createdAt: String!
+  updatedAt: String
+}
+
+type Location
+{
+  placeName: String!
+  placeLatLng: String!
+}
+
+type PostImage
+  @model
+  @auth(rules: [{allow: owner} , {allow: groups, groups: ["Admins" , "Users"]}])
+{
+  id: ID!
+  url: String!
+  post: Post @connection(name: "PostImages")
+}
+
+type Comment 
+  @model
+  @auth(
+    rules: [
+      {allow: owner, ownerField: "owner" , queries: null , mutations: [create, update, delete]},
+      { allow: groups, groups: ["Admins" , "Users"] }
+    ]) 
+{
+  id: ID!
+  content: String!
+  post: Post @connection(name: "PostComments")
+  owner: String
+}
+
+type Event
+  @model
+  @auth(
+    rules: [
+      {allow: groups, groups:["Admins"]}
+    ]
+  )
+{
+  id: ID!
+  title: String!
+  startTime: String!
+  endTime: String!
+  description: String
+  images: [EventImage] @connection(name: "EventImages")
+}
+
+type EventImage
+  @model
+  @auth(rules: [{allow: groups, groups: ["Admins"]}])
+{
+  id: ID!
+  url: String!
+  event: Event @connection(name: "EventImages")
+}

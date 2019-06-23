@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "benzapi2-20190623114543-authRole",
+            "UnauthRoleArn": "arn:aws:iam::239703035174:role/benzapi2-20190623114543-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::239703035174:role/benzapi2-20190623114543-authRole",
+            "Region": "ap-southeast-1",
+            "DeploymentBucketName": "benzapi2-20190623114543-deployment",
+            "UnauthRoleName": "benzapi2-20190623114543-unauthRole",
+            "StackName": "benzapi2-20190623114543",
+            "StackId": "arn:aws:cloudformation:ap-southeast-1:239703035174:stack/benzapi2-20190623114543/c4b59b70-9571-11e9-9875-0af5ec31f136"
+        }
+    }
+}
