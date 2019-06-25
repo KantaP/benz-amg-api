@@ -1,10 +1,7 @@
 {
-    "projectName": "benzapi2",
-    "projectPath": "/Users/admin/Works/benz-api-2",
-    "defaultEditor": "code",
-    "frontendHandler": {
-        "javascript": "/usr/local/lib/node_modules/@aws-amplify/cli/node_modules/amplify-frontend-javascript"
-    },
+    "projectName": "benz-api-2",
+    "version": "2.0",
+    "frontend": "javascript",
     "javascript": {
         "framework": "none",
         "config": {
@@ -14,7 +11,7 @@
             "StartCommand": "npm run-script start"
         }
     },
-    "providers": {
-        "awscloudformation": "/usr/local/lib/node_modules/@aws-amplify/cli/node_modules/amplify-provider-awscloudformation"
-    }
+    "providers": [
+        "awscloudformation"
+    ]
 }

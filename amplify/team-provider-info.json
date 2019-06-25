@@ -1,0 +1,19 @@
+{
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "benz-api-2-prod-20190625160124-authRole",
+            "UnauthRoleArn": "arn:aws:iam::239703035174:role/benz-api-2-prod-20190625160124-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::239703035174:role/benz-api-2-prod-20190625160124-authRole",
+            "Region": "ap-southeast-1",
+            "DeploymentBucketName": "benz-api-2-prod-20190625160124-deployment",
+            "UnauthRoleName": "benz-api-2-prod-20190625160124-unauthRole",
+            "StackName": "benz-api-2-prod-20190625160124",
+            "StackId": "arn:aws:cloudformation:ap-southeast-1:239703035174:stack/benz-api-2-prod-20190625160124/cf75e6c0-9727-11e9-a173-0a04c4887732"
+        },
+        "categories": {
+            "auth": {
+                "benzapi2f0ed0c83": {}
+            }
+        }
+    }
+}

@@ -83,7 +83,6 @@ type Post
       {allow: owner, ownerField: "owner"  , queries: null , mutations: [create , update , delete]},
       {allow: groups, groups: ["Admins" , "Users"]}
     ]) 
-  @key(fields: ["createdAt"])
 {
   id: ID!
   content: String!

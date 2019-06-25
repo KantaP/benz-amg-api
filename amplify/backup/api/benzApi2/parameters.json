@@ -1,0 +1,16 @@
+{
+    "AppSyncApiName": "benzApi2",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authcognito8db2a3d8",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "APIKeyExpirationEpoch": "-1",
+    "DynamoDBModelTableReadIOPS": "1",
+    "DynamoDBModelTableWriteIOPS": "1",
+    "schemaGraphql": "s3://benzapi2-20190623114543-deployment/amplify-appsync-files/schema.graphql.1561268575995",
+    "ResolverBucket": "benzapi2-20190623114543-deployment",
+    "ResolverRootKey": "amplify-appsync-files",
+    "DeploymentTimestamp": "1561268575995"
+}

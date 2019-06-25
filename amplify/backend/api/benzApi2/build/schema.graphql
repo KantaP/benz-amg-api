@@ -180,8 +180,8 @@ type Query {
   listCompanyImagess(filter: ModelCompanyImagesFilterInput, limit: Int, nextToken: String): ModelCompanyImagesConnection
   getPackage(id: ID!): Package
   listPackages(filter: ModelPackageFilterInput, limit: Int, nextToken: String): ModelPackageConnection
-  getPost(id: ID!): Post
-  listPosts(filter: ModelPostFilterInput, limit: Int, nextToken: String): ModelPostConnection
+  getPost(createdAt: String!): Post
+  listPosts(createdAt: String, filter: ModelPostFilterInput, limit: Int, nextToken: String): ModelPostConnection
   getPostImage(id: ID!): PostImage
   listPostImages(filter: ModelPostImageFilterInput, limit: Int, nextToken: String): ModelPostImageConnection
   getComment(id: ID!): Comment
@@ -466,12 +466,12 @@ input UpdatePostInput {
   tags: [String!]
   location: LocationInput
   owner: String
-  createdAt: String
+  createdAt: String!
   updatedAt: String
 }
 
 input DeletePostInput {
-  id: ID
+  createdAt: String!
 }
 
 type ModelPostImageConnection {

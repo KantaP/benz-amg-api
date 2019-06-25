@@ -1,0 +1,23 @@
+{
+	"auth": {
+		"benzapi2f0ed0c83": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"api": {
+		"benzApi2": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"securityType": "AMAZON_COGNITO_USER_POOLS"
+			}
+		}
+	},
+	"storage": {
+		"s360ed64bd": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}

@@ -78,124 +78,90 @@
 				}
 			}
 		},
-		"authbenzapi2f0ed0c83": {
+		"authcognito8db2a3d8": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/benz-api-2-prod-20190625160124-deployment/amplify-cfn-templates/auth/benzapi2f0ed0c83-cloudformation-template.yml",
+				"TemplateURL": "https://s3.amazonaws.com/benzapi2-20190623114543-deployment/amplify-cfn-templates/auth/cognito8db2a3d8-cloudformation-template.yml",
 				"Parameters": {
-					"identityPoolName": "benzapi2f0ed0c83_identitypool_f0ed0c83",
-					"allowUnauthenticatedIdentities": true,
-					"lambdaLogPolicy": "benzap_f0ed0c83_lambda_log_policy",
-					"openIdLambdaRoleName": "benzap_f0ed0c83_openid_lambda_role",
-					"openIdRolePolicy": "benzap_f0ed0c83_openid_pass_role_policy",
-					"openIdLambdaIAMPolicy": "benzap_f0ed0c83_openid_lambda_iam_policy",
-					"openIdLogPolicy": "benzap_f0ed0c83_openid_lambda_log_policy",
-					"userPoolName": "benzapi2f0ed0c83_userpool_f0ed0c83",
+					"identityPoolName": "cognito8db2a3d8_identitypool_8db2a3d8",
+					"allowUnauthenticatedIdentities": false,
+					"thirdPartyAuth": false,
+					"lambdaLogPolicy": "cognito8db2a3d8_lambda_log_policy",
+					"openIdLambdaRoleName": "cognito8db2a3d8_openid_lambda_role",
+					"openIdRolePolicy": "cognito8db2a3d8_openid_pass_role_policy",
+					"openIdLambdaIAMPolicy": "cognito8db2a3d8_openid_lambda_iam_policy",
+					"openIdLogPolicy": "cognito8db2a3d8_openid_lambda_log_policy",
+					"userPoolName": "cognito8db2a3d8_userpool_8db2a3d8",
 					"autoVerifiedAttributes": "email",
 					"mfaConfiguration": "OFF",
 					"mfaTypes": "SMS Text Message",
-					"roleName": "benzapf0ed0c83_sns-role",
-					"roleExternalId": "benzapf0ed0c83_role_external_id",
-					"policyName": "benzapf0ed0c83-sns-policy",
+					"roleName": "cognito8db2a3d8_sns-role",
+					"roleExternalId": "cognito8db2a3d8_role_external_id",
+					"policyName": "cognito8db2a3d8-sns-policy",
 					"smsAuthenticationMessage": "Your authentication code is {####}",
 					"smsVerificationMessage": "Your verification code is {####}",
 					"emailVerificationSubject": "Your verification code",
 					"emailVerificationMessage": "Your verification code is {####}",
 					"defaultPasswordPolicy": false,
 					"passwordPolicyMinLength": 8,
-					"passwordPolicyCharacters": "",
-					"requiredAttributes": "birthdate,email,family_name,name",
-					"userpoolClientName": "benzapf0ed0c83_app_client",
+					"passwordPolicyCharacters": "Requires Lowercase,Requires Uppercase,Requires Numbers,Requires Symbols",
+					"requiredAttributes": "email",
+					"userpoolClientName": "cognito8db2a3d8_app_client",
 					"userpoolClientGenerateSecret": true,
 					"userpoolClientRefreshTokenValidity": 30,
-					"userpoolClientWriteAttributes": "email",
 					"userpoolClientReadAttributes": "email",
-					"mfaLambdaRole": "benzapf0ed0c83_totp_lambda_role",
-					"mfaLambdaLogPolicy": "benzapf0ed0c83_totp_lambda_log_policy",
-					"mfaPassRolePolicy": "benzapf0ed0c83_totp_pass_role_policy",
-					"mfaLambdaIAMPolicy": "benzapf0ed0c83_totp_lambda_iam_policy",
-					"userpoolClientLambdaRole": "benzapf0ed0c83_userpoolclient_lambda_role",
-					"userpoolClientLogPolicy": "benzapf0ed0c83_userpoolclient_lambda_log_policy",
-					"userpoolClientLambdaPolicy": "benzapf0ed0c83_userpoolclient_lambda_iam_policy",
+					"mfaLambdaRole": "cognito8db2a3d8_totp_lambda_role",
+					"mfaLambdaLogPolicy": "cognito8db2a3d8_totp_lambda_log_policy",
+					"mfaPassRolePolicy": "cognito8db2a3d8_totp_pass_role_policy",
+					"mfaLambdaIAMPolicy": "cognito8db2a3d8_totp_lambda_iam_policy",
+					"userpoolClientLambdaRole": "cognito8db2a3d8_userpoolclient_lambda_role",
+					"userpoolClientLogPolicy": "cognito8db2a3d8_userpoolclient_lambda_log_policy",
+					"userpoolClientLambdaPolicy": "cognito8db2a3d8_userpoolclient_lambda_iam_policy",
 					"userpoolClientSetAttributes": false,
-					"resourceName": "benzapi2f0ed0c83",
-					"authSelections": "identityPoolAndUserPool",
-					"authRoleName": {
-						"Ref": "AuthRoleName"
-					},
-					"unauthRoleName": {
-						"Ref": "UnauthRoleName"
-					},
-					"authRoleArn": {
-						"Fn::GetAtt": [
-							"AuthRole",
-							"Arn"
-						]
-					},
-					"unauthRoleArn": {
-						"Fn::GetAtt": [
-							"UnauthRole",
-							"Arn"
-						]
-					},
 					"useDefault": "default",
-					"usernameAttributes": "email, phone_number",
-					"env": "prod"
+					"unAuthRoleName": "benzapi2-20190623114543-unauthRole",
+					"authRoleName": "benzapi2-20190623114543-authRole",
+					"unAuthRoleArn": "arn:aws:iam::239703035174:role/benzapi2-20190623114543-unauthRole",
+					"authRoleArn": "arn:aws:iam::239703035174:role/benzapi2-20190623114543-authRole",
+					"resourceName": "cognito8db2a3d8",
+					"authSelections": "identityPoolAndUserPool"
 				}
 			}
 		},
 		"apibenzApi2": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/benz-api-2-prod-20190625160124-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/benzapi2-20190623114543-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"Parameters": {
 					"AppSyncApiName": "benzApi2",
-					"DynamoDBBillingMode": "PAY_PER_REQUEST",
 					"AuthCognitoUserPoolId": {
 						"Fn::GetAtt": [
-							"authbenzapi2f0ed0c83",
+							"authcognito8db2a3d8",
 							"Outputs.UserPoolId"
 						]
 					},
 					"APIKeyExpirationEpoch": "-1",
 					"DynamoDBModelTableReadIOPS": "1",
 					"DynamoDBModelTableWriteIOPS": "1",
-					"S3DeploymentBucket": "benz-api-2-prod-20190625160124-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/1f48530370d99ea92bb71810ac9e8ea11932e642",
-					"env": "prod"
+					"schemaGraphql": "s3://benzapi2-20190623114543-deployment/amplify-appsync-files/schema.graphql.1561268575995",
+					"ResolverBucket": "benzapi2-20190623114543-deployment",
+					"ResolverRootKey": "amplify-appsync-files",
+					"DeploymentTimestamp": "1561268575995"
 				}
 			}
 		},
-		"storages360ed64bd": {
+		"storages30a2d87ff": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/benz-api-2-prod-20190625160124-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/benzapi2-20190623114543-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
 				"Parameters": {
-					"bucketName": "benz-api-2c714866edcc749f496b83d3e956b13ef",
-					"authPolicyName": "s3_amplify_60ed64bd",
-					"unauthPolicyName": "s3_amplify_60ed64bd",
-					"authRoleName": {
-						"Ref": "AuthRoleName"
-					},
-					"unauthRoleName": {
-						"Ref": "UnauthRoleName"
-					},
-					"selectedGuestPermissions": "s3:GetObject,s3:ListBucket",
-					"selectedAuthenticatedPermissions": "s3:PutObject,s3:GetObject,s3:ListBucket",
-					"s3PermissionsAuthenticatedPublic": "s3:PutObject,s3:GetObject",
-					"s3PublicPolicy": "Public_policy_861fd23b",
-					"s3PermissionsAuthenticatedUploads": "s3:PutObject",
-					"s3UploadsPolicy": "Uploads_policy_861fd23b",
-					"s3PermissionsAuthenticatedProtected": "s3:PutObject,s3:GetObject",
-					"s3ProtectedPolicy": "Protected_policy_85a8c689",
-					"s3PermissionsAuthenticatedPrivate": "s3:PutObject,s3:GetObject",
-					"s3PrivatePolicy": "Private_policy_85a8c689",
-					"AuthenticatedAllowList": "ALLOW",
-					"s3ReadPolicy": "read_policy_861fd23b",
-					"s3PermissionsGuestPublic": "s3:GetObject",
-					"s3PermissionsGuestUploads": "DISALLOW",
-					"GuestAllowList": "ALLOW",
-					"env": "prod"
+					"bucketName": "benzapi20c9256afa6574d26b0c38a2f904e8b4c",
+					"authPolicyName": "s3_amplify_0a2d87ff",
+					"unauthPolicyName": "s3_amplify_0a2d87ff",
+					"authRoleName": "benzapi2-20190623114543-authRole",
+					"unauthRoleName": "benzapi2-20190623114543-unauthRole",
+					"authPermissions": "rw",
+					"unauthPermissions": ""
 				}
 			}
 		}

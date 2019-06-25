@@ -1,0 +1,74 @@
+{
+    "identityPoolName": "benzapi2f0ed0c83_identitypool_f0ed0c83",
+    "allowUnauthenticatedIdentities": true,
+    "lambdaLogPolicy": "benzap_f0ed0c83_lambda_log_policy",
+    "openIdLambdaRoleName": "benzap_f0ed0c83_openid_lambda_role",
+    "openIdRolePolicy": "benzap_f0ed0c83_openid_pass_role_policy",
+    "openIdLambdaIAMPolicy": "benzap_f0ed0c83_openid_lambda_iam_policy",
+    "openIdLogPolicy": "benzap_f0ed0c83_openid_lambda_log_policy",
+    "userPoolName": "benzapi2f0ed0c83_userpool_f0ed0c83",
+    "autoVerifiedAttributes": [
+        "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+        "SMS Text Message"
+    ],
+    "roleName": "benzapf0ed0c83_sns-role",
+    "roleExternalId": "benzapf0ed0c83_role_external_id",
+    "policyName": "benzapf0ed0c83-sns-policy",
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [],
+    "requiredAttributes": [
+        "birthdate",
+        "email",
+        "family_name",
+        "name"
+    ],
+    "userpoolClientName": "benzapf0ed0c83_app_client",
+    "userpoolClientGenerateSecret": true,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientWriteAttributes": [
+        "email"
+    ],
+    "userpoolClientReadAttributes": [
+        "email"
+    ],
+    "mfaLambdaRole": "benzapf0ed0c83_totp_lambda_role",
+    "mfaLambdaLogPolicy": "benzapf0ed0c83_totp_lambda_log_policy",
+    "mfaPassRolePolicy": "benzapf0ed0c83_totp_pass_role_policy",
+    "mfaLambdaIAMPolicy": "benzapf0ed0c83_totp_lambda_iam_policy",
+    "userpoolClientLambdaRole": "benzapf0ed0c83_userpoolclient_lambda_role",
+    "userpoolClientLogPolicy": "benzapf0ed0c83_userpoolclient_lambda_log_policy",
+    "userpoolClientLambdaPolicy": "benzapf0ed0c83_userpoolclient_lambda_iam_policy",
+    "userpoolClientSetAttributes": false,
+    "resourceName": "benzapi2f0ed0c83",
+    "authSelections": "identityPoolAndUserPool",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "unauthRoleArn": {
+        "Fn::GetAtt": [
+            "UnauthRole",
+            "Arn"
+        ]
+    },
+    "useDefault": "default",
+    "usernameAttributes": [
+        "email, phone_number"
+    ]
+}
