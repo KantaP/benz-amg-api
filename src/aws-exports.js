@@ -2,15 +2,15 @@
 
 const awsmobile = {
     "aws_project_region": "ap-southeast-1",
-    "aws_cognito_identity_pool_id": "ap-southeast-1:4c212c5e-b807-40b0-bc9b-1dcd255f5def",
+    "aws_cognito_identity_pool_id": "ap-southeast-1:5e910908-8e32-424c-a259-dca929a91b77",
     "aws_cognito_region": "ap-southeast-1",
-    "aws_user_pools_id": "ap-southeast-1_2tDIc4hjM",
-    "aws_user_pools_web_client_id": "1nqmlnmkc9g3b6ilcuitodjkc",
+    "aws_user_pools_id": "ap-southeast-1_EWKa0ZifU",
+    "aws_user_pools_web_client_id": "5e65bd5dgnrh1o4hgoc4pr4165",
     "oauth": {},
-    "aws_appsync_graphqlEndpoint": "https://mbyxqxulznaahhpwsxxdg4ve7a.appsync-api.ap-southeast-1.amazonaws.com/graphql",
+    "aws_appsync_graphqlEndpoint": "https://hfbc3q4ppfhi7o5feyky363ite.appsync-api.ap-southeast-1.amazonaws.com/graphql",
     "aws_appsync_region": "ap-southeast-1",
     "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS",
-    "aws_user_files_s3_bucket": "benz-api-2c714866edcc749f496b83d3e956b13ef-prod",
+    "aws_user_files_s3_bucket": "benz-api-2c714866edcc749f496b83d3e956b13ef-devfourth",
     "aws_user_files_s3_bucket_region": "ap-southeast-1"
 };
 

@@ -134,6 +134,18 @@ Conditions:
   ShouldNotCreateEnvResources: !Equals [ !Ref env, NONE ]
 
 Resources:
+
+  UserPoolGroupAdmins:
+    Type: 'AWS::Cognito::UserPoolGroup'
+    Properties:
+      GroupName: Admins
+      UserPoolId: !Ref UserPool
+
+  UserPoolGroupUsers:
+    Type: 'AWS::Cognito::UserPoolGroup'
+    Properties:
+      GroupName: Users
+      UserPoolId: !Ref UserPool
   
   # BEGIN SNS ROLE RESOURCE
   SNSRole: 
@@ -308,6 +320,10 @@ Resources:
           - Effect: Allow
             Action:
               - 'cognito-idp:DescribeUserPoolClient'
+              - 'cognito-idp:AdminGetUser'
+              - 'cognito-idp:AdminSetUserSettings'
+              - 'cognito-idp:AdminUpdateUserAttributes'
+              - 'cognito-idp:AdminAddUserToGroup'
             Resource: !GetAtt UserPool.Arn
     DependsOn: UserPoolClientLambda
   UserPoolClientLogPolicy:
@@ -371,7 +387,7 @@ Resources:
       AllowUnauthenticatedIdentities: !Ref allowUnauthenticatedIdentities
        
        
-    DependsOn: UserPoolClientInputs 
+    DependsOn: UserPoolClientInputs
     
   
   IdentityPoolRoleMap:

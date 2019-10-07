@@ -19,5 +19,22 @@
 			"service": "S3",
 			"providerPlugin": "awscloudformation"
 		}
+	},
+	"function": {
+		"benzapi2e6b8b059": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		},
+		"benzapi2ceecd2ca": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		},
+		"benzapi282c0f626": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		}
 	}
 }

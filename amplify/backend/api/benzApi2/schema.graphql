@@ -1,21 +1,48 @@
 type User 
   @model
   @auth(rules: [
-    {allow: groups , groups: ["Users"]},
-    {allow: owner, ownerField: "username" , queries: null , mutations: [create , update, delete]}
+    {allow: groups , groups: ["Admins", "Users"], queries: [get , list], mutations:[create,update]},
+    {allow: owner, ownerField: "username" , queries: [get , list] ,mutations:[create,update]}
   ])
 {
   id: ID!
+  staffID: String
   username: String
-  birthDate: String!
+  birthDate: String
   firstName: String
   lastName: String
   mobilePhone: String
   email: String
-  amgId: String!
+  amgId: String
+  amgModel: String
+  amgShowroom: String
+  nickName: String
+  citizenId: String
+  image: String
+  address: String
+  subDistrict: String
+  district: String
+  province: String
+  active: Boolean
+  pushToken: String
+  type: String
+  expireAt: Int
+  level: String
+  createdAt: String
   images: [UserImages] @connection(name:"UserImages")
   companies: [Company] @connection(name:"UserCompanies")
-  # posts: [Post] @connection(name: "UserPosts")
+  postsOfUser: [Post] @connection(name:"UserPosts")
+  userComments: [Comment] @connection(name:"UserCommentsWithKey")
+  userReports: [Report] @connection(name:"UserReports")
+  userBookmarks: [PostBookmark] @connection(name:"UserBookmarksSecond")
+  referrers: [PostReferSecond] @connection(name:"ReferUserWithKey")
+  receivers: [PostReferSecond] @connection(name:"ReferReceiverWithKey")
+  userRadeem: [PostRadeemSecond] @connection(name:"UserRadeemSecond")
+  userEvents: [UserJoinedEvent]! @connection(name:"UserJoinedEventKey")
+  reportComments: [ReportComment] @connection(name:"ReportFromUsers")
+  userBlocks: [UserBlock] @connection(name:"UserBlocks")
+  events: [Event] @connection(name:"EventsByUser")
+
 }
 
 type UserImages
@@ -26,9 +53,9 @@ type UserImages
   ])
 {
   id: ID!
-  url: String!
+  uri: String!
   owner: String
-  user: User @connection(name: "UserImages")
+  user: User! @connection(name: "UserImages")
 }
 
 type Company 
@@ -36,17 +63,23 @@ type Company
   @auth(
     rules: [
       {allow: groups , groups: ["Users"]},
-      {allow: owner , ownerField: "owner"  , queries: null , mutations: [create , update , delete]}
+      {allow: owner}
     ]
   )
 {
   id: ID!
-  owner: String
-  user: User @connection(name:"UserCompanies")
+  # owner: String
+  user: User! @connection(name:"UserCompanies")
   name: String!
+  description: String
+  phone: String
   address: String
   latlng: String
   website: String
+  email: String
+  image: String
+  logo: String
+  createdAt: String
   images: [CompanyImages] @connection(name: "CompanyImages")
 }
 
@@ -58,9 +91,10 @@ type CompanyImages
   ])
 {
   id: ID!
-  url: String!
+  uri: String!
   owner: String
-  company: Company @connection(name: "CompanyImages")
+  createdAt: String
+  company: Company! @connection(name: "CompanyImages")
 }
 
 type Package
@@ -74,28 +108,50 @@ type Package
   price: Int!
   description: String
   level: String!
+  createdAt: String
 }
 
 type Post
   @model
   @auth(
     rules: [
-      {allow: owner, ownerField: "owner"  , queries: null , mutations: [create , update , delete]},
+      {allow: owner},
       {allow: groups, groups: ["Admins" , "Users"]}
-    ]) 
-  @key(fields: ["createdAt"])
+    ])
+  @key(name: "ByPostType", fields: ["type", "createdAt"], queryField: "itemsByPostType")
+  @key(name: "ByPin", fields: ["pin", "expireAt"], queryField: "itemsByPin")
 {
   id: ID!
   content: String!
   enableComment: Boolean
   tags: [String!]
   location: Location
-  images: [PostImage] @connection(name: "PostImages")
-  comments: [Comment] @connection(name: "PostComments")
-  # owner: String! @connection(name: "UserPosts")
+  postImages: [PostImage] @connection(name: "PostImagesWithKey")
+  postComments: [Comment] @connection(name: "PostCommentsSecond")
+  postOfUser: User! @connection(name:"UserPosts")
   owner: String
-  createdAt: String!
-  updatedAt: String
+  type: String!
+  createdAt: String
+  refers: [PostReferSecond] @connection(name: "PostRefersWithKeySecond")
+  postBookmarks: [PostBookmark] @connection(name: "PostBookmarksSecond")
+  reports: [Report] @connection(name:"PostReports")
+  postRadeem: [PostRadeemSecond] @connection(name:"PostRadeemSecond")
+  countComment: Int
+  countRefer: Int
+  countRadeem: Int
+  countBookmark: Int
+  countReport: Int
+  countConnect: Int
+  radeemQuota: Int
+  expireAtUnix: String
+  expireAt: String
+  expire: String
+  pin: String
+  createdAtUnix: String
+  expireRedeemAt: String
+  expireRedeemAtUnix: String
+  redeemImage: String
+  redeemDescription: String
 }
 
 type Location
@@ -109,38 +165,89 @@ type PostImage
   @auth(rules: [{allow: owner} , {allow: groups, groups: ["Admins" , "Users"]}])
 {
   id: ID!
-  url: String!
-  post: Post @connection(name: "PostImages")
+  uri: String!
+  postImage: Post! @connection(name: "PostImagesWithKey")
+  createdAt: String
 }
 
 type Comment 
   @model
   @auth(
     rules: [
-      {allow: owner, ownerField: "owner" , queries: null , mutations: [create, update, delete]},
-      { allow: groups, groups: ["Admins" , "Users"] }
+      {allow: groups, groups: ["Admins" , "Users"] }
     ]) 
 {
   id: ID!
   content: String!
-  post: Post @connection(name: "PostComments")
-  owner: String
+  postId: String!
+  userId: String!
+  createdAtUnix: String!
+  postComment: Post! @connection(name: "PostCommentsSecond")
+  userComment: User! @connection(name: "UserCommentsWithKey")
+  reportComments: [ReportComment] @connection(name:"ReportComments")
+  createdAt: String
 }
 
-type Event
+type PostReferSecond
   @model
   @auth(
     rules: [
-      {allow: groups, groups:["Admins"]}
+       {allow: owner},
+      { allow: groups, groups: ["Admins" , "Users"] }
+    ]
+  )
+{
+  id: ID!
+  post: Post! @connection(name:"PostRefersWithKeySecond")
+  referrer: String!
+  receiver: String!
+  referrerPostUser: User! @connection(name:"ReferUserWithKey")
+  receiverPostUser: User! @connection(name:"ReferReceiverWithKey")
+  createdAt: String
+}
+
+# type PostRefer
+#   @model
+#   @auth(
+#     rules: [
+#        {allow: owner},
+#       { allow: groups, groups: ["Admins" , "Users"] }
+#     ]
+#   )
+# {
+#   id: ID!
+#   post: Post! @connection(name:"PostRefersWithKey")
+#   referrer: String!
+#   receiver: String!
+#   referrerPostUser: User! @connection(name:"ReferUser")
+#   receiverPostUser: User! @connection(name:"ReferReceiver")
+# }
+
+
+type Event
+  @searchable
+  @model
+  @auth(
+    rules: [
+      {allow: groups, groups:["Admins", "Users"]}
     ]
   )
 {
   id: ID!
   title: String!
-  startTime: String!
-  endTime: String!
+  startTime: AWSDateTime!
+  endTime: AWSDateTime!
+  # startTimeUnix: AWSDateTime!
+  # endTimeUnix: AWSDateTime!
   description: String
+  image: String
   images: [EventImage] @connection(name: "EventImages")
+  quota: Int
+  eventJoineds: [UserJoinedEvent]! @connection(name:"EventJoinedKey")
+  location: Location
+  createdAt: String
+  upcoming : Boolean
+  user: User! @connection(name:"EventsByUser")
 }
 
 type EventImage
@@ -148,6 +255,112 @@ type EventImage
   @auth(rules: [{allow: groups, groups: ["Admins"]}])
 {
   id: ID!
-  url: String!
+  uri: String!
   event: Event @connection(name: "EventImages")
+  createdAt: String
+}
+
+type Report
+  @model
+  @auth(rules:[{allow:groups, groups: ["Admins" , "Users"]}])
+{
+  id: ID!
+  post: Post! @connection(name:"PostReports")
+  reporter: User! @connection(name:"UserReports")
+  type: String!
+  status: String
+  description: String!
+  createdAt: String
+}
+
+
+type PostBookmark
+  @model
+  @auth(rules:[{allow:groups, groups: ["Admins" , "Users"]}])
+  @key(fields:["id", "userBookmarkCode"])
+{
+  id: ID!
+  postBookmark: Post! @connection(name:"PostBookmarksSecond")
+  userBookmark: User! @connection(name:"UserBookmarksSecond")
+  userBookmarkCode: String!
+  createdAt: String
+}
+
+type PostRadeemSecond
+  @model
+  @auth(rules:[{allow:groups, groups: ["Admins" , "Users"]}])
+  @key(fields:["id" , "postId"])
+  @key(name: "ByPost", fields: ["postId", "userId"], queryField: "redeemByPost")
+{
+  id: ID!
+  postRadeem: Post! @connection(name:"PostRadeemSecond")
+  userRadeem: User! @connection(name:"UserRadeemSecond")
+  postId: String!
+  userId: String!
+  createdAt: String
+}
+
+type UserJoinedEvent
+  @model
+  @auth(rules:[{allow:groups, groups: ["Admins" , "Users"]}])
+  @key(fields:["id" , "eventId"])
+{
+  id:ID!
+  eventId: String!
+  userId: String!
+  userEvent: User! @connection(name:"UserJoinedEventKey")
+  eventJoined: Event! @connection(name:"EventJoinedKey")
+  eventStartTimeUnix: String!
+  eventEndTime: String!
+  createdAt: String
+}
+
+type ReportComment
+  @model
+  @auth(rules:[{allow:groups, groups: ["Admins" , "Users"]}])
+{
+  id: ID!
+  commentId: String!
+  reporterId: String!
+  createdAtUnix: String!
+  comment: Comment! @connection(name:"ReportComments")
+  reporter: User! @connection(name:"ReportFromUsers")
+  createdAt: String
+}
+
+type UserBlock
+  @model
+  @auth(rules:[{allow:groups, groups: ["Admins" , "Users"]}])
+{
+  id: ID!
+  userId: String!
+  blockUserId: String!
+  blockUser: User! @connection(name:"UserBlocks")
+  createdAtUnix: String!
+  createdAt: String
+}
+
+type PostConnect
+  @model
+  @auth(rules:[{allow:groups, groups: ["Admins" , "Users"]}])
+{
+  id: ID!
+  userId: String!
+  connectUserId: String!
+  createdAtUnix: String!
+  postId: String!
+  createdAt: String
+}
+
+
+type Feedback 
+  @model
+  @auth(rules:[{allow:groups, groups: ["Admins" , "Users"]}])
+{
+  id: ID!
+  topic: String!
+  message:String!
+  createdAtUnix: String!
+  userId: String!
+  createdAt: String
 }

@@ -1,14 +1,14 @@
 {
 	"providers": {
 		"awscloudformation": {
-			"AuthRoleName": "benz-api-2-prod-20190625160124-authRole",
-			"UnauthRoleArn": "arn:aws:iam::239703035174:role/benz-api-2-prod-20190625160124-unauthRole",
-			"AuthRoleArn": "arn:aws:iam::239703035174:role/benz-api-2-prod-20190625160124-authRole",
+			"AuthRoleName": "benz-api-2-devfourth-20190711002237-authRole",
+			"UnauthRoleArn": "arn:aws:iam::239703035174:role/benz-api-2-devfourth-20190711002237-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::239703035174:role/benz-api-2-devfourth-20190711002237-authRole",
 			"Region": "ap-southeast-1",
-			"DeploymentBucketName": "benz-api-2-prod-20190625160124-deployment",
-			"UnauthRoleName": "benz-api-2-prod-20190625160124-unauthRole",
-			"StackName": "benz-api-2-prod-20190625160124",
-			"StackId": "arn:aws:cloudformation:ap-southeast-1:239703035174:stack/benz-api-2-prod-20190625160124/cf75e6c0-9727-11e9-a173-0a04c4887732"
+			"DeploymentBucketName": "benz-api-2-devfourth-20190711002237-deployment",
+			"UnauthRoleName": "benz-api-2-devfourth-20190711002237-unauthRole",
+			"StackName": "benz-api-2-devfourth-20190711002237",
+			"StackId": "arn:aws:cloudformation:ap-southeast-1:239703035174:stack/benz-api-2-devfourth-20190711002237/50a218c0-a337-11e9-a324-0a97a1834e8a"
 		}
 	},
 	"auth": {
@@ -16,20 +16,20 @@
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-prod-20190625160124-deployment/amplify-cfn-templates/auth/benzapi2f0ed0c83-cloudformation-template.yml",
+				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/auth/benzapi2f0ed0c83-cloudformation-template.yml",
 				"logicalId": "authbenzapi2f0ed0c83"
 			},
-			"lastPushTimeStamp": "2019-06-25T09:17:34.605Z",
+			"lastPushTimeStamp": "2019-09-26T18:04:32.463Z",
 			"output": {
-				"AppClientSecret": "1lcj0ak6o86g102e172pcp30k1bj746jj2e9n09v47o38rbk43lh",
-				"UserPoolId": "ap-southeast-1_2tDIc4hjM",
-				"AppClientIDWeb": "1nqmlnmkc9g3b6ilcuitodjkc",
-				"AppClientID": "4epqrl33tm6plg9miq4jjv7ee9",
-				"IdentityPoolId": "ap-southeast-1:4c212c5e-b807-40b0-bc9b-1dcd255f5def",
-				"IdentityPoolName": "benzapi2f0ed0c83_identitypool_f0ed0c83__prod",
+				"AppClientSecret": "1i1rlrvshmf1639qc4cm6c2a03or7dklhvfd6hsbi5871cnpd2kq",
+				"UserPoolId": "ap-southeast-1_EWKa0ZifU",
+				"AppClientIDWeb": "5e65bd5dgnrh1o4hgoc4pr4165",
+				"AppClientID": "56g9k7gs4g9gc8r6f90tpl276d",
+				"IdentityPoolId": "ap-southeast-1:5e910908-8e32-424c-a259-dca929a91b77",
+				"IdentityPoolName": "benzapi2f0ed0c83_identitypool_f0ed0c83__devfourth",
 				"UserPoolName": "benzapi2f0ed0c83_userpool_f0ed0c83"
 			},
-			"lastPushDirHash": "/ZjmTfAQmdbL9gp5eDKUTRpMHMU="
+			"lastPushDirHash": "2dlCUOvQsiemyrRulGKy2G8xelk="
 		}
 	},
 	"api": {
@@ -38,15 +38,15 @@
 			"providerPlugin": "awscloudformation",
 			"output": {
 				"securityType": "AMAZON_COGNITO_USER_POOLS",
-				"GraphQLAPIIdOutput": "sl6vesf3fbhmtlpbsz6w53opma",
-				"GraphQLAPIEndpointOutput": "https://mbyxqxulznaahhpwsxxdg4ve7a.appsync-api.ap-southeast-1.amazonaws.com/graphql"
+				"GraphQLAPIIdOutput": "pqngzal4n5gt7jk2t4bpxtkfwa",
+				"GraphQLAPIEndpointOutput": "https://hfbc3q4ppfhi7o5feyky363ite.appsync-api.ap-southeast-1.amazonaws.com/graphql"
 			},
 			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-prod-20190625160124-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apibenzApi2"
 			},
-			"lastPushTimeStamp": "2019-06-25T09:17:34.605Z",
-			"lastPushDirHash": "kxuPjBJjozJJGOevh3iTfh91mJg="
+			"lastPushTimeStamp": "2019-09-26T18:04:38.060Z",
+			"lastPushDirHash": "DsoxswCI/cEZfupo4q2spIO2pzM="
 		}
 	},
 	"storage": {
@@ -54,15 +54,74 @@
 			"service": "S3",
 			"providerPlugin": "awscloudformation",
 			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-prod-20190625160124-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
 				"logicalId": "storages360ed64bd"
 			},
-			"lastPushTimeStamp": "2019-06-25T09:17:34.605Z",
+			"lastPushTimeStamp": "2019-09-26T18:04:32.466Z",
 			"output": {
-				"BucketName": "benz-api-2c714866edcc749f496b83d3e956b13ef-prod",
+				"BucketName": "benz-api-2c714866edcc749f496b83d3e956b13ef-devfourth",
 				"Region": "ap-southeast-1"
 			},
 			"lastPushDirHash": "j7ogkTUjC59UQIZr0cRZnhRb2EY="
+		}
+	},
+	"function": {
+		"benzapi2e6b8b059": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"lastBuildTimeStamp": "2019-08-21T15:41:30.426Z",
+			"lastPackageTimeStamp": "2019-08-22T13:30:27.401Z",
+			"distZipFilename": "benzapi2e6b8b059-1566480627-latest-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/function/benzapi2e6b8b059-cloudformation-template.json",
+				"logicalId": "functionbenzapi2e6b8b059"
+			},
+			"lastPushTimeStamp": "2019-09-26T18:04:32.467Z",
+			"output": {
+				"Region": "ap-southeast-1",
+				"Arn": "arn:aws:lambda:ap-southeast-1:239703035174:function:addUserToGroup-devfourth",
+				"Name": "addUserToGroup-devfourth"
+			},
+			"lastPushDirHash": "LMUutuKTWZW/NBO01tbNR8WT3Z0="
+		},
+		"benzapi2ceecd2ca": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"lastBuildTimeStamp": "2019-08-21T15:41:31.878Z",
+			"lastPackageTimeStamp": "2019-08-21T15:41:32.226Z",
+			"distZipFilename": "benzapi2ceecd2ca-1566402091-latest-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/function/benzapi2ceecd2ca-cloudformation-template.json",
+				"logicalId": "functionbenzapi2ceecd2ca"
+			},
+			"lastPushTimeStamp": "2019-09-26T18:04:32.467Z",
+			"output": {
+				"Region": "ap-southeast-1",
+				"Arn": "arn:aws:lambda:ap-southeast-1:239703035174:function:autoConfirm-devfourth",
+				"Name": "autoConfirm-devfourth"
+			},
+			"lastPushDirHash": "H+eu5CPkOHLGPqWFLrdaQutyuGY="
+		},
+		"benzapi282c0f626": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"lastBuildTimeStamp": "2019-08-22T14:16:18.881Z",
+			"lastPackageTimeStamp": "2019-08-22T14:20:45.160Z",
+			"distZipFilename": "benzapi282c0f626-1566483638-latest-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/function/benzapi282c0f626-cloudformation-template.json",
+				"logicalId": "functionbenzapi282c0f626"
+			},
+			"lastPushTimeStamp": "2019-09-26T18:04:32.468Z",
+			"output": {
+				"Region": "ap-southeast-1",
+				"Arn": "arn:aws:lambda:ap-southeast-1:239703035174:function:Sendgrid-devfourth",
+				"Name": "Sendgrid-devfourth"
+			},
+			"lastPushDirHash": "j2yVxwwzynVSpepqV9QOmUwCwLQ="
 		}
 	}
 }

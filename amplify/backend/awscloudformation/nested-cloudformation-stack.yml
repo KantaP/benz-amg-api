@@ -81,7 +81,7 @@
 		"authbenzapi2f0ed0c83": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/benz-api-2-prod-20190625160124-deployment/amplify-cfn-templates/auth/benzapi2f0ed0c83-cloudformation-template.yml",
+				"TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/auth/benzapi2f0ed0c83-cloudformation-template.yml",
 				"Parameters": {
 					"identityPoolName": "benzapi2f0ed0c83_identitypool_f0ed0c83",
 					"allowUnauthenticatedIdentities": true,
@@ -140,14 +140,14 @@
 					},
 					"useDefault": "default",
 					"usernameAttributes": "email, phone_number",
-					"env": "prod"
+					"env": "devfourth"
 				}
 			}
 		},
 		"apibenzApi2": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/benz-api-2-prod-20190625160124-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"Parameters": {
 					"AppSyncApiName": "benzApi2",
 					"DynamoDBBillingMode": "PAY_PER_REQUEST",
@@ -160,16 +160,16 @@
 					"APIKeyExpirationEpoch": "-1",
 					"DynamoDBModelTableReadIOPS": "1",
 					"DynamoDBModelTableWriteIOPS": "1",
-					"S3DeploymentBucket": "benz-api-2-prod-20190625160124-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/1f48530370d99ea92bb71810ac9e8ea11932e642",
-					"env": "prod"
+					"S3DeploymentBucket": "benz-api-2-devfourth-20190711002237-deployment",
+					"S3DeploymentRootKey": "amplify-appsync-files/0ea8317a79d61f6e0511e6f7aad454de4b9f96e3",
+					"env": "devfourth"
 				}
 			}
 		},
 		"storages360ed64bd": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/benz-api-2-prod-20190625160124-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
 				"Parameters": {
 					"bucketName": "benz-api-2c714866edcc749f496b83d3e956b13ef",
 					"authPolicyName": "s3_amplify_60ed64bd",
@@ -195,7 +195,34 @@
 					"s3PermissionsGuestPublic": "s3:GetObject",
 					"s3PermissionsGuestUploads": "DISALLOW",
 					"GuestAllowList": "ALLOW",
-					"env": "prod"
+					"env": "devfourth"
+				}
+			}
+		},
+		"functionbenzapi2e6b8b059": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/function/benzapi2e6b8b059-cloudformation-template.json",
+				"Parameters": {
+					"env": "devfourth"
+				}
+			}
+		},
+		"functionbenzapi2ceecd2ca": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/function/benzapi2ceecd2ca-cloudformation-template.json",
+				"Parameters": {
+					"env": "devfourth"
+				}
+			}
+		},
+		"functionbenzapi282c0f626": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/function/benzapi282c0f626-cloudformation-template.json",
+				"Parameters": {
+					"env": "devfourth"
 				}
 			}
 		}

@@ -4,6 +4,7 @@
 export const onCreateUser = `subscription OnCreateUser {
   onCreateUser {
     id
+    staffID
     username
     birthDate
     firstName
@@ -11,10 +12,25 @@ export const onCreateUser = `subscription OnCreateUser {
     mobilePhone
     email
     amgId
+    amgModel
+    amgShowroom
+    nickName
+    citizenId
+    image
+    address
+    subDistrict
+    district
+    province
+    active
+    pushToken
+    type
+    expireAt
+    level
+    createdAt
     images {
       items {
         id
-        url
+        uri
         owner
       }
       nextToken
@@ -22,11 +38,145 @@ export const onCreateUser = `subscription OnCreateUser {
     companies {
       items {
         id
-        owner
         name
+        description
+        phone
         address
         latlng
         website
+        email
+        image
+        logo
+        createdAt
+      }
+      nextToken
+    }
+    postsOfUser {
+      items {
+        id
+        content
+        enableComment
+        tags
+        owner
+        type
+        createdAt
+        countComment
+        countRefer
+        countRadeem
+        countBookmark
+        countReport
+        countConnect
+        radeemQuota
+        expireAtUnix
+        expireAt
+        expire
+        pin
+        createdAtUnix
+        expireRedeemAt
+        expireRedeemAtUnix
+        redeemImage
+        redeemDescription
+      }
+      nextToken
+    }
+    userComments {
+      items {
+        id
+        content
+        postId
+        userId
+        createdAtUnix
+        createdAt
+      }
+      nextToken
+    }
+    userReports {
+      items {
+        id
+        type
+        status
+        description
+        createdAt
+      }
+      nextToken
+    }
+    userBookmarks {
+      items {
+        id
+        userBookmarkCode
+        createdAt
+      }
+      nextToken
+    }
+    referrers {
+      items {
+        id
+        referrer
+        receiver
+        createdAt
+      }
+      nextToken
+    }
+    receivers {
+      items {
+        id
+        referrer
+        receiver
+        createdAt
+      }
+      nextToken
+    }
+    userRadeem {
+      items {
+        id
+        postId
+        userId
+        createdAt
+      }
+      nextToken
+    }
+    userEvents {
+      items {
+        id
+        eventId
+        userId
+        eventStartTimeUnix
+        eventEndTime
+        createdAt
+      }
+      nextToken
+    }
+    reportComments {
+      items {
+        id
+        commentId
+        reporterId
+        createdAtUnix
+        createdAt
+      }
+      nextToken
+    }
+    userBlocks {
+      items {
+        id
+        userId
+        blockUserId
+        createdAtUnix
+        createdAt
+      }
+      nextToken
+    }
+    events {
+      items {
+        id
+        title
+        startTime
+        endTime
+        description
+        image
+        quota
+        createdAt
+        upcoming
       }
       nextToken
     }
@@ -36,6 +186,7 @@ export const onCreateUser = `subscription OnCreateUser {
 export const onUpdateUser = `subscription OnUpdateUser {
   onUpdateUser {
     id
+    staffID
     username
     birthDate
     firstName
@@ -43,10 +194,25 @@ export const onUpdateUser = `subscription OnUpdateUser {
     mobilePhone
     email
     amgId
+    amgModel
+    amgShowroom
+    nickName
+    citizenId
+    image
+    address
+    subDistrict
+    district
+    province
+    active
+    pushToken
+    type
+    expireAt
+    level
+    createdAt
     images {
       items {
         id
-        url
+        uri
         owner
       }
       nextToken
@@ -54,11 +220,145 @@ export const onUpdateUser = `subscription OnUpdateUser {
     companies {
       items {
         id
-        owner
         name
+        description
+        phone
         address
         latlng
         website
+        email
+        image
+        logo
+        createdAt
+      }
+      nextToken
+    }
+    postsOfUser {
+      items {
+        id
+        content
+        enableComment
+        tags
+        owner
+        type
+        createdAt
+        countComment
+        countRefer
+        countRadeem
+        countBookmark
+        countReport
+        countConnect
+        radeemQuota
+        expireAtUnix
+        expireAt
+        expire
+        pin
+        createdAtUnix
+        expireRedeemAt
+        expireRedeemAtUnix
+        redeemImage
+        redeemDescription
+      }
+      nextToken
+    }
+    userComments {
+      items {
+        id
+        content
+        postId
+        userId
+        createdAtUnix
+        createdAt
+      }
+      nextToken
+    }
+    userReports {
+      items {
+        id
+        type
+        status
+        description
+        createdAt
+      }
+      nextToken
+    }
+    userBookmarks {
+      items {
+        id
+        userBookmarkCode
+        createdAt
+      }
+      nextToken
+    }
+    referrers {
+      items {
+        id
+        referrer
+        receiver
+        createdAt
+      }
+      nextToken
+    }
+    receivers {
+      items {
+        id
+        referrer
+        receiver
+        createdAt
+      }
+      nextToken
+    }
+    userRadeem {
+      items {
+        id
+        postId
+        userId
+        createdAt
+      }
+      nextToken
+    }
+    userEvents {
+      items {
+        id
+        eventId
+        userId
+        eventStartTimeUnix
+        eventEndTime
+        createdAt
+      }
+      nextToken
+    }
+    reportComments {
+      items {
+        id
+        commentId
+        reporterId
+        createdAtUnix
+        createdAt
+      }
+      nextToken
+    }
+    userBlocks {
+      items {
+        id
+        userId
+        blockUserId
+        createdAtUnix
+        createdAt
+      }
+      nextToken
+    }
+    events {
+      items {
+        id
+        title
+        startTime
+        endTime
+        description
+        image
+        quota
+        createdAt
+        upcoming
       }
       nextToken
     }
@@ -68,6 +368,7 @@ export const onUpdateUser = `subscription OnUpdateUser {
 export const onDeleteUser = `subscription OnDeleteUser {
   onDeleteUser {
     id
+    staffID
     username
     birthDate
     firstName
@@ -75,10 +376,25 @@ export const onDeleteUser = `subscription OnDeleteUser {
     mobilePhone
     email
     amgId
+    amgModel
+    amgShowroom
+    nickName
+    citizenId
+    image
+    address
+    subDistrict
+    district
+    province
+    active
+    pushToken
+    type
+    expireAt
+    level
+    createdAt
     images {
       items {
         id
-        url
+        uri
         owner
       }
       nextToken
@@ -86,11 +402,145 @@ export const onDeleteUser = `subscription OnDeleteUser {
     companies {
       items {
         id
-        owner
         name
+        description
+        phone
         address
         latlng
         website
+        email
+        image
+        logo
+        createdAt
+      }
+      nextToken
+    }
+    postsOfUser {
+      items {
+        id
+        content
+        enableComment
+        tags
+        owner
+        type
+        createdAt
+        countComment
+        countRefer
+        countRadeem
+        countBookmark
+        countReport
+        countConnect
+        radeemQuota
+        expireAtUnix
+        expireAt
+        expire
+        pin
+        createdAtUnix
+        expireRedeemAt
+        expireRedeemAtUnix
+        redeemImage
+        redeemDescription
+      }
+      nextToken
+    }
+    userComments {
+      items {
+        id
+        content
+        postId
+        userId
+        createdAtUnix
+        createdAt
+      }
+      nextToken
+    }
+    userReports {
+      items {
+        id
+        type
+        status
+        description
+        createdAt
+      }
+      nextToken
+    }
+    userBookmarks {
+      items {
+        id
+        userBookmarkCode
+        createdAt
+      }
+      nextToken
+    }
+    referrers {
+      items {
+        id
+        referrer
+        receiver
+        createdAt
+      }
+      nextToken
+    }
+    receivers {
+      items {
+        id
+        referrer
+        receiver
+        createdAt
+      }
+      nextToken
+    }
+    userRadeem {
+      items {
+        id
+        postId
+        userId
+        createdAt
+      }
+      nextToken
+    }
+    userEvents {
+      items {
+        id
+        eventId
+        userId
+        eventStartTimeUnix
+        eventEndTime
+        createdAt
+      }
+      nextToken
+    }
+    reportComments {
+      items {
+        id
+        commentId
+        reporterId
+        createdAtUnix
+        createdAt
+      }
+      nextToken
+    }
+    userBlocks {
+      items {
+        id
+        userId
+        blockUserId
+        createdAtUnix
+        createdAt
+      }
+      nextToken
+    }
+    events {
+      items {
+        id
+        title
+        startTime
+        endTime
+        description
+        image
+        quota
+        createdAt
+        upcoming
       }
       nextToken
     }
@@ -100,10 +550,11 @@ export const onDeleteUser = `subscription OnDeleteUser {
 export const onCreateUserImages = `subscription OnCreateUserImages {
   onCreateUserImages {
     id
-    url
+    uri
     owner
     user {
       id
+      staffID
       username
       birthDate
       firstName
@@ -111,10 +562,58 @@ export const onCreateUserImages = `subscription OnCreateUserImages {
       mobilePhone
       email
       amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
       images {
         nextToken
       }
       companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
         nextToken
       }
     }
@@ -124,10 +623,11 @@ export const onCreateUserImages = `subscription OnCreateUserImages {
 export const onUpdateUserImages = `subscription OnUpdateUserImages {
   onUpdateUserImages {
     id
-    url
+    uri
     owner
     user {
       id
+      staffID
       username
       birthDate
       firstName
@@ -135,10 +635,58 @@ export const onUpdateUserImages = `subscription OnUpdateUserImages {
       mobilePhone
       email
       amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
       images {
         nextToken
       }
       companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
         nextToken
       }
     }
@@ -148,10 +696,11 @@ export const onUpdateUserImages = `subscription OnUpdateUserImages {
 export const onDeleteUserImages = `subscription OnDeleteUserImages {
   onDeleteUserImages {
     id
-    url
+    uri
     owner
     user {
       id
+      staffID
       username
       birthDate
       firstName
@@ -159,10 +708,58 @@ export const onDeleteUserImages = `subscription OnDeleteUserImages {
       mobilePhone
       email
       amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
       images {
         nextToken
       }
       companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
         nextToken
       }
     }
@@ -172,9 +769,9 @@ export const onDeleteUserImages = `subscription OnDeleteUserImages {
 export const onCreateCompany = `subscription OnCreateCompany {
   onCreateCompany {
     id
-    owner
     user {
       id
+      staffID
       username
       birthDate
       firstName
@@ -182,22 +779,77 @@ export const onCreateCompany = `subscription OnCreateCompany {
       mobilePhone
       email
       amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
       images {
         nextToken
       }
       companies {
         nextToken
       }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
     }
     name
+    description
+    phone
     address
     latlng
     website
+    email
+    image
+    logo
+    createdAt
     images {
       items {
         id
-        url
+        uri
         owner
+        createdAt
       }
       nextToken
     }
@@ -207,9 +859,9 @@ export const onCreateCompany = `subscription OnCreateCompany {
 export const onUpdateCompany = `subscription OnUpdateCompany {
   onUpdateCompany {
     id
-    owner
     user {
       id
+      staffID
       username
       birthDate
       firstName
@@ -217,22 +869,77 @@ export const onUpdateCompany = `subscription OnUpdateCompany {
       mobilePhone
       email
       amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
       images {
         nextToken
       }
       companies {
         nextToken
       }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
     }
     name
+    description
+    phone
     address
     latlng
     website
+    email
+    image
+    logo
+    createdAt
     images {
       items {
         id
-        url
+        uri
         owner
+        createdAt
       }
       nextToken
     }
@@ -242,9 +949,9 @@ export const onUpdateCompany = `subscription OnUpdateCompany {
 export const onDeleteCompany = `subscription OnDeleteCompany {
   onDeleteCompany {
     id
-    owner
     user {
       id
+      staffID
       username
       birthDate
       firstName
@@ -252,22 +959,77 @@ export const onDeleteCompany = `subscription OnDeleteCompany {
       mobilePhone
       email
       amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
       images {
         nextToken
       }
       companies {
         nextToken
       }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
     }
     name
+    description
+    phone
     address
     latlng
     website
+    email
+    image
+    logo
+    createdAt
     images {
       items {
         id
-        url
+        uri
         owner
+        createdAt
       }
       nextToken
     }
@@ -277,13 +1039,14 @@ export const onDeleteCompany = `subscription OnDeleteCompany {
 export const onCreateCompanyImages = `subscription OnCreateCompanyImages {
   onCreateCompanyImages {
     id
-    url
+    uri
     owner
+    createdAt
     company {
       id
-      owner
       user {
         id
+        staffID
         username
         birthDate
         firstName
@@ -291,11 +1054,32 @@ export const onCreateCompanyImages = `subscription OnCreateCompanyImages {
         mobilePhone
         email
         amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
       }
       name
+      description
+      phone
       address
       latlng
       website
+      email
+      image
+      logo
+      createdAt
       images {
         nextToken
       }
@@ -306,13 +1090,14 @@ export const onCreateCompanyImages = `subscription OnCreateCompanyImages {
 export const onUpdateCompanyImages = `subscription OnUpdateCompanyImages {
   onUpdateCompanyImages {
     id
-    url
+    uri
     owner
+    createdAt
     company {
       id
-      owner
       user {
         id
+        staffID
         username
         birthDate
         firstName
@@ -320,11 +1105,32 @@ export const onUpdateCompanyImages = `subscription OnUpdateCompanyImages {
         mobilePhone
         email
         amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
       }
       name
+      description
+      phone
       address
       latlng
       website
+      email
+      image
+      logo
+      createdAt
       images {
         nextToken
       }
@@ -335,13 +1141,14 @@ export const onUpdateCompanyImages = `subscription OnUpdateCompanyImages {
 export const onDeleteCompanyImages = `subscription OnDeleteCompanyImages {
   onDeleteCompanyImages {
     id
-    url
+    uri
     owner
+    createdAt
     company {
       id
-      owner
       user {
         id
+        staffID
         username
         birthDate
         firstName
@@ -349,11 +1156,32 @@ export const onDeleteCompanyImages = `subscription OnDeleteCompanyImages {
         mobilePhone
         email
         amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
       }
       name
+      description
+      phone
       address
       latlng
       website
+      email
+      image
+      logo
+      createdAt
       images {
         nextToken
       }
@@ -368,6 +1196,7 @@ export const onCreatePackage = `subscription OnCreatePackage {
     price
     description
     level
+    createdAt
   }
 }
 `;
@@ -378,6 +1207,7 @@ export const onUpdatePackage = `subscription OnUpdatePackage {
     price
     description
     level
+    createdAt
   }
 }
 `;
@@ -388,6 +1218,7 @@ export const onDeletePackage = `subscription OnDeletePackage {
     price
     description
     level
+    createdAt
   }
 }
 `;
@@ -401,24 +1232,145 @@ export const onCreatePost = `subscription OnCreatePost {
       placeName
       placeLatLng
     }
-    images {
+    postImages {
       items {
         id
-        url
+        uri
+        createdAt
       }
       nextToken
     }
-    comments {
+    postComments {
       items {
         id
         content
-        owner
+        postId
+        userId
+        createdAtUnix
+        createdAt
       }
       nextToken
     }
+    postOfUser {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
     owner
+    type
     createdAt
-    updatedAt
+    refers {
+      items {
+        id
+        referrer
+        receiver
+        createdAt
+      }
+      nextToken
+    }
+    postBookmarks {
+      items {
+        id
+        userBookmarkCode
+        createdAt
+      }
+      nextToken
+    }
+    reports {
+      items {
+        id
+        type
+        status
+        description
+        createdAt
+      }
+      nextToken
+    }
+    postRadeem {
+      items {
+        id
+        postId
+        userId
+        createdAt
+      }
+      nextToken
+    }
+    countComment
+    countRefer
+    countRadeem
+    countBookmark
+    countReport
+    countConnect
+    radeemQuota
+    expireAtUnix
+    expireAt
+    expire
+    pin
+    createdAtUnix
+    expireRedeemAt
+    expireRedeemAtUnix
+    redeemImage
+    redeemDescription
   }
 }
 `;
@@ -432,24 +1384,145 @@ export const onUpdatePost = `subscription OnUpdatePost {
       placeName
       placeLatLng
     }
-    images {
+    postImages {
       items {
         id
-        url
+        uri
+        createdAt
       }
       nextToken
     }
-    comments {
+    postComments {
       items {
         id
         content
-        owner
+        postId
+        userId
+        createdAtUnix
+        createdAt
       }
       nextToken
     }
+    postOfUser {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
     owner
+    type
     createdAt
-    updatedAt
+    refers {
+      items {
+        id
+        referrer
+        receiver
+        createdAt
+      }
+      nextToken
+    }
+    postBookmarks {
+      items {
+        id
+        userBookmarkCode
+        createdAt
+      }
+      nextToken
+    }
+    reports {
+      items {
+        id
+        type
+        status
+        description
+        createdAt
+      }
+      nextToken
+    }
+    postRadeem {
+      items {
+        id
+        postId
+        userId
+        createdAt
+      }
+      nextToken
+    }
+    countComment
+    countRefer
+    countRadeem
+    countBookmark
+    countReport
+    countConnect
+    radeemQuota
+    expireAtUnix
+    expireAt
+    expire
+    pin
+    createdAtUnix
+    expireRedeemAt
+    expireRedeemAtUnix
+    redeemImage
+    redeemDescription
   }
 }
 `;
@@ -463,32 +1536,153 @@ export const onDeletePost = `subscription OnDeletePost {
       placeName
       placeLatLng
     }
-    images {
+    postImages {
       items {
         id
-        url
+        uri
+        createdAt
       }
       nextToken
     }
-    comments {
+    postComments {
       items {
         id
         content
-        owner
+        postId
+        userId
+        createdAtUnix
+        createdAt
       }
       nextToken
     }
+    postOfUser {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
     owner
+    type
     createdAt
-    updatedAt
+    refers {
+      items {
+        id
+        referrer
+        receiver
+        createdAt
+      }
+      nextToken
+    }
+    postBookmarks {
+      items {
+        id
+        userBookmarkCode
+        createdAt
+      }
+      nextToken
+    }
+    reports {
+      items {
+        id
+        type
+        status
+        description
+        createdAt
+      }
+      nextToken
+    }
+    postRadeem {
+      items {
+        id
+        postId
+        userId
+        createdAt
+      }
+      nextToken
+    }
+    countComment
+    countRefer
+    countRadeem
+    countBookmark
+    countReport
+    countConnect
+    radeemQuota
+    expireAtUnix
+    expireAt
+    expire
+    pin
+    createdAtUnix
+    expireRedeemAt
+    expireRedeemAtUnix
+    redeemImage
+    redeemDescription
   }
 }
 `;
 export const onCreatePostImage = `subscription OnCreatePostImage {
   onCreatePostImage {
     id
-    url
-    post {
+    uri
+    postImage {
       id
       content
       enableComment
@@ -497,24 +1691,79 @@ export const onCreatePostImage = `subscription OnCreatePostImage {
         placeName
         placeLatLng
       }
-      images {
+      postImages {
         nextToken
       }
-      comments {
+      postComments {
         nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
       }
       owner
+      type
       createdAt
-      updatedAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
     }
+    createdAt
   }
 }
 `;
 export const onUpdatePostImage = `subscription OnUpdatePostImage {
   onUpdatePostImage {
     id
-    url
-    post {
+    uri
+    postImage {
       id
       content
       enableComment
@@ -523,24 +1772,79 @@ export const onUpdatePostImage = `subscription OnUpdatePostImage {
         placeName
         placeLatLng
       }
-      images {
+      postImages {
         nextToken
       }
-      comments {
+      postComments {
         nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
       }
       owner
+      type
       createdAt
-      updatedAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
     }
+    createdAt
   }
 }
 `;
 export const onDeletePostImage = `subscription OnDeletePostImage {
   onDeletePostImage {
     id
-    url
-    post {
+    uri
+    postImage {
       id
       content
       enableComment
@@ -549,16 +1853,71 @@ export const onDeletePostImage = `subscription OnDeletePostImage {
         placeName
         placeLatLng
       }
-      images {
+      postImages {
         nextToken
       }
-      comments {
+      postComments {
         nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
       }
       owner
+      type
       createdAt
-      updatedAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
     }
+    createdAt
   }
 }
 `;
@@ -566,7 +1925,10 @@ export const onCreateComment = `subscription OnCreateComment {
   onCreateComment {
     id
     content
-    post {
+    postId
+    userId
+    createdAtUnix
+    postComment {
       id
       content
       enableComment
@@ -575,17 +1937,146 @@ export const onCreateComment = `subscription OnCreateComment {
         placeName
         placeLatLng
       }
+      postImages {
+        nextToken
+      }
+      postComments {
+        nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+      owner
+      type
+      createdAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
+    }
+    userComment {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
       images {
         nextToken
       }
-      comments {
+      companies {
         nextToken
       }
-      owner
-      createdAt
-      updatedAt
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
     }
-    owner
+    reportComments {
+      items {
+        id
+        commentId
+        reporterId
+        createdAtUnix
+        createdAt
+      }
+      nextToken
+    }
+    createdAt
   }
 }
 `;
@@ -593,7 +2084,10 @@ export const onUpdateComment = `subscription OnUpdateComment {
   onUpdateComment {
     id
     content
-    post {
+    postId
+    userId
+    createdAtUnix
+    postComment {
       id
       content
       enableComment
@@ -602,17 +2096,146 @@ export const onUpdateComment = `subscription OnUpdateComment {
         placeName
         placeLatLng
       }
+      postImages {
+        nextToken
+      }
+      postComments {
+        nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+      owner
+      type
+      createdAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
+    }
+    userComment {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
       images {
         nextToken
       }
-      comments {
+      companies {
         nextToken
       }
-      owner
-      createdAt
-      updatedAt
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
     }
-    owner
+    reportComments {
+      items {
+        id
+        commentId
+        reporterId
+        createdAtUnix
+        createdAt
+      }
+      nextToken
+    }
+    createdAt
   }
 }
 `;
@@ -620,6 +2243,164 @@ export const onDeleteComment = `subscription OnDeleteComment {
   onDeleteComment {
     id
     content
+    postId
+    userId
+    createdAtUnix
+    postComment {
+      id
+      content
+      enableComment
+      tags
+      location {
+        placeName
+        placeLatLng
+      }
+      postImages {
+        nextToken
+      }
+      postComments {
+        nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+      owner
+      type
+      createdAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
+    }
+    userComment {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    reportComments {
+      items {
+        id
+        commentId
+        reporterId
+        createdAtUnix
+        createdAt
+      }
+      nextToken
+    }
+    createdAt
+  }
+}
+`;
+export const onCreatePostReferSecond = `subscription OnCreatePostReferSecond {
+  onCreatePostReferSecond {
+    id
     post {
       id
       content
@@ -629,17 +2410,627 @@ export const onDeleteComment = `subscription OnDeleteComment {
         placeName
         placeLatLng
       }
+      postImages {
+        nextToken
+      }
+      postComments {
+        nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+      owner
+      type
+      createdAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
+    }
+    referrer
+    receiver
+    referrerPostUser {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
       images {
         nextToken
       }
-      comments {
+      companies {
         nextToken
       }
-      owner
-      createdAt
-      updatedAt
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
     }
-    owner
+    receiverPostUser {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    createdAt
+  }
+}
+`;
+export const onUpdatePostReferSecond = `subscription OnUpdatePostReferSecond {
+  onUpdatePostReferSecond {
+    id
+    post {
+      id
+      content
+      enableComment
+      tags
+      location {
+        placeName
+        placeLatLng
+      }
+      postImages {
+        nextToken
+      }
+      postComments {
+        nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+      owner
+      type
+      createdAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
+    }
+    referrer
+    receiver
+    referrerPostUser {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    receiverPostUser {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    createdAt
+  }
+}
+`;
+export const onDeletePostReferSecond = `subscription OnDeletePostReferSecond {
+  onDeletePostReferSecond {
+    id
+    post {
+      id
+      content
+      enableComment
+      tags
+      location {
+        placeName
+        placeLatLng
+      }
+      postImages {
+        nextToken
+      }
+      postComments {
+        nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+      owner
+      type
+      createdAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
+    }
+    referrer
+    receiver
+    referrerPostUser {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    receiverPostUser {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    createdAt
   }
 }
 `;
@@ -650,12 +3041,97 @@ export const onCreateEvent = `subscription OnCreateEvent {
     startTime
     endTime
     description
+    image
     images {
       items {
         id
-        url
+        uri
+        createdAt
       }
       nextToken
+    }
+    quota
+    eventJoineds {
+      items {
+        id
+        eventId
+        userId
+        eventStartTimeUnix
+        eventEndTime
+        createdAt
+      }
+      nextToken
+    }
+    location {
+      placeName
+      placeLatLng
+    }
+    createdAt
+    upcoming
+    user {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
     }
   }
 }
@@ -667,12 +3143,97 @@ export const onUpdateEvent = `subscription OnUpdateEvent {
     startTime
     endTime
     description
+    image
     images {
       items {
         id
-        url
+        uri
+        createdAt
       }
       nextToken
+    }
+    quota
+    eventJoineds {
+      items {
+        id
+        eventId
+        userId
+        eventStartTimeUnix
+        eventEndTime
+        createdAt
+      }
+      nextToken
+    }
+    location {
+      placeName
+      placeLatLng
+    }
+    createdAt
+    upcoming
+    user {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
     }
   }
 }
@@ -684,12 +3245,97 @@ export const onDeleteEvent = `subscription OnDeleteEvent {
     startTime
     endTime
     description
+    image
     images {
       items {
         id
-        url
+        uri
+        createdAt
       }
       nextToken
+    }
+    quota
+    eventJoineds {
+      items {
+        id
+        eventId
+        userId
+        eventStartTimeUnix
+        eventEndTime
+        createdAt
+      }
+      nextToken
+    }
+    location {
+      placeName
+      placeLatLng
+    }
+    createdAt
+    upcoming
+    user {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
     }
   }
 }
@@ -697,51 +3343,2559 @@ export const onDeleteEvent = `subscription OnDeleteEvent {
 export const onCreateEventImage = `subscription OnCreateEventImage {
   onCreateEventImage {
     id
-    url
+    uri
     event {
       id
       title
       startTime
       endTime
       description
+      image
       images {
         nextToken
       }
+      quota
+      eventJoineds {
+        nextToken
+      }
+      location {
+        placeName
+        placeLatLng
+      }
+      createdAt
+      upcoming
+      user {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
     }
+    createdAt
   }
 }
 `;
 export const onUpdateEventImage = `subscription OnUpdateEventImage {
   onUpdateEventImage {
     id
-    url
+    uri
     event {
       id
       title
       startTime
       endTime
       description
+      image
       images {
         nextToken
       }
+      quota
+      eventJoineds {
+        nextToken
+      }
+      location {
+        placeName
+        placeLatLng
+      }
+      createdAt
+      upcoming
+      user {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
     }
+    createdAt
   }
 }
 `;
 export const onDeleteEventImage = `subscription OnDeleteEventImage {
   onDeleteEventImage {
     id
-    url
+    uri
     event {
       id
       title
       startTime
       endTime
       description
+      image
       images {
         nextToken
       }
+      quota
+      eventJoineds {
+        nextToken
+      }
+      location {
+        placeName
+        placeLatLng
+      }
+      createdAt
+      upcoming
+      user {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
     }
+    createdAt
+  }
+}
+`;
+export const onCreateReport = `subscription OnCreateReport {
+  onCreateReport {
+    id
+    post {
+      id
+      content
+      enableComment
+      tags
+      location {
+        placeName
+        placeLatLng
+      }
+      postImages {
+        nextToken
+      }
+      postComments {
+        nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+      owner
+      type
+      createdAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
+    }
+    reporter {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    type
+    status
+    description
+    createdAt
+  }
+}
+`;
+export const onUpdateReport = `subscription OnUpdateReport {
+  onUpdateReport {
+    id
+    post {
+      id
+      content
+      enableComment
+      tags
+      location {
+        placeName
+        placeLatLng
+      }
+      postImages {
+        nextToken
+      }
+      postComments {
+        nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+      owner
+      type
+      createdAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
+    }
+    reporter {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    type
+    status
+    description
+    createdAt
+  }
+}
+`;
+export const onDeleteReport = `subscription OnDeleteReport {
+  onDeleteReport {
+    id
+    post {
+      id
+      content
+      enableComment
+      tags
+      location {
+        placeName
+        placeLatLng
+      }
+      postImages {
+        nextToken
+      }
+      postComments {
+        nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+      owner
+      type
+      createdAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
+    }
+    reporter {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    type
+    status
+    description
+    createdAt
+  }
+}
+`;
+export const onCreatePostBookmark = `subscription OnCreatePostBookmark {
+  onCreatePostBookmark {
+    id
+    postBookmark {
+      id
+      content
+      enableComment
+      tags
+      location {
+        placeName
+        placeLatLng
+      }
+      postImages {
+        nextToken
+      }
+      postComments {
+        nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+      owner
+      type
+      createdAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
+    }
+    userBookmark {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    userBookmarkCode
+    createdAt
+  }
+}
+`;
+export const onUpdatePostBookmark = `subscription OnUpdatePostBookmark {
+  onUpdatePostBookmark {
+    id
+    postBookmark {
+      id
+      content
+      enableComment
+      tags
+      location {
+        placeName
+        placeLatLng
+      }
+      postImages {
+        nextToken
+      }
+      postComments {
+        nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+      owner
+      type
+      createdAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
+    }
+    userBookmark {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    userBookmarkCode
+    createdAt
+  }
+}
+`;
+export const onDeletePostBookmark = `subscription OnDeletePostBookmark {
+  onDeletePostBookmark {
+    id
+    postBookmark {
+      id
+      content
+      enableComment
+      tags
+      location {
+        placeName
+        placeLatLng
+      }
+      postImages {
+        nextToken
+      }
+      postComments {
+        nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+      owner
+      type
+      createdAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
+    }
+    userBookmark {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    userBookmarkCode
+    createdAt
+  }
+}
+`;
+export const onCreatePostRadeemSecond = `subscription OnCreatePostRadeemSecond {
+  onCreatePostRadeemSecond {
+    id
+    postRadeem {
+      id
+      content
+      enableComment
+      tags
+      location {
+        placeName
+        placeLatLng
+      }
+      postImages {
+        nextToken
+      }
+      postComments {
+        nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+      owner
+      type
+      createdAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
+    }
+    userRadeem {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    postId
+    userId
+    createdAt
+  }
+}
+`;
+export const onUpdatePostRadeemSecond = `subscription OnUpdatePostRadeemSecond {
+  onUpdatePostRadeemSecond {
+    id
+    postRadeem {
+      id
+      content
+      enableComment
+      tags
+      location {
+        placeName
+        placeLatLng
+      }
+      postImages {
+        nextToken
+      }
+      postComments {
+        nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+      owner
+      type
+      createdAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
+    }
+    userRadeem {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    postId
+    userId
+    createdAt
+  }
+}
+`;
+export const onDeletePostRadeemSecond = `subscription OnDeletePostRadeemSecond {
+  onDeletePostRadeemSecond {
+    id
+    postRadeem {
+      id
+      content
+      enableComment
+      tags
+      location {
+        placeName
+        placeLatLng
+      }
+      postImages {
+        nextToken
+      }
+      postComments {
+        nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+      owner
+      type
+      createdAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
+    }
+    userRadeem {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    postId
+    userId
+    createdAt
+  }
+}
+`;
+export const onCreateUserJoinedEvent = `subscription OnCreateUserJoinedEvent {
+  onCreateUserJoinedEvent {
+    id
+    eventId
+    userId
+    userEvent {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    eventJoined {
+      id
+      title
+      startTime
+      endTime
+      description
+      image
+      images {
+        nextToken
+      }
+      quota
+      eventJoineds {
+        nextToken
+      }
+      location {
+        placeName
+        placeLatLng
+      }
+      createdAt
+      upcoming
+      user {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+    }
+    eventStartTimeUnix
+    eventEndTime
+    createdAt
+  }
+}
+`;
+export const onUpdateUserJoinedEvent = `subscription OnUpdateUserJoinedEvent {
+  onUpdateUserJoinedEvent {
+    id
+    eventId
+    userId
+    userEvent {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    eventJoined {
+      id
+      title
+      startTime
+      endTime
+      description
+      image
+      images {
+        nextToken
+      }
+      quota
+      eventJoineds {
+        nextToken
+      }
+      location {
+        placeName
+        placeLatLng
+      }
+      createdAt
+      upcoming
+      user {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+    }
+    eventStartTimeUnix
+    eventEndTime
+    createdAt
+  }
+}
+`;
+export const onDeleteUserJoinedEvent = `subscription OnDeleteUserJoinedEvent {
+  onDeleteUserJoinedEvent {
+    id
+    eventId
+    userId
+    userEvent {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    eventJoined {
+      id
+      title
+      startTime
+      endTime
+      description
+      image
+      images {
+        nextToken
+      }
+      quota
+      eventJoineds {
+        nextToken
+      }
+      location {
+        placeName
+        placeLatLng
+      }
+      createdAt
+      upcoming
+      user {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+    }
+    eventStartTimeUnix
+    eventEndTime
+    createdAt
+  }
+}
+`;
+export const onCreateReportComment = `subscription OnCreateReportComment {
+  onCreateReportComment {
+    id
+    commentId
+    reporterId
+    createdAtUnix
+    comment {
+      id
+      content
+      postId
+      userId
+      createdAtUnix
+      postComment {
+        id
+        content
+        enableComment
+        tags
+        owner
+        type
+        createdAt
+        countComment
+        countRefer
+        countRadeem
+        countBookmark
+        countReport
+        countConnect
+        radeemQuota
+        expireAtUnix
+        expireAt
+        expire
+        pin
+        createdAtUnix
+        expireRedeemAt
+        expireRedeemAtUnix
+        redeemImage
+        redeemDescription
+      }
+      userComment {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+      reportComments {
+        nextToken
+      }
+      createdAt
+    }
+    reporter {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    createdAt
+  }
+}
+`;
+export const onUpdateReportComment = `subscription OnUpdateReportComment {
+  onUpdateReportComment {
+    id
+    commentId
+    reporterId
+    createdAtUnix
+    comment {
+      id
+      content
+      postId
+      userId
+      createdAtUnix
+      postComment {
+        id
+        content
+        enableComment
+        tags
+        owner
+        type
+        createdAt
+        countComment
+        countRefer
+        countRadeem
+        countBookmark
+        countReport
+        countConnect
+        radeemQuota
+        expireAtUnix
+        expireAt
+        expire
+        pin
+        createdAtUnix
+        expireRedeemAt
+        expireRedeemAtUnix
+        redeemImage
+        redeemDescription
+      }
+      userComment {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+      reportComments {
+        nextToken
+      }
+      createdAt
+    }
+    reporter {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    createdAt
+  }
+}
+`;
+export const onDeleteReportComment = `subscription OnDeleteReportComment {
+  onDeleteReportComment {
+    id
+    commentId
+    reporterId
+    createdAtUnix
+    comment {
+      id
+      content
+      postId
+      userId
+      createdAtUnix
+      postComment {
+        id
+        content
+        enableComment
+        tags
+        owner
+        type
+        createdAt
+        countComment
+        countRefer
+        countRadeem
+        countBookmark
+        countReport
+        countConnect
+        radeemQuota
+        expireAtUnix
+        expireAt
+        expire
+        pin
+        createdAtUnix
+        expireRedeemAt
+        expireRedeemAtUnix
+        redeemImage
+        redeemDescription
+      }
+      userComment {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+      }
+      reportComments {
+        nextToken
+      }
+      createdAt
+    }
+    reporter {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    createdAt
+  }
+}
+`;
+export const onCreateUserBlock = `subscription OnCreateUserBlock {
+  onCreateUserBlock {
+    id
+    userId
+    blockUserId
+    blockUser {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    createdAtUnix
+    createdAt
+  }
+}
+`;
+export const onUpdateUserBlock = `subscription OnUpdateUserBlock {
+  onUpdateUserBlock {
+    id
+    userId
+    blockUserId
+    blockUser {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    createdAtUnix
+    createdAt
+  }
+}
+`;
+export const onDeleteUserBlock = `subscription OnDeleteUserBlock {
+  onDeleteUserBlock {
+    id
+    userId
+    blockUserId
+    blockUser {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+    }
+    createdAtUnix
+    createdAt
+  }
+}
+`;
+export const onCreatePostConnect = `subscription OnCreatePostConnect {
+  onCreatePostConnect {
+    id
+    userId
+    connectUserId
+    createdAtUnix
+    postId
+    createdAt
+  }
+}
+`;
+export const onUpdatePostConnect = `subscription OnUpdatePostConnect {
+  onUpdatePostConnect {
+    id
+    userId
+    connectUserId
+    createdAtUnix
+    postId
+    createdAt
+  }
+}
+`;
+export const onDeletePostConnect = `subscription OnDeletePostConnect {
+  onDeletePostConnect {
+    id
+    userId
+    connectUserId
+    createdAtUnix
+    postId
+    createdAt
+  }
+}
+`;
+export const onCreateFeedback = `subscription OnCreateFeedback {
+  onCreateFeedback {
+    id
+    topic
+    message
+    createdAtUnix
+    userId
+    createdAt
+  }
+}
+`;
+export const onUpdateFeedback = `subscription OnUpdateFeedback {
+  onUpdateFeedback {
+    id
+    topic
+    message
+    createdAtUnix
+    userId
+    createdAt
+  }
+}
+`;
+export const onDeleteFeedback = `subscription OnDeleteFeedback {
+  onDeleteFeedback {
+    id
+    topic
+    message
+    createdAtUnix
+    userId
+    createdAt
   }
 }
 `;

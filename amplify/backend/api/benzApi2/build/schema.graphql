@@ -1,39 +1,72 @@
 type User {
   id: ID!
+  staffID: String
   username: String
-  birthDate: String!
+  birthDate: String
   firstName: String
   lastName: String
   mobilePhone: String
   email: String
-  amgId: String!
+  amgId: String
+  amgModel: String
+  amgShowroom: String
+  nickName: String
+  citizenId: String
+  image: String
+  address: String
+  subDistrict: String
+  district: String
+  province: String
+  active: Boolean
+  pushToken: String
+  type: String
+  expireAt: Int
+  level: String
+  createdAt: String
   images(filter: ModelUserImagesFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelUserImagesConnection
   companies(filter: ModelCompanyFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelCompanyConnection
+  postsOfUser(filter: ModelPostFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelPostConnection
+  userComments(filter: ModelCommentFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelCommentConnection
+  userReports(filter: ModelReportFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelReportConnection
+  userBookmarks(filter: ModelPostBookmarkFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelPostBookmarkConnection
+  referrers(filter: ModelPostReferSecondFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelPostReferSecondConnection
+  receivers(filter: ModelPostReferSecondFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelPostReferSecondConnection
+  userRadeem(filter: ModelPostRadeemSecondFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelPostRadeemSecondConnection
+  userEvents(filter: ModelUserJoinedEventFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelUserJoinedEventConnection
+  reportComments(filter: ModelReportCommentFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelReportCommentConnection
+  userBlocks(filter: ModelUserBlockFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelUserBlockConnection
+  events(filter: ModelEventFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelEventConnection
 }
 
 type UserImages {
   id: ID!
-  url: String!
+  uri: String!
   owner: String
-  user: User
+  user: User!
 }
 
 type Company {
   id: ID!
-  owner: String
-  user: User
+  user: User!
   name: String!
+  description: String
+  phone: String
   address: String
   latlng: String
   website: String
+  email: String
+  image: String
+  logo: String
+  createdAt: String
   images(filter: ModelCompanyImagesFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelCompanyImagesConnection
 }
 
 type CompanyImages {
   id: ID!
-  url: String!
+  uri: String!
   owner: String
-  company: Company
+  createdAt: String
+  company: Company!
 }
 
 type Package {
@@ -42,6 +75,7 @@ type Package {
   price: Int!
   description: String
   level: String!
+  createdAt: String
 }
 
 type Post {
@@ -50,11 +84,32 @@ type Post {
   enableComment: Boolean
   tags: [String!]
   location: Location
-  images(filter: ModelPostImageFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelPostImageConnection
-  comments(filter: ModelCommentFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelCommentConnection
+  postImages(filter: ModelPostImageFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelPostImageConnection
+  postComments(filter: ModelCommentFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelCommentConnection
+  postOfUser: User!
   owner: String
-  createdAt: String!
-  updatedAt: String
+  type: String!
+  createdAt: String
+  refers(filter: ModelPostReferSecondFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelPostReferSecondConnection
+  postBookmarks(filter: ModelPostBookmarkFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelPostBookmarkConnection
+  reports(filter: ModelReportFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelReportConnection
+  postRadeem(filter: ModelPostRadeemSecondFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelPostRadeemSecondConnection
+  countComment: Int
+  countRefer: Int
+  countRadeem: Int
+  countBookmark: Int
+  countReport: Int
+  countConnect: Int
+  radeemQuota: Int
+  expireAtUnix: String
+  expireAt: String
+  expire: String
+  pin: String
+  createdAtUnix: String
+  expireRedeemAt: String
+  expireRedeemAtUnix: String
+  redeemImage: String
+  redeemDescription: String
 }
 
 type Location {
@@ -64,30 +119,129 @@ type Location {
 
 type PostImage {
   id: ID!
-  url: String!
-  post: Post
+  uri: String!
+  postImage: Post!
+  createdAt: String
 }
 
 type Comment {
   id: ID!
   content: String!
-  post: Post
-  owner: String
+  postId: String!
+  userId: String!
+  createdAtUnix: String!
+  postComment: Post!
+  userComment: User!
+  reportComments(filter: ModelReportCommentFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelReportCommentConnection
+  createdAt: String
+}
+
+type PostReferSecond {
+  id: ID!
+  post: Post!
+  referrer: String!
+  receiver: String!
+  referrerPostUser: User!
+  receiverPostUser: User!
+  createdAt: String
 }
 
 type Event {
   id: ID!
   title: String!
-  startTime: String!
-  endTime: String!
+  startTime: AWSDateTime!
+  endTime: AWSDateTime!
   description: String
+  image: String
   images(filter: ModelEventImageFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelEventImageConnection
+  quota: Int
+  eventJoineds(filter: ModelUserJoinedEventFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelUserJoinedEventConnection
+  location: Location
+  createdAt: String
+  upcoming: Boolean
+  user: User!
 }
 
 type EventImage {
   id: ID!
-  url: String!
+  uri: String!
   event: Event
+  createdAt: String
+}
+
+type Report {
+  id: ID!
+  post: Post!
+  reporter: User!
+  type: String!
+  status: String
+  description: String!
+  createdAt: String
+}
+
+type PostBookmark {
+  id: ID!
+  postBookmark: Post!
+  userBookmark: User!
+  userBookmarkCode: String!
+  createdAt: String
+}
+
+type PostRadeemSecond {
+  id: ID!
+  postRadeem: Post!
+  userRadeem: User!
+  postId: String!
+  userId: String!
+  createdAt: String
+}
+
+type UserJoinedEvent {
+  id: ID!
+  eventId: String!
+  userId: String!
+  userEvent: User!
+  eventJoined: Event!
+  eventStartTimeUnix: String!
+  eventEndTime: String!
+  createdAt: String
+}
+
+type ReportComment {
+  id: ID!
+  commentId: String!
+  reporterId: String!
+  createdAtUnix: String!
+  comment: Comment!
+  reporter: User!
+  createdAt: String
+}
+
+type UserBlock {
+  id: ID!
+  userId: String!
+  blockUserId: String!
+  blockUser: User!
+  createdAtUnix: String!
+  createdAt: String
+}
+
+type PostConnect {
+  id: ID!
+  userId: String!
+  connectUserId: String!
+  createdAtUnix: String!
+  postId: String!
+  createdAt: String
+}
+
+type Feedback {
+  id: ID!
+  topic: String!
+  message: String!
+  createdAtUnix: String!
+  userId: String!
+  createdAt: String
 }
 
 enum ModelSortDirection {
@@ -157,6 +311,7 @@ input ModelBooleanFilterInput {
 
 input ModelUserFilterInput {
   id: ModelIDFilterInput
+  staffID: ModelStringFilterInput
   username: ModelStringFilterInput
   birthDate: ModelStringFilterInput
   firstName: ModelStringFilterInput
@@ -164,6 +319,21 @@ input ModelUserFilterInput {
   mobilePhone: ModelStringFilterInput
   email: ModelStringFilterInput
   amgId: ModelStringFilterInput
+  amgModel: ModelStringFilterInput
+  amgShowroom: ModelStringFilterInput
+  nickName: ModelStringFilterInput
+  citizenId: ModelStringFilterInput
+  image: ModelStringFilterInput
+  address: ModelStringFilterInput
+  subDistrict: ModelStringFilterInput
+  district: ModelStringFilterInput
+  province: ModelStringFilterInput
+  active: ModelBooleanFilterInput
+  pushToken: ModelStringFilterInput
+  type: ModelStringFilterInput
+  expireAt: ModelIntFilterInput
+  level: ModelStringFilterInput
+  createdAt: ModelStringFilterInput
   and: [ModelUserFilterInput]
   or: [ModelUserFilterInput]
   not: ModelUserFilterInput
@@ -180,31 +350,43 @@ type Query {
   listCompanyImagess(filter: ModelCompanyImagesFilterInput, limit: Int, nextToken: String): ModelCompanyImagesConnection
   getPackage(id: ID!): Package
   listPackages(filter: ModelPackageFilterInput, limit: Int, nextToken: String): ModelPackageConnection
-  getPost(createdAt: String!): Post
-  listPosts(createdAt: String, filter: ModelPostFilterInput, limit: Int, nextToken: String): ModelPostConnection
+  getPost(id: ID!): Post
+  listPosts(filter: ModelPostFilterInput, limit: Int, nextToken: String): ModelPostConnection
   getPostImage(id: ID!): PostImage
   listPostImages(filter: ModelPostImageFilterInput, limit: Int, nextToken: String): ModelPostImageConnection
   getComment(id: ID!): Comment
   listComments(filter: ModelCommentFilterInput, limit: Int, nextToken: String): ModelCommentConnection
+  getPostReferSecond(id: ID!): PostReferSecond
+  listPostReferSeconds(filter: ModelPostReferSecondFilterInput, limit: Int, nextToken: String): ModelPostReferSecondConnection
   getEvent(id: ID!): Event
   listEvents(filter: ModelEventFilterInput, limit: Int, nextToken: String): ModelEventConnection
   getEventImage(id: ID!): EventImage
   listEventImages(filter: ModelEventImageFilterInput, limit: Int, nextToken: String): ModelEventImageConnection
+  getReport(id: ID!): Report
+  listReports(filter: ModelReportFilterInput, limit: Int, nextToken: String): ModelReportConnection
+  getPostBookmark(id: ID!, userBookmarkCode: String!): PostBookmark
+  listPostBookmarks(id: ID, userBookmarkCode: ModelStringKeyConditionInput, filter: ModelPostBookmarkFilterInput, limit: Int, nextToken: String): ModelPostBookmarkConnection
+  getPostRadeemSecond(id: ID!, postId: String!): PostRadeemSecond
+  listPostRadeemSeconds(id: ID, postId: ModelStringKeyConditionInput, filter: ModelPostRadeemSecondFilterInput, limit: Int, nextToken: String): ModelPostRadeemSecondConnection
+  getUserJoinedEvent(id: ID!, eventId: String!): UserJoinedEvent
+  listUserJoinedEvents(id: ID, eventId: ModelStringKeyConditionInput, filter: ModelUserJoinedEventFilterInput, limit: Int, nextToken: String): ModelUserJoinedEventConnection
+  getReportComment(id: ID!): ReportComment
+  listReportComments(filter: ModelReportCommentFilterInput, limit: Int, nextToken: String): ModelReportCommentConnection
+  getUserBlock(id: ID!): UserBlock
+  listUserBlocks(filter: ModelUserBlockFilterInput, limit: Int, nextToken: String): ModelUserBlockConnection
+  getPostConnect(id: ID!): PostConnect
+  listPostConnects(filter: ModelPostConnectFilterInput, limit: Int, nextToken: String): ModelPostConnectConnection
+  getFeedback(id: ID!): Feedback
+  listFeedbacks(filter: ModelFeedbackFilterInput, limit: Int, nextToken: String): ModelFeedbackConnection
+  itemsByPostType(type: String, createdAt: ModelStringKeyConditionInput, filter: ModelPostFilterInput, limit: Int, nextToken: String): ModelPostConnection
+  itemsByPin(pin: String, expireAt: ModelStringKeyConditionInput, filter: ModelPostFilterInput, limit: Int, nextToken: String): ModelPostConnection
+  redeemByPost(postId: String, userId: ModelStringKeyConditionInput, filter: ModelPostRadeemSecondFilterInput, limit: Int, nextToken: String): ModelPostRadeemSecondConnection
+  searchEvents(filter: SearchableEventFilterInput, sort: SearchableEventSortInput, limit: Int, nextToken: Int): SearchableEventConnection
 }
 
 input CreateUserInput {
   id: ID
-  username: String
-  birthDate: String!
-  firstName: String
-  lastName: String
-  mobilePhone: String
-  email: String
-  amgId: String!
-}
-
-input UpdateUserInput {
-  id: ID!
+  staffID: String
   username: String
   birthDate: String
   firstName: String
@@ -212,6 +394,48 @@ input UpdateUserInput {
   mobilePhone: String
   email: String
   amgId: String
+  amgModel: String
+  amgShowroom: String
+  nickName: String
+  citizenId: String
+  image: String
+  address: String
+  subDistrict: String
+  district: String
+  province: String
+  active: Boolean
+  pushToken: String
+  type: String
+  expireAt: Int
+  level: String
+  createdAt: String
+}
+
+input UpdateUserInput {
+  id: ID!
+  staffID: String
+  username: String
+  birthDate: String
+  firstName: String
+  lastName: String
+  mobilePhone: String
+  email: String
+  amgId: String
+  amgModel: String
+  amgShowroom: String
+  nickName: String
+  citizenId: String
+  image: String
+  address: String
+  subDistrict: String
+  district: String
+  province: String
+  active: Boolean
+  pushToken: String
+  type: String
+  expireAt: Int
+  level: String
+  createdAt: String
 }
 
 input DeleteUserInput {
@@ -243,12 +467,39 @@ type Mutation {
   createComment(input: CreateCommentInput!): Comment
   updateComment(input: UpdateCommentInput!): Comment
   deleteComment(input: DeleteCommentInput!): Comment
+  createPostReferSecond(input: CreatePostReferSecondInput!): PostReferSecond
+  updatePostReferSecond(input: UpdatePostReferSecondInput!): PostReferSecond
+  deletePostReferSecond(input: DeletePostReferSecondInput!): PostReferSecond
   createEvent(input: CreateEventInput!): Event
   updateEvent(input: UpdateEventInput!): Event
   deleteEvent(input: DeleteEventInput!): Event
   createEventImage(input: CreateEventImageInput!): EventImage
   updateEventImage(input: UpdateEventImageInput!): EventImage
   deleteEventImage(input: DeleteEventImageInput!): EventImage
+  createReport(input: CreateReportInput!): Report
+  updateReport(input: UpdateReportInput!): Report
+  deleteReport(input: DeleteReportInput!): Report
+  createPostBookmark(input: CreatePostBookmarkInput!): PostBookmark
+  updatePostBookmark(input: UpdatePostBookmarkInput!): PostBookmark
+  deletePostBookmark(input: DeletePostBookmarkInput!): PostBookmark
+  createPostRadeemSecond(input: CreatePostRadeemSecondInput!): PostRadeemSecond
+  updatePostRadeemSecond(input: UpdatePostRadeemSecondInput!): PostRadeemSecond
+  deletePostRadeemSecond(input: DeletePostRadeemSecondInput!): PostRadeemSecond
+  createUserJoinedEvent(input: CreateUserJoinedEventInput!): UserJoinedEvent
+  updateUserJoinedEvent(input: UpdateUserJoinedEventInput!): UserJoinedEvent
+  deleteUserJoinedEvent(input: DeleteUserJoinedEventInput!): UserJoinedEvent
+  createReportComment(input: CreateReportCommentInput!): ReportComment
+  updateReportComment(input: UpdateReportCommentInput!): ReportComment
+  deleteReportComment(input: DeleteReportCommentInput!): ReportComment
+  createUserBlock(input: CreateUserBlockInput!): UserBlock
+  updateUserBlock(input: UpdateUserBlockInput!): UserBlock
+  deleteUserBlock(input: DeleteUserBlockInput!): UserBlock
+  createPostConnect(input: CreatePostConnectInput!): PostConnect
+  updatePostConnect(input: UpdatePostConnectInput!): PostConnect
+  deletePostConnect(input: DeletePostConnectInput!): PostConnect
+  createFeedback(input: CreateFeedbackInput!): Feedback
+  updateFeedback(input: UpdateFeedbackInput!): Feedback
+  deleteFeedback(input: DeleteFeedbackInput!): Feedback
 }
 
 type Subscription {
@@ -276,12 +527,39 @@ type Subscription {
   onCreateComment: Comment @aws_subscribe(mutations: ["createComment"])
   onUpdateComment: Comment @aws_subscribe(mutations: ["updateComment"])
   onDeleteComment: Comment @aws_subscribe(mutations: ["deleteComment"])
+  onCreatePostReferSecond: PostReferSecond @aws_subscribe(mutations: ["createPostReferSecond"])
+  onUpdatePostReferSecond: PostReferSecond @aws_subscribe(mutations: ["updatePostReferSecond"])
+  onDeletePostReferSecond: PostReferSecond @aws_subscribe(mutations: ["deletePostReferSecond"])
   onCreateEvent: Event @aws_subscribe(mutations: ["createEvent"])
   onUpdateEvent: Event @aws_subscribe(mutations: ["updateEvent"])
   onDeleteEvent: Event @aws_subscribe(mutations: ["deleteEvent"])
   onCreateEventImage: EventImage @aws_subscribe(mutations: ["createEventImage"])
   onUpdateEventImage: EventImage @aws_subscribe(mutations: ["updateEventImage"])
   onDeleteEventImage: EventImage @aws_subscribe(mutations: ["deleteEventImage"])
+  onCreateReport: Report @aws_subscribe(mutations: ["createReport"])
+  onUpdateReport: Report @aws_subscribe(mutations: ["updateReport"])
+  onDeleteReport: Report @aws_subscribe(mutations: ["deleteReport"])
+  onCreatePostBookmark: PostBookmark @aws_subscribe(mutations: ["createPostBookmark"])
+  onUpdatePostBookmark: PostBookmark @aws_subscribe(mutations: ["updatePostBookmark"])
+  onDeletePostBookmark: PostBookmark @aws_subscribe(mutations: ["deletePostBookmark"])
+  onCreatePostRadeemSecond: PostRadeemSecond @aws_subscribe(mutations: ["createPostRadeemSecond"])
+  onUpdatePostRadeemSecond: PostRadeemSecond @aws_subscribe(mutations: ["updatePostRadeemSecond"])
+  onDeletePostRadeemSecond: PostRadeemSecond @aws_subscribe(mutations: ["deletePostRadeemSecond"])
+  onCreateUserJoinedEvent: UserJoinedEvent @aws_subscribe(mutations: ["createUserJoinedEvent"])
+  onUpdateUserJoinedEvent: UserJoinedEvent @aws_subscribe(mutations: ["updateUserJoinedEvent"])
+  onDeleteUserJoinedEvent: UserJoinedEvent @aws_subscribe(mutations: ["deleteUserJoinedEvent"])
+  onCreateReportComment: ReportComment @aws_subscribe(mutations: ["createReportComment"])
+  onUpdateReportComment: ReportComment @aws_subscribe(mutations: ["updateReportComment"])
+  onDeleteReportComment: ReportComment @aws_subscribe(mutations: ["deleteReportComment"])
+  onCreateUserBlock: UserBlock @aws_subscribe(mutations: ["createUserBlock"])
+  onUpdateUserBlock: UserBlock @aws_subscribe(mutations: ["updateUserBlock"])
+  onDeleteUserBlock: UserBlock @aws_subscribe(mutations: ["deleteUserBlock"])
+  onCreatePostConnect: PostConnect @aws_subscribe(mutations: ["createPostConnect"])
+  onUpdatePostConnect: PostConnect @aws_subscribe(mutations: ["updatePostConnect"])
+  onDeletePostConnect: PostConnect @aws_subscribe(mutations: ["deletePostConnect"])
+  onCreateFeedback: Feedback @aws_subscribe(mutations: ["createFeedback"])
+  onUpdateFeedback: Feedback @aws_subscribe(mutations: ["updateFeedback"])
+  onDeleteFeedback: Feedback @aws_subscribe(mutations: ["deleteFeedback"])
 }
 
 type ModelUserImagesConnection {
@@ -291,7 +569,7 @@ type ModelUserImagesConnection {
 
 input ModelUserImagesFilterInput {
   id: ModelIDFilterInput
-  url: ModelStringFilterInput
+  uri: ModelStringFilterInput
   owner: ModelStringFilterInput
   and: [ModelUserImagesFilterInput]
   or: [ModelUserImagesFilterInput]
@@ -300,14 +578,14 @@ input ModelUserImagesFilterInput {
 
 input CreateUserImagesInput {
   id: ID
-  url: String!
+  uri: String!
   owner: String
-  userImagesUserId: ID
+  userImagesUserId: ID!
 }
 
 input UpdateUserImagesInput {
   id: ID!
-  url: String
+  uri: String
   owner: String
   userImagesUserId: ID
 }
@@ -323,11 +601,16 @@ type ModelCompanyConnection {
 
 input ModelCompanyFilterInput {
   id: ModelIDFilterInput
-  owner: ModelStringFilterInput
   name: ModelStringFilterInput
+  description: ModelStringFilterInput
+  phone: ModelStringFilterInput
   address: ModelStringFilterInput
   latlng: ModelStringFilterInput
   website: ModelStringFilterInput
+  email: ModelStringFilterInput
+  image: ModelStringFilterInput
+  logo: ModelStringFilterInput
+  createdAt: ModelStringFilterInput
   and: [ModelCompanyFilterInput]
   or: [ModelCompanyFilterInput]
   not: ModelCompanyFilterInput
@@ -335,21 +618,31 @@ input ModelCompanyFilterInput {
 
 input CreateCompanyInput {
   id: ID
-  owner: String
   name: String!
+  description: String
+  phone: String
   address: String
   latlng: String
   website: String
-  companyUserId: ID
+  email: String
+  image: String
+  logo: String
+  createdAt: String
+  companyUserId: ID!
 }
 
 input UpdateCompanyInput {
   id: ID!
-  owner: String
   name: String
+  description: String
+  phone: String
   address: String
   latlng: String
   website: String
+  email: String
+  image: String
+  logo: String
+  createdAt: String
   companyUserId: ID
 }
 
@@ -364,8 +657,9 @@ type ModelCompanyImagesConnection {
 
 input ModelCompanyImagesFilterInput {
   id: ModelIDFilterInput
-  url: ModelStringFilterInput
+  uri: ModelStringFilterInput
   owner: ModelStringFilterInput
+  createdAt: ModelStringFilterInput
   and: [ModelCompanyImagesFilterInput]
   or: [ModelCompanyImagesFilterInput]
   not: ModelCompanyImagesFilterInput
@@ -373,15 +667,17 @@ input ModelCompanyImagesFilterInput {
 
 input CreateCompanyImagesInput {
   id: ID
-  url: String!
+  uri: String!
   owner: String
-  companyImagesCompanyId: ID
+  createdAt: String
+  companyImagesCompanyId: ID!
 }
 
 input UpdateCompanyImagesInput {
   id: ID!
-  url: String
+  uri: String
   owner: String
+  createdAt: String
   companyImagesCompanyId: ID
 }
 
@@ -400,6 +696,7 @@ input ModelPackageFilterInput {
   price: ModelIntFilterInput
   description: ModelStringFilterInput
   level: ModelStringFilterInput
+  createdAt: ModelStringFilterInput
   and: [ModelPackageFilterInput]
   or: [ModelPackageFilterInput]
   not: ModelPackageFilterInput
@@ -411,6 +708,7 @@ input CreatePackageInput {
   price: Int!
   description: String
   level: String!
+  createdAt: String
 }
 
 input UpdatePackageInput {
@@ -419,6 +717,7 @@ input UpdatePackageInput {
   price: Int
   description: String
   level: String
+  createdAt: String
 }
 
 input DeletePackageInput {
@@ -441,8 +740,24 @@ input ModelPostFilterInput {
   enableComment: ModelBooleanFilterInput
   tags: ModelStringFilterInput
   owner: ModelStringFilterInput
+  type: ModelStringFilterInput
   createdAt: ModelStringFilterInput
-  updatedAt: ModelStringFilterInput
+  countComment: ModelIntFilterInput
+  countRefer: ModelIntFilterInput
+  countRadeem: ModelIntFilterInput
+  countBookmark: ModelIntFilterInput
+  countReport: ModelIntFilterInput
+  countConnect: ModelIntFilterInput
+  radeemQuota: ModelIntFilterInput
+  expireAtUnix: ModelStringFilterInput
+  expireAt: ModelStringFilterInput
+  expire: ModelStringFilterInput
+  pin: ModelStringFilterInput
+  createdAtUnix: ModelStringFilterInput
+  expireRedeemAt: ModelStringFilterInput
+  expireRedeemAtUnix: ModelStringFilterInput
+  redeemImage: ModelStringFilterInput
+  redeemDescription: ModelStringFilterInput
   and: [ModelPostFilterInput]
   or: [ModelPostFilterInput]
   not: ModelPostFilterInput
@@ -455,8 +770,25 @@ input CreatePostInput {
   tags: [String!]
   location: LocationInput
   owner: String
-  createdAt: String!
-  updatedAt: String
+  type: String!
+  createdAt: String
+  countComment: Int
+  countRefer: Int
+  countRadeem: Int
+  countBookmark: Int
+  countReport: Int
+  countConnect: Int
+  radeemQuota: Int
+  expireAtUnix: String
+  expireAt: String
+  expire: String
+  pin: String
+  createdAtUnix: String
+  expireRedeemAt: String
+  expireRedeemAtUnix: String
+  redeemImage: String
+  redeemDescription: String
+  postPostOfUserId: ID!
 }
 
 input UpdatePostInput {
@@ -466,12 +798,29 @@ input UpdatePostInput {
   tags: [String!]
   location: LocationInput
   owner: String
-  createdAt: String!
-  updatedAt: String
+  type: String
+  createdAt: String
+  countComment: Int
+  countRefer: Int
+  countRadeem: Int
+  countBookmark: Int
+  countReport: Int
+  countConnect: Int
+  radeemQuota: Int
+  expireAtUnix: String
+  expireAt: String
+  expire: String
+  pin: String
+  createdAtUnix: String
+  expireRedeemAt: String
+  expireRedeemAtUnix: String
+  redeemImage: String
+  redeemDescription: String
+  postPostOfUserId: ID
 }
 
 input DeletePostInput {
-  createdAt: String!
+  id: ID
 }
 
 type ModelPostImageConnection {
@@ -481,7 +830,8 @@ type ModelPostImageConnection {
 
 input ModelPostImageFilterInput {
   id: ModelIDFilterInput
-  url: ModelStringFilterInput
+  uri: ModelStringFilterInput
+  createdAt: ModelStringFilterInput
   and: [ModelPostImageFilterInput]
   or: [ModelPostImageFilterInput]
   not: ModelPostImageFilterInput
@@ -489,14 +839,16 @@ input ModelPostImageFilterInput {
 
 input CreatePostImageInput {
   id: ID
-  url: String!
-  postImagePostId: ID
+  uri: String!
+  createdAt: String
+  postImagePostImageId: ID!
 }
 
 input UpdatePostImageInput {
   id: ID!
-  url: String
-  postImagePostId: ID
+  uri: String
+  createdAt: String
+  postImagePostImageId: ID
 }
 
 input DeletePostImageInput {
@@ -511,7 +863,10 @@ type ModelCommentConnection {
 input ModelCommentFilterInput {
   id: ModelIDFilterInput
   content: ModelStringFilterInput
-  owner: ModelStringFilterInput
+  postId: ModelStringFilterInput
+  userId: ModelStringFilterInput
+  createdAtUnix: ModelStringFilterInput
+  createdAt: ModelStringFilterInput
   and: [ModelCommentFilterInput]
   or: [ModelCommentFilterInput]
   not: ModelCommentFilterInput
@@ -520,18 +875,65 @@ input ModelCommentFilterInput {
 input CreateCommentInput {
   id: ID
   content: String!
-  owner: String
-  commentPostId: ID
+  postId: String!
+  userId: String!
+  createdAtUnix: String!
+  createdAt: String
+  commentPostCommentId: ID!
+  commentUserCommentId: ID!
 }
 
 input UpdateCommentInput {
   id: ID!
   content: String
-  owner: String
-  commentPostId: ID
+  postId: String
+  userId: String
+  createdAtUnix: String
+  createdAt: String
+  commentPostCommentId: ID
+  commentUserCommentId: ID
 }
 
 input DeleteCommentInput {
+  id: ID
+}
+
+type ModelPostReferSecondConnection {
+  items: [PostReferSecond]
+  nextToken: String
+}
+
+input ModelPostReferSecondFilterInput {
+  id: ModelIDFilterInput
+  referrer: ModelStringFilterInput
+  receiver: ModelStringFilterInput
+  createdAt: ModelStringFilterInput
+  and: [ModelPostReferSecondFilterInput]
+  or: [ModelPostReferSecondFilterInput]
+  not: ModelPostReferSecondFilterInput
+}
+
+input CreatePostReferSecondInput {
+  id: ID
+  referrer: String!
+  receiver: String!
+  createdAt: String
+  postReferSecondPostId: ID!
+  postReferSecondReferrerPostUserId: ID!
+  postReferSecondReceiverPostUserId: ID!
+}
+
+input UpdatePostReferSecondInput {
+  id: ID!
+  referrer: String
+  receiver: String
+  createdAt: String
+  postReferSecondPostId: ID
+  postReferSecondReferrerPostUserId: ID
+  postReferSecondReceiverPostUserId: ID
+}
+
+input DeletePostReferSecondInput {
   id: ID
 }
 
@@ -546,6 +948,10 @@ input ModelEventFilterInput {
   startTime: ModelStringFilterInput
   endTime: ModelStringFilterInput
   description: ModelStringFilterInput
+  image: ModelStringFilterInput
+  quota: ModelIntFilterInput
+  createdAt: ModelStringFilterInput
+  upcoming: ModelBooleanFilterInput
   and: [ModelEventFilterInput]
   or: [ModelEventFilterInput]
   not: ModelEventFilterInput
@@ -554,17 +960,29 @@ input ModelEventFilterInput {
 input CreateEventInput {
   id: ID
   title: String!
-  startTime: String!
-  endTime: String!
+  startTime: AWSDateTime!
+  endTime: AWSDateTime!
   description: String
+  image: String
+  quota: Int
+  location: LocationInput
+  createdAt: String
+  upcoming: Boolean
+  eventUserId: ID!
 }
 
 input UpdateEventInput {
   id: ID!
   title: String
-  startTime: String
-  endTime: String
+  startTime: AWSDateTime
+  endTime: AWSDateTime
   description: String
+  image: String
+  quota: Int
+  location: LocationInput
+  createdAt: String
+  upcoming: Boolean
+  eventUserId: ID
 }
 
 input DeleteEventInput {
@@ -578,7 +996,8 @@ type ModelEventImageConnection {
 
 input ModelEventImageFilterInput {
   id: ModelIDFilterInput
-  url: ModelStringFilterInput
+  uri: ModelStringFilterInput
+  createdAt: ModelStringFilterInput
   and: [ModelEventImageFilterInput]
   or: [ModelEventImageFilterInput]
   not: ModelEventImageFilterInput
@@ -586,16 +1005,432 @@ input ModelEventImageFilterInput {
 
 input CreateEventImageInput {
   id: ID
-  url: String!
+  uri: String!
+  createdAt: String
   eventImageEventId: ID
 }
 
 input UpdateEventImageInput {
   id: ID!
-  url: String
+  uri: String
+  createdAt: String
   eventImageEventId: ID
 }
 
 input DeleteEventImageInput {
   id: ID
+}
+
+type ModelReportConnection {
+  items: [Report]
+  nextToken: String
+}
+
+input ModelReportFilterInput {
+  id: ModelIDFilterInput
+  type: ModelStringFilterInput
+  status: ModelStringFilterInput
+  description: ModelStringFilterInput
+  createdAt: ModelStringFilterInput
+  and: [ModelReportFilterInput]
+  or: [ModelReportFilterInput]
+  not: ModelReportFilterInput
+}
+
+input CreateReportInput {
+  id: ID
+  type: String!
+  status: String
+  description: String!
+  createdAt: String
+  reportPostId: ID!
+  reportReporterId: ID!
+}
+
+input UpdateReportInput {
+  id: ID!
+  type: String
+  status: String
+  description: String
+  createdAt: String
+  reportPostId: ID
+  reportReporterId: ID
+}
+
+input DeleteReportInput {
+  id: ID
+}
+
+type ModelPostBookmarkConnection {
+  items: [PostBookmark]
+  nextToken: String
+}
+
+input ModelPostBookmarkFilterInput {
+  id: ModelIDFilterInput
+  userBookmarkCode: ModelStringFilterInput
+  createdAt: ModelStringFilterInput
+  and: [ModelPostBookmarkFilterInput]
+  or: [ModelPostBookmarkFilterInput]
+  not: ModelPostBookmarkFilterInput
+}
+
+input CreatePostBookmarkInput {
+  id: ID!
+  userBookmarkCode: String!
+  createdAt: String
+  postBookmarkPostBookmarkId: ID!
+  postBookmarkUserBookmarkId: ID!
+}
+
+input UpdatePostBookmarkInput {
+  id: ID!
+  userBookmarkCode: String!
+  createdAt: String
+  postBookmarkPostBookmarkId: ID
+  postBookmarkUserBookmarkId: ID
+}
+
+input DeletePostBookmarkInput {
+  id: ID!
+  userBookmarkCode: String!
+}
+
+type ModelPostRadeemSecondConnection {
+  items: [PostRadeemSecond]
+  nextToken: String
+}
+
+input ModelPostRadeemSecondFilterInput {
+  id: ModelIDFilterInput
+  postId: ModelStringFilterInput
+  userId: ModelStringFilterInput
+  createdAt: ModelStringFilterInput
+  and: [ModelPostRadeemSecondFilterInput]
+  or: [ModelPostRadeemSecondFilterInput]
+  not: ModelPostRadeemSecondFilterInput
+}
+
+input CreatePostRadeemSecondInput {
+  id: ID!
+  postId: String!
+  userId: String!
+  createdAt: String
+  postRadeemSecondPostRadeemId: ID!
+  postRadeemSecondUserRadeemId: ID!
+}
+
+input UpdatePostRadeemSecondInput {
+  id: ID!
+  postId: String!
+  userId: String
+  createdAt: String
+  postRadeemSecondPostRadeemId: ID
+  postRadeemSecondUserRadeemId: ID
+}
+
+input DeletePostRadeemSecondInput {
+  id: ID!
+  postId: String!
+}
+
+type ModelUserJoinedEventConnection {
+  items: [UserJoinedEvent]
+  nextToken: String
+}
+
+input ModelUserJoinedEventFilterInput {
+  id: ModelIDFilterInput
+  eventId: ModelStringFilterInput
+  userId: ModelStringFilterInput
+  eventStartTimeUnix: ModelStringFilterInput
+  eventEndTime: ModelStringFilterInput
+  createdAt: ModelStringFilterInput
+  and: [ModelUserJoinedEventFilterInput]
+  or: [ModelUserJoinedEventFilterInput]
+  not: ModelUserJoinedEventFilterInput
+}
+
+input CreateUserJoinedEventInput {
+  id: ID!
+  eventId: String!
+  userId: String!
+  eventStartTimeUnix: String!
+  eventEndTime: String!
+  createdAt: String
+  userJoinedEventUserEventId: ID!
+  userJoinedEventEventJoinedId: ID!
+}
+
+input UpdateUserJoinedEventInput {
+  id: ID!
+  eventId: String!
+  userId: String
+  eventStartTimeUnix: String
+  eventEndTime: String
+  createdAt: String
+  userJoinedEventUserEventId: ID
+  userJoinedEventEventJoinedId: ID
+}
+
+input DeleteUserJoinedEventInput {
+  id: ID!
+  eventId: String!
+}
+
+type ModelReportCommentConnection {
+  items: [ReportComment]
+  nextToken: String
+}
+
+input ModelReportCommentFilterInput {
+  id: ModelIDFilterInput
+  commentId: ModelStringFilterInput
+  reporterId: ModelStringFilterInput
+  createdAtUnix: ModelStringFilterInput
+  createdAt: ModelStringFilterInput
+  and: [ModelReportCommentFilterInput]
+  or: [ModelReportCommentFilterInput]
+  not: ModelReportCommentFilterInput
+}
+
+input CreateReportCommentInput {
+  id: ID
+  commentId: String!
+  reporterId: String!
+  createdAtUnix: String!
+  createdAt: String
+  reportCommentCommentId: ID!
+  reportCommentReporterId: ID!
+}
+
+input UpdateReportCommentInput {
+  id: ID!
+  commentId: String
+  reporterId: String
+  createdAtUnix: String
+  createdAt: String
+  reportCommentCommentId: ID
+  reportCommentReporterId: ID
+}
+
+input DeleteReportCommentInput {
+  id: ID
+}
+
+type ModelUserBlockConnection {
+  items: [UserBlock]
+  nextToken: String
+}
+
+input ModelUserBlockFilterInput {
+  id: ModelIDFilterInput
+  userId: ModelStringFilterInput
+  blockUserId: ModelStringFilterInput
+  createdAtUnix: ModelStringFilterInput
+  createdAt: ModelStringFilterInput
+  and: [ModelUserBlockFilterInput]
+  or: [ModelUserBlockFilterInput]
+  not: ModelUserBlockFilterInput
+}
+
+input CreateUserBlockInput {
+  id: ID
+  userId: String!
+  blockUserId: String!
+  createdAtUnix: String!
+  createdAt: String
+  userBlockBlockUserId: ID!
+}
+
+input UpdateUserBlockInput {
+  id: ID!
+  userId: String
+  blockUserId: String
+  createdAtUnix: String
+  createdAt: String
+  userBlockBlockUserId: ID
+}
+
+input DeleteUserBlockInput {
+  id: ID
+}
+
+type ModelPostConnectConnection {
+  items: [PostConnect]
+  nextToken: String
+}
+
+input ModelPostConnectFilterInput {
+  id: ModelIDFilterInput
+  userId: ModelStringFilterInput
+  connectUserId: ModelStringFilterInput
+  createdAtUnix: ModelStringFilterInput
+  postId: ModelStringFilterInput
+  createdAt: ModelStringFilterInput
+  and: [ModelPostConnectFilterInput]
+  or: [ModelPostConnectFilterInput]
+  not: ModelPostConnectFilterInput
+}
+
+input CreatePostConnectInput {
+  id: ID
+  userId: String!
+  connectUserId: String!
+  createdAtUnix: String!
+  postId: String!
+  createdAt: String
+}
+
+input UpdatePostConnectInput {
+  id: ID!
+  userId: String
+  connectUserId: String
+  createdAtUnix: String
+  postId: String
+  createdAt: String
+}
+
+input DeletePostConnectInput {
+  id: ID
+}
+
+type ModelFeedbackConnection {
+  items: [Feedback]
+  nextToken: String
+}
+
+input ModelFeedbackFilterInput {
+  id: ModelIDFilterInput
+  topic: ModelStringFilterInput
+  message: ModelStringFilterInput
+  createdAtUnix: ModelStringFilterInput
+  userId: ModelStringFilterInput
+  createdAt: ModelStringFilterInput
+  and: [ModelFeedbackFilterInput]
+  or: [ModelFeedbackFilterInput]
+  not: ModelFeedbackFilterInput
+}
+
+input CreateFeedbackInput {
+  id: ID
+  topic: String!
+  message: String!
+  createdAtUnix: String!
+  userId: String!
+  createdAt: String
+}
+
+input UpdateFeedbackInput {
+  id: ID!
+  topic: String
+  message: String
+  createdAtUnix: String
+  userId: String
+  createdAt: String
+}
+
+input DeleteFeedbackInput {
+  id: ID
+}
+
+input ModelStringKeyConditionInput {
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  between: [String]
+  beginsWith: String
+}
+
+input SearchableStringFilterInput {
+  ne: String
+  eq: String
+  match: String
+  matchPhrase: String
+  matchPhrasePrefix: String
+  multiMatch: String
+  exists: Boolean
+  wildcard: String
+  regexp: String
+}
+
+input SearchableIDFilterInput {
+  ne: ID
+  eq: ID
+  match: ID
+  matchPhrase: ID
+  matchPhrasePrefix: ID
+  multiMatch: ID
+  exists: Boolean
+  wildcard: ID
+  regexp: ID
+}
+
+input SearchableIntFilterInput {
+  ne: Int
+  gt: Int
+  lt: Int
+  gte: Int
+  lte: Int
+  eq: Int
+  range: [Int]
+}
+
+input SearchableFloatFilterInput {
+  ne: Float
+  gt: Float
+  lt: Float
+  gte: Float
+  lte: Float
+  eq: Float
+  range: [Float]
+}
+
+input SearchableBooleanFilterInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input SearchableEventFilterInput {
+  id: SearchableIDFilterInput
+  title: SearchableStringFilterInput
+  startTime: SearchableStringFilterInput
+  endTime: SearchableStringFilterInput
+  description: SearchableStringFilterInput
+  image: SearchableStringFilterInput
+  quota: SearchableIntFilterInput
+  createdAt: SearchableStringFilterInput
+  upcoming: SearchableBooleanFilterInput
+  and: [SearchableEventFilterInput]
+  or: [SearchableEventFilterInput]
+  not: SearchableEventFilterInput
+}
+
+enum SearchableSortDirection {
+  asc
+  desc
+}
+
+enum SearchableEventSortableFields {
+  id
+  title
+  startTime
+  endTime
+  description
+  image
+  quota
+  createdAt
+  upcoming
+}
+
+input SearchableEventSortInput {
+  field: SearchableEventSortableFields
+  direction: SearchableSortDirection
+}
+
+type SearchableEventConnection {
+  items: [Event]
+  nextToken: String
 }
