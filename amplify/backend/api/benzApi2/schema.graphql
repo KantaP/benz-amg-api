@@ -42,7 +42,10 @@ type User
   reportComments: [ReportComment] @connection(name:"ReportFromUsers")
   userBlocks: [UserBlock] @connection(name:"UserBlocks")
   events: [Event] @connection(name:"EventsByUser")
-
+  feedbacks: [Feedback] @connection(name:"FeedbackFromUser")
+  memberShipPrice: Int
+  firstLogin: Boolean
+  memberExpiredAt: String
 }
 
 type UserImages
@@ -62,7 +65,7 @@ type Company
   @model
   @auth(
     rules: [
-      {allow: groups , groups: ["Users"]},
+      {allow: groups , groups: ["Users", "Admins"]},
       {allow: owner}
     ]
   )
@@ -120,6 +123,8 @@ type Post
     ])
   @key(name: "ByPostType", fields: ["type", "createdAt"], queryField: "itemsByPostType")
   @key(name: "ByPin", fields: ["pin", "expireAt"], queryField: "itemsByPin")
+  @key(name: "ByPinCreatedAt", fields: ["pin", "createdAt"], queryField: "itemsByPinCreated")
+  @key(name: "ByActiveCreatedAt" , fields: ["active", "createdAt"], queryField: "postsByActive")
 {
   id: ID!
   content: String!
@@ -152,6 +157,7 @@ type Post
   expireRedeemAtUnix: String
   redeemImage: String
   redeemDescription: String
+  active: String
 }
 
 type Location
@@ -232,6 +238,7 @@ type Event
       {allow: groups, groups:["Admins", "Users"]}
     ]
   )
+  @key(name: "eventsSortByStartTime", fields: ["hashStatus", "startTime"], queryField: "eventsSortByStartTime")
 {
   id: ID!
   title: String!
@@ -247,7 +254,8 @@ type Event
   location: Location
   createdAt: String
   upcoming : Boolean
-  user: User! @connection(name:"EventsByUser")
+  hashStatus: String
+  user: User @connection(name:"EventsByUser")
 }
 
 type EventImage
@@ -361,6 +369,7 @@ type Feedback
   topic: String!
   message:String!
   createdAtUnix: String!
-  userId: String!
+  # userId: String!
+  user: User! @connection(name:"FeedbackFromUser")
   createdAt: String
 }

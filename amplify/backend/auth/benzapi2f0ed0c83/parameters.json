@@ -32,7 +32,7 @@
     ],
     "userpoolClientName": "benzapf0ed0c83_app_client",
     "userpoolClientGenerateSecret": true,
-    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientRefreshTokenValidity": 1,
     "userpoolClientWriteAttributes": [
         "email"
     ],

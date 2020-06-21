@@ -9,17 +9,17 @@
 			"UnauthRoleName": "benz-api-2-devfourth-20190711002237-unauthRole",
 			"StackName": "benz-api-2-devfourth-20190711002237",
 			"StackId": "arn:aws:cloudformation:ap-southeast-1:239703035174:stack/benz-api-2-devfourth-20190711002237/50a218c0-a337-11e9-a324-0a97a1834e8a"
+		},
+		"categories": {
+			"auth": {
+				"benzapi2f0ed0c83": {}
+			}
 		}
 	},
 	"auth": {
 		"benzapi2f0ed0c83": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/auth/benzapi2f0ed0c83-cloudformation-template.yml",
-				"logicalId": "authbenzapi2f0ed0c83"
-			},
-			"lastPushTimeStamp": "2019-09-26T18:04:32.463Z",
 			"output": {
 				"AppClientSecret": "1i1rlrvshmf1639qc4cm6c2a03or7dklhvfd6hsbi5871cnpd2kq",
 				"UserPoolId": "ap-southeast-1_EWKa0ZifU",
@@ -29,7 +29,12 @@
 				"IdentityPoolName": "benzapi2f0ed0c83_identitypool_f0ed0c83__devfourth",
 				"UserPoolName": "benzapi2f0ed0c83_userpool_f0ed0c83"
 			},
-			"lastPushDirHash": "2dlCUOvQsiemyrRulGKy2G8xelk="
+			"lastPushTimeStamp": "2020-01-18T15:18:26.589Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/auth/benzapi2f0ed0c83-cloudformation-template.yml",
+				"logicalId": "authbenzapi2f0ed0c83"
+			},
+			"lastPushDirHash": "uVJb3y5ByOo6H8M595g526vuTaM="
 		}
 	},
 	"api": {
@@ -39,30 +44,54 @@
 			"output": {
 				"securityType": "AMAZON_COGNITO_USER_POOLS",
 				"GraphQLAPIIdOutput": "pqngzal4n5gt7jk2t4bpxtkfwa",
-				"GraphQLAPIEndpointOutput": "https://hfbc3q4ppfhi7o5feyky363ite.appsync-api.ap-southeast-1.amazonaws.com/graphql"
+				"GraphQLAPIEndpointOutput": "https://hfbc3q4ppfhi7o5feyky363ite.appsync-api.ap-southeast-1.amazonaws.com/graphql",
+				"GraphQLAPIKeyOutput": "da2-okn2fi7lgnfxdh6i7zrna76e4y"
 			},
+			"lastPushTimeStamp": "2020-01-18T15:18:26.591Z",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apibenzApi2"
 			},
-			"lastPushTimeStamp": "2019-09-26T18:04:38.060Z",
-			"lastPushDirHash": "DsoxswCI/cEZfupo4q2spIO2pzM="
+			"lastPushDirHash": "LJphNsb1qiCppxHfWGIgi8hMG2I="
+		},
+		"kbank": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "kPayment",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			],
+			"lastPushTimeStamp": "2020-01-18T15:18:26.591Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/api/kbank-cloudformation-template.json",
+				"logicalId": "apikbank"
+			},
+			"output": {
+				"ApiName": "kbank",
+				"RootUrl": "https://zktouk0l48.execute-api.ap-southeast-1.amazonaws.com/devfourth"
+			},
+			"lastPushDirHash": "ZVbMjCBvwz/0yemLtX5SsJSzhHo="
 		}
 	},
 	"storage": {
 		"s360ed64bd": {
 			"service": "S3",
 			"providerPlugin": "awscloudformation",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
-				"logicalId": "storages360ed64bd"
-			},
-			"lastPushTimeStamp": "2019-09-26T18:04:32.466Z",
 			"output": {
 				"BucketName": "benz-api-2c714866edcc749f496b83d3e956b13ef-devfourth",
 				"Region": "ap-southeast-1"
 			},
-			"lastPushDirHash": "j7ogkTUjC59UQIZr0cRZnhRb2EY="
+			"lastPushTimeStamp": "2020-01-18T15:18:26.592Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+				"logicalId": "storages360ed64bd"
+			}
 		}
 	},
 	"function": {
@@ -70,58 +99,66 @@
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
 			"build": true,
-			"lastBuildTimeStamp": "2019-08-21T15:41:30.426Z",
-			"lastPackageTimeStamp": "2019-08-22T13:30:27.401Z",
-			"distZipFilename": "benzapi2e6b8b059-1566480627-latest-build.zip",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/function/benzapi2e6b8b059-cloudformation-template.json",
-				"logicalId": "functionbenzapi2e6b8b059"
-			},
-			"lastPushTimeStamp": "2019-09-26T18:04:32.467Z",
 			"output": {
 				"Region": "ap-southeast-1",
 				"Arn": "arn:aws:lambda:ap-southeast-1:239703035174:function:addUserToGroup-devfourth",
 				"Name": "addUserToGroup-devfourth"
 			},
-			"lastPushDirHash": "LMUutuKTWZW/NBO01tbNR8WT3Z0="
+			"lastPushTimeStamp": "2020-01-18T15:18:26.593Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/function/benzapi2e6b8b059-cloudformation-template.json",
+				"logicalId": "functionbenzapi2e6b8b059"
+			}
 		},
 		"benzapi2ceecd2ca": {
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
 			"build": true,
-			"lastBuildTimeStamp": "2019-08-21T15:41:31.878Z",
-			"lastPackageTimeStamp": "2019-08-21T15:41:32.226Z",
-			"distZipFilename": "benzapi2ceecd2ca-1566402091-latest-build.zip",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/function/benzapi2ceecd2ca-cloudformation-template.json",
-				"logicalId": "functionbenzapi2ceecd2ca"
-			},
-			"lastPushTimeStamp": "2019-09-26T18:04:32.467Z",
 			"output": {
 				"Region": "ap-southeast-1",
 				"Arn": "arn:aws:lambda:ap-southeast-1:239703035174:function:autoConfirm-devfourth",
 				"Name": "autoConfirm-devfourth"
 			},
-			"lastPushDirHash": "H+eu5CPkOHLGPqWFLrdaQutyuGY="
+			"lastPushTimeStamp": "2020-01-18T15:18:26.593Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/function/benzapi2ceecd2ca-cloudformation-template.json",
+				"logicalId": "functionbenzapi2ceecd2ca"
+			}
 		},
 		"benzapi282c0f626": {
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
 			"build": true,
-			"lastBuildTimeStamp": "2019-08-22T14:16:18.881Z",
-			"lastPackageTimeStamp": "2019-08-22T14:20:45.160Z",
-			"distZipFilename": "benzapi282c0f626-1566483638-latest-build.zip",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/function/benzapi282c0f626-cloudformation-template.json",
-				"logicalId": "functionbenzapi282c0f626"
-			},
-			"lastPushTimeStamp": "2019-09-26T18:04:32.468Z",
 			"output": {
 				"Region": "ap-southeast-1",
 				"Arn": "arn:aws:lambda:ap-southeast-1:239703035174:function:Sendgrid-devfourth",
 				"Name": "Sendgrid-devfourth"
 			},
-			"lastPushDirHash": "j2yVxwwzynVSpepqV9QOmUwCwLQ="
+			"lastPushTimeStamp": "2020-01-18T15:18:26.594Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/function/benzapi282c0f626-cloudformation-template.json",
+				"logicalId": "functionbenzapi282c0f626"
+			}
+		},
+		"kPayment": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"lastBuildTimeStamp": "2019-11-22T04:48:10.965Z",
+			"lastPackageTimeStamp": "2020-01-18T15:17:08.675Z",
+			"distZipFilename": "kPayment-356e5a46616330626252-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/benz-api-2-devfourth-20190711002237-deployment/amplify-cfn-templates/function/kPayment-cloudformation-template.json",
+				"logicalId": "functionkPayment"
+			},
+			"lastPushTimeStamp": "2020-01-18T15:18:26.598Z",
+			"output": {
+				"Region": "ap-southeast-1",
+				"Arn": "arn:aws:lambda:ap-southeast-1:239703035174:function:kPayment-devfourth",
+				"Name": "kPayment-devfourth",
+				"LambdaExecutionRole": "benzapi2LambdaRole2d5d6ba6-devfourth"
+			},
+			"lastPushDirHash": "nz7vc1k2X7Sc+XbtJzWHVX/JkzY="
 		}
 	}
 }

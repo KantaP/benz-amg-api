@@ -12,6 +12,20 @@
 			"output": {
 				"securityType": "AMAZON_COGNITO_USER_POOLS"
 			}
+		},
+		"kbank": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "kPayment",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
 		}
 	},
 	"storage": {
@@ -32,6 +46,11 @@
 			"build": true
 		},
 		"benzapi282c0f626": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		},
+		"kPayment": {
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
 			"build": true

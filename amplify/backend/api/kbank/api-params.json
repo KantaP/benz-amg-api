@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/kPayment",
+            "lambdaFunction": "kPayment",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "kbank",
+    "apiName": "kbank",
+    "functionArns": [
+        {
+            "lambdaFunction": "kPayment"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "benz-api-2-devfourth-20190711002237-authRole",
+        "unAuthRoleName": "benz-api-2-devfourth-20190711002237-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "kPayment",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "77d9d161"
+}

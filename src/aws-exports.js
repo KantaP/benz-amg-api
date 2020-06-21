@@ -10,6 +10,14 @@ const awsmobile = {
     "aws_appsync_graphqlEndpoint": "https://hfbc3q4ppfhi7o5feyky363ite.appsync-api.ap-southeast-1.amazonaws.com/graphql",
     "aws_appsync_region": "ap-southeast-1",
     "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS",
+    "aws_appsync_apiKey": "da2-okn2fi7lgnfxdh6i7zrna76e4y",
+    "aws_cloud_logic_custom": [
+        {
+            "name": "kbank",
+            "endpoint": "https://zktouk0l48.execute-api.ap-southeast-1.amazonaws.com/devfourth",
+            "region": "ap-southeast-1"
+        }
+    ],
     "aws_user_files_s3_bucket": "benz-api-2c714866edcc749f496b83d3e956b13ef-devfourth",
     "aws_user_files_s3_bucket_region": "ap-southeast-1"
 };

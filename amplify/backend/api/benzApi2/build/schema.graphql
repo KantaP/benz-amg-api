@@ -36,6 +36,10 @@ type User {
   reportComments(filter: ModelReportCommentFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelReportCommentConnection
   userBlocks(filter: ModelUserBlockFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelUserBlockConnection
   events(filter: ModelEventFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelEventConnection
+  feedbacks(filter: ModelFeedbackFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelFeedbackConnection
+  memberShipPrice: Int
+  firstLogin: Boolean
+  memberExpiredAt: String
 }
 
 type UserImages {
@@ -59,6 +63,7 @@ type Company {
   logo: String
   createdAt: String
   images(filter: ModelCompanyImagesFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelCompanyImagesConnection
+  owner: String
 }
 
 type CompanyImages {
@@ -110,6 +115,7 @@ type Post {
   expireRedeemAtUnix: String
   redeemImage: String
   redeemDescription: String
+  active: String
 }
 
 type Location {
@@ -122,6 +128,7 @@ type PostImage {
   uri: String!
   postImage: Post!
   createdAt: String
+  owner: String
 }
 
 type Comment {
@@ -144,6 +151,7 @@ type PostReferSecond {
   referrerPostUser: User!
   receiverPostUser: User!
   createdAt: String
+  owner: String
 }
 
 type Event {
@@ -159,7 +167,8 @@ type Event {
   location: Location
   createdAt: String
   upcoming: Boolean
-  user: User!
+  hashStatus: String
+  user: User
 }
 
 type EventImage {
@@ -240,7 +249,7 @@ type Feedback {
   topic: String!
   message: String!
   createdAtUnix: String!
-  userId: String!
+  user: User!
   createdAt: String
 }
 
@@ -334,6 +343,9 @@ input ModelUserFilterInput {
   expireAt: ModelIntFilterInput
   level: ModelStringFilterInput
   createdAt: ModelStringFilterInput
+  memberShipPrice: ModelIntFilterInput
+  firstLogin: ModelBooleanFilterInput
+  memberExpiredAt: ModelStringFilterInput
   and: [ModelUserFilterInput]
   or: [ModelUserFilterInput]
   not: ModelUserFilterInput
@@ -365,11 +377,11 @@ type Query {
   getReport(id: ID!): Report
   listReports(filter: ModelReportFilterInput, limit: Int, nextToken: String): ModelReportConnection
   getPostBookmark(id: ID!, userBookmarkCode: String!): PostBookmark
-  listPostBookmarks(id: ID, userBookmarkCode: ModelStringKeyConditionInput, filter: ModelPostBookmarkFilterInput, limit: Int, nextToken: String): ModelPostBookmarkConnection
+  listPostBookmarks(id: ID, userBookmarkCode: ModelStringKeyConditionInput, filter: ModelPostBookmarkFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelPostBookmarkConnection
   getPostRadeemSecond(id: ID!, postId: String!): PostRadeemSecond
-  listPostRadeemSeconds(id: ID, postId: ModelStringKeyConditionInput, filter: ModelPostRadeemSecondFilterInput, limit: Int, nextToken: String): ModelPostRadeemSecondConnection
+  listPostRadeemSeconds(id: ID, postId: ModelStringKeyConditionInput, filter: ModelPostRadeemSecondFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelPostRadeemSecondConnection
   getUserJoinedEvent(id: ID!, eventId: String!): UserJoinedEvent
-  listUserJoinedEvents(id: ID, eventId: ModelStringKeyConditionInput, filter: ModelUserJoinedEventFilterInput, limit: Int, nextToken: String): ModelUserJoinedEventConnection
+  listUserJoinedEvents(id: ID, eventId: ModelStringKeyConditionInput, filter: ModelUserJoinedEventFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUserJoinedEventConnection
   getReportComment(id: ID!): ReportComment
   listReportComments(filter: ModelReportCommentFilterInput, limit: Int, nextToken: String): ModelReportCommentConnection
   getUserBlock(id: ID!): UserBlock
@@ -378,10 +390,13 @@ type Query {
   listPostConnects(filter: ModelPostConnectFilterInput, limit: Int, nextToken: String): ModelPostConnectConnection
   getFeedback(id: ID!): Feedback
   listFeedbacks(filter: ModelFeedbackFilterInput, limit: Int, nextToken: String): ModelFeedbackConnection
-  itemsByPostType(type: String, createdAt: ModelStringKeyConditionInput, filter: ModelPostFilterInput, limit: Int, nextToken: String): ModelPostConnection
-  itemsByPin(pin: String, expireAt: ModelStringKeyConditionInput, filter: ModelPostFilterInput, limit: Int, nextToken: String): ModelPostConnection
-  redeemByPost(postId: String, userId: ModelStringKeyConditionInput, filter: ModelPostRadeemSecondFilterInput, limit: Int, nextToken: String): ModelPostRadeemSecondConnection
-  searchEvents(filter: SearchableEventFilterInput, sort: SearchableEventSortInput, limit: Int, nextToken: Int): SearchableEventConnection
+  itemsByPostType(type: String, createdAt: ModelStringKeyConditionInput, sortDirection: ModelSortDirection, filter: ModelPostFilterInput, limit: Int, nextToken: String): ModelPostConnection
+  itemsByPin(pin: String, expireAt: ModelStringKeyConditionInput, sortDirection: ModelSortDirection, filter: ModelPostFilterInput, limit: Int, nextToken: String): ModelPostConnection
+  itemsByPinCreated(pin: String, createdAt: ModelStringKeyConditionInput, sortDirection: ModelSortDirection, filter: ModelPostFilterInput, limit: Int, nextToken: String): ModelPostConnection
+  postsByActive(active: String, createdAt: ModelStringKeyConditionInput, sortDirection: ModelSortDirection, filter: ModelPostFilterInput, limit: Int, nextToken: String): ModelPostConnection
+  eventsSortByStartTime(hashStatus: String, startTime: ModelStringKeyConditionInput, sortDirection: ModelSortDirection, filter: ModelEventFilterInput, limit: Int, nextToken: String): ModelEventConnection
+  redeemByPost(postId: String, userId: ModelStringKeyConditionInput, sortDirection: ModelSortDirection, filter: ModelPostRadeemSecondFilterInput, limit: Int, nextToken: String): ModelPostRadeemSecondConnection
+  searchEvents(filter: SearchableEventFilterInput, sort: SearchableEventSortInput, limit: Int, nextToken: String): SearchableEventConnection
 }
 
 input CreateUserInput {
@@ -409,6 +424,9 @@ input CreateUserInput {
   expireAt: Int
   level: String
   createdAt: String
+  memberShipPrice: Int
+  firstLogin: Boolean
+  memberExpiredAt: String
 }
 
 input UpdateUserInput {
@@ -436,6 +454,9 @@ input UpdateUserInput {
   expireAt: Int
   level: String
   createdAt: String
+  memberShipPrice: Int
+  firstLogin: Boolean
+  memberExpiredAt: String
 }
 
 input DeleteUserInput {
@@ -503,33 +524,33 @@ type Mutation {
 }
 
 type Subscription {
-  onCreateUser: User @aws_subscribe(mutations: ["createUser"])
-  onUpdateUser: User @aws_subscribe(mutations: ["updateUser"])
+  onCreateUser(username: String): User @aws_subscribe(mutations: ["createUser"])
+  onUpdateUser(username: String): User @aws_subscribe(mutations: ["updateUser"])
   onDeleteUser: User @aws_subscribe(mutations: ["deleteUser"])
-  onCreateUserImages: UserImages @aws_subscribe(mutations: ["createUserImages"])
-  onUpdateUserImages: UserImages @aws_subscribe(mutations: ["updateUserImages"])
-  onDeleteUserImages: UserImages @aws_subscribe(mutations: ["deleteUserImages"])
-  onCreateCompany: Company @aws_subscribe(mutations: ["createCompany"])
-  onUpdateCompany: Company @aws_subscribe(mutations: ["updateCompany"])
-  onDeleteCompany: Company @aws_subscribe(mutations: ["deleteCompany"])
-  onCreateCompanyImages: CompanyImages @aws_subscribe(mutations: ["createCompanyImages"])
-  onUpdateCompanyImages: CompanyImages @aws_subscribe(mutations: ["updateCompanyImages"])
-  onDeleteCompanyImages: CompanyImages @aws_subscribe(mutations: ["deleteCompanyImages"])
+  onCreateUserImages(owner: String): UserImages @aws_subscribe(mutations: ["createUserImages"])
+  onUpdateUserImages(owner: String): UserImages @aws_subscribe(mutations: ["updateUserImages"])
+  onDeleteUserImages(owner: String): UserImages @aws_subscribe(mutations: ["deleteUserImages"])
+  onCreateCompany(owner: String): Company @aws_subscribe(mutations: ["createCompany"])
+  onUpdateCompany(owner: String): Company @aws_subscribe(mutations: ["updateCompany"])
+  onDeleteCompany(owner: String): Company @aws_subscribe(mutations: ["deleteCompany"])
+  onCreateCompanyImages(owner: String): CompanyImages @aws_subscribe(mutations: ["createCompanyImages"])
+  onUpdateCompanyImages(owner: String): CompanyImages @aws_subscribe(mutations: ["updateCompanyImages"])
+  onDeleteCompanyImages(owner: String): CompanyImages @aws_subscribe(mutations: ["deleteCompanyImages"])
   onCreatePackage: Package @aws_subscribe(mutations: ["createPackage"])
   onUpdatePackage: Package @aws_subscribe(mutations: ["updatePackage"])
   onDeletePackage: Package @aws_subscribe(mutations: ["deletePackage"])
-  onCreatePost: Post @aws_subscribe(mutations: ["createPost"])
-  onUpdatePost: Post @aws_subscribe(mutations: ["updatePost"])
-  onDeletePost: Post @aws_subscribe(mutations: ["deletePost"])
-  onCreatePostImage: PostImage @aws_subscribe(mutations: ["createPostImage"])
-  onUpdatePostImage: PostImage @aws_subscribe(mutations: ["updatePostImage"])
-  onDeletePostImage: PostImage @aws_subscribe(mutations: ["deletePostImage"])
+  onCreatePost(owner: String): Post @aws_subscribe(mutations: ["createPost"])
+  onUpdatePost(owner: String): Post @aws_subscribe(mutations: ["updatePost"])
+  onDeletePost(owner: String): Post @aws_subscribe(mutations: ["deletePost"])
+  onCreatePostImage(owner: String): PostImage @aws_subscribe(mutations: ["createPostImage"])
+  onUpdatePostImage(owner: String): PostImage @aws_subscribe(mutations: ["updatePostImage"])
+  onDeletePostImage(owner: String): PostImage @aws_subscribe(mutations: ["deletePostImage"])
   onCreateComment: Comment @aws_subscribe(mutations: ["createComment"])
   onUpdateComment: Comment @aws_subscribe(mutations: ["updateComment"])
   onDeleteComment: Comment @aws_subscribe(mutations: ["deleteComment"])
-  onCreatePostReferSecond: PostReferSecond @aws_subscribe(mutations: ["createPostReferSecond"])
-  onUpdatePostReferSecond: PostReferSecond @aws_subscribe(mutations: ["updatePostReferSecond"])
-  onDeletePostReferSecond: PostReferSecond @aws_subscribe(mutations: ["deletePostReferSecond"])
+  onCreatePostReferSecond(owner: String): PostReferSecond @aws_subscribe(mutations: ["createPostReferSecond"])
+  onUpdatePostReferSecond(owner: String): PostReferSecond @aws_subscribe(mutations: ["updatePostReferSecond"])
+  onDeletePostReferSecond(owner: String): PostReferSecond @aws_subscribe(mutations: ["deletePostReferSecond"])
   onCreateEvent: Event @aws_subscribe(mutations: ["createEvent"])
   onUpdateEvent: Event @aws_subscribe(mutations: ["updateEvent"])
   onDeleteEvent: Event @aws_subscribe(mutations: ["deleteEvent"])
@@ -758,6 +779,7 @@ input ModelPostFilterInput {
   expireRedeemAtUnix: ModelStringFilterInput
   redeemImage: ModelStringFilterInput
   redeemDescription: ModelStringFilterInput
+  active: ModelStringFilterInput
   and: [ModelPostFilterInput]
   or: [ModelPostFilterInput]
   not: ModelPostFilterInput
@@ -788,6 +810,7 @@ input CreatePostInput {
   expireRedeemAtUnix: String
   redeemImage: String
   redeemDescription: String
+  active: String
   postPostOfUserId: ID!
 }
 
@@ -816,6 +839,7 @@ input UpdatePostInput {
   expireRedeemAtUnix: String
   redeemImage: String
   redeemDescription: String
+  active: String
   postPostOfUserId: ID
 }
 
@@ -952,6 +976,7 @@ input ModelEventFilterInput {
   quota: ModelIntFilterInput
   createdAt: ModelStringFilterInput
   upcoming: ModelBooleanFilterInput
+  hashStatus: ModelStringFilterInput
   and: [ModelEventFilterInput]
   or: [ModelEventFilterInput]
   not: ModelEventFilterInput
@@ -968,7 +993,8 @@ input CreateEventInput {
   location: LocationInput
   createdAt: String
   upcoming: Boolean
-  eventUserId: ID!
+  hashStatus: String
+  eventUserId: ID
 }
 
 input UpdateEventInput {
@@ -982,6 +1008,7 @@ input UpdateEventInput {
   location: LocationInput
   createdAt: String
   upcoming: Boolean
+  hashStatus: String
   eventUserId: ID
 }
 
@@ -1305,7 +1332,6 @@ input ModelFeedbackFilterInput {
   topic: ModelStringFilterInput
   message: ModelStringFilterInput
   createdAtUnix: ModelStringFilterInput
-  userId: ModelStringFilterInput
   createdAt: ModelStringFilterInput
   and: [ModelFeedbackFilterInput]
   or: [ModelFeedbackFilterInput]
@@ -1317,8 +1343,8 @@ input CreateFeedbackInput {
   topic: String!
   message: String!
   createdAtUnix: String!
-  userId: String!
   createdAt: String
+  feedbackUserId: ID!
 }
 
 input UpdateFeedbackInput {
@@ -1326,8 +1352,8 @@ input UpdateFeedbackInput {
   topic: String
   message: String
   createdAtUnix: String
-  userId: String
   createdAt: String
+  feedbackUserId: ID
 }
 
 input DeleteFeedbackInput {
@@ -1403,6 +1429,7 @@ input SearchableEventFilterInput {
   quota: SearchableIntFilterInput
   createdAt: SearchableStringFilterInput
   upcoming: SearchableBooleanFilterInput
+  hashStatus: SearchableStringFilterInput
   and: [SearchableEventFilterInput]
   or: [SearchableEventFilterInput]
   not: SearchableEventFilterInput
@@ -1423,6 +1450,7 @@ enum SearchableEventSortableFields {
   quota
   createdAt
   upcoming
+  hashStatus
 }
 
 input SearchableEventSortInput {

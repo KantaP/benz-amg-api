@@ -1,4 +1,4 @@
-// eslint-disable
+/* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
 export const createUser = `mutation CreateUser($input: CreateUserInput!) {
@@ -48,6 +48,7 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
         image
         logo
         createdAt
+        owner
       }
       nextToken
     }
@@ -76,6 +77,7 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
         expireRedeemAtUnix
         redeemImage
         redeemDescription
+        active
       }
       nextToken
     }
@@ -114,6 +116,7 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
         referrer
         receiver
         createdAt
+        owner
       }
       nextToken
     }
@@ -123,6 +126,7 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
         referrer
         receiver
         createdAt
+        owner
       }
       nextToken
     }
@@ -177,9 +181,23 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
         quota
         createdAt
         upcoming
+        hashStatus
       }
       nextToken
     }
+    feedbacks {
+      items {
+        id
+        topic
+        message
+        createdAtUnix
+        createdAt
+      }
+      nextToken
+    }
+    memberShipPrice
+    firstLogin
+    memberExpiredAt
   }
 }
 `;
@@ -230,6 +248,7 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
         image
         logo
         createdAt
+        owner
       }
       nextToken
     }
@@ -258,6 +277,7 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
         expireRedeemAtUnix
         redeemImage
         redeemDescription
+        active
       }
       nextToken
     }
@@ -296,6 +316,7 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
         referrer
         receiver
         createdAt
+        owner
       }
       nextToken
     }
@@ -305,6 +326,7 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
         referrer
         receiver
         createdAt
+        owner
       }
       nextToken
     }
@@ -359,9 +381,23 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
         quota
         createdAt
         upcoming
+        hashStatus
       }
       nextToken
     }
+    feedbacks {
+      items {
+        id
+        topic
+        message
+        createdAtUnix
+        createdAt
+      }
+      nextToken
+    }
+    memberShipPrice
+    firstLogin
+    memberExpiredAt
   }
 }
 `;
@@ -412,6 +448,7 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
         image
         logo
         createdAt
+        owner
       }
       nextToken
     }
@@ -440,6 +477,7 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
         expireRedeemAtUnix
         redeemImage
         redeemDescription
+        active
       }
       nextToken
     }
@@ -478,6 +516,7 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
         referrer
         receiver
         createdAt
+        owner
       }
       nextToken
     }
@@ -487,6 +526,7 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
         referrer
         receiver
         createdAt
+        owner
       }
       nextToken
     }
@@ -541,9 +581,23 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
         quota
         createdAt
         upcoming
+        hashStatus
       }
       nextToken
     }
+    feedbacks {
+      items {
+        id
+        topic
+        message
+        createdAtUnix
+        createdAt
+      }
+      nextToken
+    }
+    memberShipPrice
+    firstLogin
+    memberExpiredAt
   }
 }
 `;
@@ -616,6 +670,12 @@ export const createUserImages = `mutation CreateUserImages($input: CreateUserIma
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
   }
 }
@@ -689,6 +749,12 @@ export const updateUserImages = `mutation UpdateUserImages($input: UpdateUserIma
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
   }
 }
@@ -762,6 +828,12 @@ export const deleteUserImages = `mutation DeleteUserImages($input: DeleteUserIma
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
   }
 }
@@ -833,6 +905,12 @@ export const createCompany = `mutation CreateCompany($input: CreateCompanyInput!
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     name
     description
@@ -853,6 +931,7 @@ export const createCompany = `mutation CreateCompany($input: CreateCompanyInput!
       }
       nextToken
     }
+    owner
   }
 }
 `;
@@ -923,6 +1002,12 @@ export const updateCompany = `mutation UpdateCompany($input: UpdateCompanyInput!
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     name
     description
@@ -943,6 +1028,7 @@ export const updateCompany = `mutation UpdateCompany($input: UpdateCompanyInput!
       }
       nextToken
     }
+    owner
   }
 }
 `;
@@ -1013,6 +1099,12 @@ export const deleteCompany = `mutation DeleteCompany($input: DeleteCompanyInput!
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     name
     description
@@ -1033,6 +1125,7 @@ export const deleteCompany = `mutation DeleteCompany($input: DeleteCompanyInput!
       }
       nextToken
     }
+    owner
   }
 }
 `;
@@ -1069,6 +1162,9 @@ export const createCompanyImages = `mutation CreateCompanyImages($input: CreateC
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       name
       description
@@ -1083,6 +1179,7 @@ export const createCompanyImages = `mutation CreateCompanyImages($input: CreateC
       images {
         nextToken
       }
+      owner
     }
   }
 }
@@ -1120,6 +1217,9 @@ export const updateCompanyImages = `mutation UpdateCompanyImages($input: UpdateC
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       name
       description
@@ -1134,6 +1234,7 @@ export const updateCompanyImages = `mutation UpdateCompanyImages($input: UpdateC
       images {
         nextToken
       }
+      owner
     }
   }
 }
@@ -1171,6 +1272,9 @@ export const deleteCompanyImages = `mutation DeleteCompanyImages($input: DeleteC
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       name
       description
@@ -1185,6 +1289,7 @@ export const deleteCompanyImages = `mutation DeleteCompanyImages($input: DeleteC
       images {
         nextToken
       }
+      owner
     }
   }
 }
@@ -1237,6 +1342,7 @@ export const createPost = `mutation CreatePost($input: CreatePostInput!) {
         id
         uri
         createdAt
+        owner
       }
       nextToken
     }
@@ -1315,6 +1421,12 @@ export const createPost = `mutation CreatePost($input: CreatePostInput!) {
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     owner
     type
@@ -1325,6 +1437,7 @@ export const createPost = `mutation CreatePost($input: CreatePostInput!) {
         referrer
         receiver
         createdAt
+        owner
       }
       nextToken
     }
@@ -1371,6 +1484,7 @@ export const createPost = `mutation CreatePost($input: CreatePostInput!) {
     expireRedeemAtUnix
     redeemImage
     redeemDescription
+    active
   }
 }
 `;
@@ -1389,6 +1503,7 @@ export const updatePost = `mutation UpdatePost($input: UpdatePostInput!) {
         id
         uri
         createdAt
+        owner
       }
       nextToken
     }
@@ -1467,6 +1582,12 @@ export const updatePost = `mutation UpdatePost($input: UpdatePostInput!) {
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     owner
     type
@@ -1477,6 +1598,7 @@ export const updatePost = `mutation UpdatePost($input: UpdatePostInput!) {
         referrer
         receiver
         createdAt
+        owner
       }
       nextToken
     }
@@ -1523,6 +1645,7 @@ export const updatePost = `mutation UpdatePost($input: UpdatePostInput!) {
     expireRedeemAtUnix
     redeemImage
     redeemDescription
+    active
   }
 }
 `;
@@ -1541,6 +1664,7 @@ export const deletePost = `mutation DeletePost($input: DeletePostInput!) {
         id
         uri
         createdAt
+        owner
       }
       nextToken
     }
@@ -1619,6 +1743,12 @@ export const deletePost = `mutation DeletePost($input: DeletePostInput!) {
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     owner
     type
@@ -1629,6 +1759,7 @@ export const deletePost = `mutation DeletePost($input: DeletePostInput!) {
         referrer
         receiver
         createdAt
+        owner
       }
       nextToken
     }
@@ -1675,6 +1806,7 @@ export const deletePost = `mutation DeletePost($input: DeletePostInput!) {
     expireRedeemAtUnix
     redeemImage
     redeemDescription
+    active
   }
 }
 `;
@@ -1722,6 +1854,9 @@ export const createPostImage = `mutation CreatePostImage($input: CreatePostImage
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -1754,8 +1889,10 @@ export const createPostImage = `mutation CreatePostImage($input: CreatePostImage
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     createdAt
+    owner
   }
 }
 `;
@@ -1803,6 +1940,9 @@ export const updatePostImage = `mutation UpdatePostImage($input: UpdatePostImage
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -1835,8 +1975,10 @@ export const updatePostImage = `mutation UpdatePostImage($input: UpdatePostImage
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     createdAt
+    owner
   }
 }
 `;
@@ -1884,6 +2026,9 @@ export const deletePostImage = `mutation DeletePostImage($input: DeletePostImage
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -1916,8 +2061,10 @@ export const deletePostImage = `mutation DeletePostImage($input: DeletePostImage
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     createdAt
+    owner
   }
 }
 `;
@@ -1968,6 +2115,9 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -2000,6 +2150,7 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     userComment {
       id
@@ -2065,6 +2216,12 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     reportComments {
       items {
@@ -2127,6 +2284,9 @@ export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -2159,6 +2319,7 @@ export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     userComment {
       id
@@ -2224,6 +2385,12 @@ export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     reportComments {
       items {
@@ -2286,6 +2453,9 @@ export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -2318,6 +2488,7 @@ export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     userComment {
       id
@@ -2383,6 +2554,12 @@ export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     reportComments {
       items {
@@ -2441,6 +2618,9 @@ export const createPostReferSecond = `mutation CreatePostReferSecond($input: Cre
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -2473,6 +2653,7 @@ export const createPostReferSecond = `mutation CreatePostReferSecond($input: Cre
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     referrer
     receiver
@@ -2540,6 +2721,12 @@ export const createPostReferSecond = `mutation CreatePostReferSecond($input: Cre
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     receiverPostUser {
       id
@@ -2605,8 +2792,15 @@ export const createPostReferSecond = `mutation CreatePostReferSecond($input: Cre
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     createdAt
+    owner
   }
 }
 `;
@@ -2653,6 +2847,9 @@ export const updatePostReferSecond = `mutation UpdatePostReferSecond($input: Upd
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -2685,6 +2882,7 @@ export const updatePostReferSecond = `mutation UpdatePostReferSecond($input: Upd
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     referrer
     receiver
@@ -2752,6 +2950,12 @@ export const updatePostReferSecond = `mutation UpdatePostReferSecond($input: Upd
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     receiverPostUser {
       id
@@ -2817,8 +3021,15 @@ export const updatePostReferSecond = `mutation UpdatePostReferSecond($input: Upd
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     createdAt
+    owner
   }
 }
 `;
@@ -2865,6 +3076,9 @@ export const deletePostReferSecond = `mutation DeletePostReferSecond($input: Del
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -2897,6 +3111,7 @@ export const deletePostReferSecond = `mutation DeletePostReferSecond($input: Del
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     referrer
     receiver
@@ -2964,6 +3179,12 @@ export const deletePostReferSecond = `mutation DeletePostReferSecond($input: Del
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     receiverPostUser {
       id
@@ -3029,8 +3250,15 @@ export const deletePostReferSecond = `mutation DeletePostReferSecond($input: Del
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     createdAt
+    owner
   }
 }
 `;
@@ -3068,6 +3296,7 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
     }
     createdAt
     upcoming
+    hashStatus
     user {
       id
       staffID
@@ -3132,6 +3361,12 @@ export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
   }
 }
@@ -3170,6 +3405,7 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
     }
     createdAt
     upcoming
+    hashStatus
     user {
       id
       staffID
@@ -3234,6 +3470,12 @@ export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
   }
 }
@@ -3272,6 +3514,7 @@ export const deleteEvent = `mutation DeleteEvent($input: DeleteEventInput!) {
     }
     createdAt
     upcoming
+    hashStatus
     user {
       id
       staffID
@@ -3336,6 +3579,12 @@ export const deleteEvent = `mutation DeleteEvent($input: DeleteEventInput!) {
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
   }
 }
@@ -3364,6 +3613,7 @@ export const createEventImage = `mutation CreateEventImage($input: CreateEventIm
       }
       createdAt
       upcoming
+      hashStatus
       user {
         id
         staffID
@@ -3389,6 +3639,9 @@ export const createEventImage = `mutation CreateEventImage($input: CreateEventIm
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
     }
     createdAt
@@ -3419,6 +3672,7 @@ export const updateEventImage = `mutation UpdateEventImage($input: UpdateEventIm
       }
       createdAt
       upcoming
+      hashStatus
       user {
         id
         staffID
@@ -3444,6 +3698,9 @@ export const updateEventImage = `mutation UpdateEventImage($input: UpdateEventIm
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
     }
     createdAt
@@ -3474,6 +3731,7 @@ export const deleteEventImage = `mutation DeleteEventImage($input: DeleteEventIm
       }
       createdAt
       upcoming
+      hashStatus
       user {
         id
         staffID
@@ -3499,6 +3757,9 @@ export const deleteEventImage = `mutation DeleteEventImage($input: DeleteEventIm
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
     }
     createdAt
@@ -3548,6 +3809,9 @@ export const createReport = `mutation CreateReport($input: CreateReportInput!) {
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -3580,6 +3844,7 @@ export const createReport = `mutation CreateReport($input: CreateReportInput!) {
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     reporter {
       id
@@ -3645,6 +3910,12 @@ export const createReport = `mutation CreateReport($input: CreateReportInput!) {
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     type
     status
@@ -3696,6 +3967,9 @@ export const updateReport = `mutation UpdateReport($input: UpdateReportInput!) {
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -3728,6 +4002,7 @@ export const updateReport = `mutation UpdateReport($input: UpdateReportInput!) {
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     reporter {
       id
@@ -3793,6 +4068,12 @@ export const updateReport = `mutation UpdateReport($input: UpdateReportInput!) {
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     type
     status
@@ -3844,6 +4125,9 @@ export const deleteReport = `mutation DeleteReport($input: DeleteReportInput!) {
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -3876,6 +4160,7 @@ export const deleteReport = `mutation DeleteReport($input: DeleteReportInput!) {
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     reporter {
       id
@@ -3941,6 +4226,12 @@ export const deleteReport = `mutation DeleteReport($input: DeleteReportInput!) {
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     type
     status
@@ -3992,6 +4283,9 @@ export const createPostBookmark = `mutation CreatePostBookmark($input: CreatePos
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -4024,6 +4318,7 @@ export const createPostBookmark = `mutation CreatePostBookmark($input: CreatePos
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     userBookmark {
       id
@@ -4089,6 +4384,12 @@ export const createPostBookmark = `mutation CreatePostBookmark($input: CreatePos
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     userBookmarkCode
     createdAt
@@ -4138,6 +4439,9 @@ export const updatePostBookmark = `mutation UpdatePostBookmark($input: UpdatePos
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -4170,6 +4474,7 @@ export const updatePostBookmark = `mutation UpdatePostBookmark($input: UpdatePos
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     userBookmark {
       id
@@ -4235,6 +4540,12 @@ export const updatePostBookmark = `mutation UpdatePostBookmark($input: UpdatePos
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     userBookmarkCode
     createdAt
@@ -4284,6 +4595,9 @@ export const deletePostBookmark = `mutation DeletePostBookmark($input: DeletePos
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -4316,6 +4630,7 @@ export const deletePostBookmark = `mutation DeletePostBookmark($input: DeletePos
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     userBookmark {
       id
@@ -4381,6 +4696,12 @@ export const deletePostBookmark = `mutation DeletePostBookmark($input: DeletePos
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     userBookmarkCode
     createdAt
@@ -4430,6 +4751,9 @@ export const createPostRadeemSecond = `mutation CreatePostRadeemSecond($input: C
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -4462,6 +4786,7 @@ export const createPostRadeemSecond = `mutation CreatePostRadeemSecond($input: C
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     userRadeem {
       id
@@ -4527,6 +4852,12 @@ export const createPostRadeemSecond = `mutation CreatePostRadeemSecond($input: C
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     postId
     userId
@@ -4577,6 +4908,9 @@ export const updatePostRadeemSecond = `mutation UpdatePostRadeemSecond($input: U
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -4609,6 +4943,7 @@ export const updatePostRadeemSecond = `mutation UpdatePostRadeemSecond($input: U
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     userRadeem {
       id
@@ -4674,6 +5009,12 @@ export const updatePostRadeemSecond = `mutation UpdatePostRadeemSecond($input: U
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     postId
     userId
@@ -4724,6 +5065,9 @@ export const deletePostRadeemSecond = `mutation DeletePostRadeemSecond($input: D
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -4756,6 +5100,7 @@ export const deletePostRadeemSecond = `mutation DeletePostRadeemSecond($input: D
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     userRadeem {
       id
@@ -4821,6 +5166,12 @@ export const deletePostRadeemSecond = `mutation DeletePostRadeemSecond($input: D
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     postId
     userId
@@ -4897,6 +5248,12 @@ export const createUserJoinedEvent = `mutation CreateUserJoinedEvent($input: Cre
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     eventJoined {
       id
@@ -4918,6 +5275,7 @@ export const createUserJoinedEvent = `mutation CreateUserJoinedEvent($input: Cre
       }
       createdAt
       upcoming
+      hashStatus
       user {
         id
         staffID
@@ -4943,6 +5301,9 @@ export const createUserJoinedEvent = `mutation CreateUserJoinedEvent($input: Cre
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
     }
     eventStartTimeUnix
@@ -5020,6 +5381,12 @@ export const updateUserJoinedEvent = `mutation UpdateUserJoinedEvent($input: Upd
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     eventJoined {
       id
@@ -5041,6 +5408,7 @@ export const updateUserJoinedEvent = `mutation UpdateUserJoinedEvent($input: Upd
       }
       createdAt
       upcoming
+      hashStatus
       user {
         id
         staffID
@@ -5066,6 +5434,9 @@ export const updateUserJoinedEvent = `mutation UpdateUserJoinedEvent($input: Upd
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
     }
     eventStartTimeUnix
@@ -5143,6 +5514,12 @@ export const deleteUserJoinedEvent = `mutation DeleteUserJoinedEvent($input: Del
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     eventJoined {
       id
@@ -5164,6 +5541,7 @@ export const deleteUserJoinedEvent = `mutation DeleteUserJoinedEvent($input: Del
       }
       createdAt
       upcoming
+      hashStatus
       user {
         id
         staffID
@@ -5189,6 +5567,9 @@ export const deleteUserJoinedEvent = `mutation DeleteUserJoinedEvent($input: Del
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
     }
     eventStartTimeUnix
@@ -5233,6 +5614,7 @@ export const createReportComment = `mutation CreateReportComment($input: CreateR
         expireRedeemAtUnix
         redeemImage
         redeemDescription
+        active
       }
       userComment {
         id
@@ -5259,6 +5641,9 @@ export const createReportComment = `mutation CreateReportComment($input: CreateR
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       reportComments {
         nextToken
@@ -5329,6 +5714,12 @@ export const createReportComment = `mutation CreateReportComment($input: CreateR
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     createdAt
   }
@@ -5370,6 +5761,7 @@ export const updateReportComment = `mutation UpdateReportComment($input: UpdateR
         expireRedeemAtUnix
         redeemImage
         redeemDescription
+        active
       }
       userComment {
         id
@@ -5396,6 +5788,9 @@ export const updateReportComment = `mutation UpdateReportComment($input: UpdateR
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       reportComments {
         nextToken
@@ -5466,6 +5861,12 @@ export const updateReportComment = `mutation UpdateReportComment($input: UpdateR
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     createdAt
   }
@@ -5507,6 +5908,7 @@ export const deleteReportComment = `mutation DeleteReportComment($input: DeleteR
         expireRedeemAtUnix
         redeemImage
         redeemDescription
+        active
       }
       userComment {
         id
@@ -5533,6 +5935,9 @@ export const deleteReportComment = `mutation DeleteReportComment($input: DeleteR
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       reportComments {
         nextToken
@@ -5603,6 +6008,12 @@ export const deleteReportComment = `mutation DeleteReportComment($input: DeleteR
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     createdAt
   }
@@ -5677,6 +6088,12 @@ export const createUserBlock = `mutation CreateUserBlock($input: CreateUserBlock
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     createdAtUnix
     createdAt
@@ -5752,6 +6169,12 @@ export const updateUserBlock = `mutation UpdateUserBlock($input: UpdateUserBlock
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     createdAtUnix
     createdAt
@@ -5827,6 +6250,12 @@ export const deleteUserBlock = `mutation DeleteUserBlock($input: DeleteUserBlock
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     createdAtUnix
     createdAt
@@ -5872,7 +6301,77 @@ export const createFeedback = `mutation CreateFeedback($input: CreateFeedbackInp
     topic
     message
     createdAtUnix
-    userId
+    user {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
+    }
     createdAt
   }
 }
@@ -5883,7 +6382,77 @@ export const updateFeedback = `mutation UpdateFeedback($input: UpdateFeedbackInp
     topic
     message
     createdAtUnix
-    userId
+    user {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
+    }
     createdAt
   }
 }
@@ -5894,7 +6463,77 @@ export const deleteFeedback = `mutation DeleteFeedback($input: DeleteFeedbackInp
     topic
     message
     createdAtUnix
-    userId
+    user {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
+    }
     createdAt
   }
 }

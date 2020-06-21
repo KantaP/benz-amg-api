@@ -1,4 +1,4 @@
-// eslint-disable
+/* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
 export const getUser = `query GetUser($id: ID!) {
@@ -48,6 +48,7 @@ export const getUser = `query GetUser($id: ID!) {
         image
         logo
         createdAt
+        owner
       }
       nextToken
     }
@@ -76,6 +77,7 @@ export const getUser = `query GetUser($id: ID!) {
         expireRedeemAtUnix
         redeemImage
         redeemDescription
+        active
       }
       nextToken
     }
@@ -114,6 +116,7 @@ export const getUser = `query GetUser($id: ID!) {
         referrer
         receiver
         createdAt
+        owner
       }
       nextToken
     }
@@ -123,6 +126,7 @@ export const getUser = `query GetUser($id: ID!) {
         referrer
         receiver
         createdAt
+        owner
       }
       nextToken
     }
@@ -177,9 +181,23 @@ export const getUser = `query GetUser($id: ID!) {
         quota
         createdAt
         upcoming
+        hashStatus
       }
       nextToken
     }
+    feedbacks {
+      items {
+        id
+        topic
+        message
+        createdAtUnix
+        createdAt
+      }
+      nextToken
+    }
+    memberShipPrice
+    firstLogin
+    memberExpiredAt
   }
 }
 `;
@@ -253,6 +271,12 @@ export const listUsers = `query ListUsers(
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     nextToken
   }
@@ -327,6 +351,12 @@ export const getUserImages = `query GetUserImages($id: ID!) {
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
   }
 }
@@ -366,6 +396,9 @@ export const listUserImagess = `query ListUserImagess(
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
     }
     nextToken
@@ -439,6 +472,12 @@ export const getCompany = `query GetCompany($id: ID!) {
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     name
     description
@@ -459,6 +498,7 @@ export const getCompany = `query GetCompany($id: ID!) {
       }
       nextToken
     }
+    owner
   }
 }
 `;
@@ -495,6 +535,9 @@ export const listCompanys = `query ListCompanys(
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       name
       description
@@ -509,6 +552,7 @@ export const listCompanys = `query ListCompanys(
       images {
         nextToken
       }
+      owner
     }
     nextToken
   }
@@ -547,6 +591,9 @@ export const getCompanyImages = `query GetCompanyImages($id: ID!) {
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       name
       description
@@ -561,6 +608,7 @@ export const getCompanyImages = `query GetCompanyImages($id: ID!) {
       images {
         nextToken
       }
+      owner
     }
   }
 }
@@ -588,6 +636,7 @@ export const listCompanyImagess = `query ListCompanyImagess(
         image
         logo
         createdAt
+        owner
       }
     }
     nextToken
@@ -638,6 +687,7 @@ export const getPost = `query GetPost($id: ID!) {
         id
         uri
         createdAt
+        owner
       }
       nextToken
     }
@@ -716,6 +766,12 @@ export const getPost = `query GetPost($id: ID!) {
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     owner
     type
@@ -726,6 +782,7 @@ export const getPost = `query GetPost($id: ID!) {
         referrer
         receiver
         createdAt
+        owner
       }
       nextToken
     }
@@ -772,6 +829,7 @@ export const getPost = `query GetPost($id: ID!) {
     expireRedeemAtUnix
     redeemImage
     redeemDescription
+    active
   }
 }
 `;
@@ -821,6 +879,9 @@ export const listPosts = `query ListPosts(
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -853,6 +914,7 @@ export const listPosts = `query ListPosts(
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     nextToken
   }
@@ -902,6 +964,9 @@ export const getPostImage = `query GetPostImage($id: ID!) {
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -934,8 +999,10 @@ export const getPostImage = `query GetPostImage($id: ID!) {
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     createdAt
+    owner
   }
 }
 `;
@@ -972,8 +1039,10 @@ export const listPostImages = `query ListPostImages(
         expireRedeemAtUnix
         redeemImage
         redeemDescription
+        active
       }
       createdAt
+      owner
     }
     nextToken
   }
@@ -1026,6 +1095,9 @@ export const getComment = `query GetComment($id: ID!) {
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -1058,6 +1130,7 @@ export const getComment = `query GetComment($id: ID!) {
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     userComment {
       id
@@ -1123,6 +1196,12 @@ export const getComment = `query GetComment($id: ID!) {
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     reportComments {
       items {
@@ -1174,6 +1253,7 @@ export const listComments = `query ListComments(
         expireRedeemAtUnix
         redeemImage
         redeemDescription
+        active
       }
       userComment {
         id
@@ -1200,6 +1280,9 @@ export const listComments = `query ListComments(
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       reportComments {
         nextToken
@@ -1253,6 +1336,9 @@ export const getPostReferSecond = `query GetPostReferSecond($id: ID!) {
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -1285,6 +1371,7 @@ export const getPostReferSecond = `query GetPostReferSecond($id: ID!) {
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     referrer
     receiver
@@ -1352,6 +1439,12 @@ export const getPostReferSecond = `query GetPostReferSecond($id: ID!) {
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     receiverPostUser {
       id
@@ -1417,8 +1510,15 @@ export const getPostReferSecond = `query GetPostReferSecond($id: ID!) {
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     createdAt
+    owner
   }
 }
 `;
@@ -1454,6 +1554,7 @@ export const listPostReferSeconds = `query ListPostReferSeconds(
         expireRedeemAtUnix
         redeemImage
         redeemDescription
+        active
       }
       referrer
       receiver
@@ -1482,6 +1583,9 @@ export const listPostReferSeconds = `query ListPostReferSeconds(
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       receiverPostUser {
         id
@@ -1508,8 +1612,12 @@ export const listPostReferSeconds = `query ListPostReferSeconds(
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       createdAt
+      owner
     }
     nextToken
   }
@@ -1549,6 +1657,7 @@ export const getEvent = `query GetEvent($id: ID!) {
     }
     createdAt
     upcoming
+    hashStatus
     user {
       id
       staffID
@@ -1613,6 +1722,12 @@ export const getEvent = `query GetEvent($id: ID!) {
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
   }
 }
@@ -1643,6 +1758,7 @@ export const listEvents = `query ListEvents(
       }
       createdAt
       upcoming
+      hashStatus
       user {
         id
         staffID
@@ -1668,6 +1784,9 @@ export const listEvents = `query ListEvents(
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
     }
     nextToken
@@ -1698,6 +1817,7 @@ export const getEventImage = `query GetEventImage($id: ID!) {
       }
       createdAt
       upcoming
+      hashStatus
       user {
         id
         staffID
@@ -1723,6 +1843,9 @@ export const getEventImage = `query GetEventImage($id: ID!) {
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
     }
     createdAt
@@ -1748,6 +1871,7 @@ export const listEventImages = `query ListEventImages(
         quota
         createdAt
         upcoming
+        hashStatus
       }
       createdAt
     }
@@ -1798,6 +1922,9 @@ export const getReport = `query GetReport($id: ID!) {
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -1830,6 +1957,7 @@ export const getReport = `query GetReport($id: ID!) {
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     reporter {
       id
@@ -1895,6 +2023,12 @@ export const getReport = `query GetReport($id: ID!) {
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     type
     status
@@ -1935,6 +2069,7 @@ export const listReports = `query ListReports(
         expireRedeemAtUnix
         redeemImage
         redeemDescription
+        active
       }
       reporter {
         id
@@ -1961,6 +2096,9 @@ export const listReports = `query ListReports(
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       type
       status
@@ -2014,6 +2152,9 @@ export const getPostBookmark = `query GetPostBookmark($id: ID!, $userBookmarkCod
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -2046,6 +2187,7 @@ export const getPostBookmark = `query GetPostBookmark($id: ID!, $userBookmarkCod
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     userBookmark {
       id
@@ -2111,6 +2253,12 @@ export const getPostBookmark = `query GetPostBookmark($id: ID!, $userBookmarkCod
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     userBookmarkCode
     createdAt
@@ -2123,6 +2271,7 @@ export const listPostBookmarks = `query ListPostBookmarks(
   $filter: ModelPostBookmarkFilterInput
   $limit: Int
   $nextToken: String
+  $sortDirection: ModelSortDirection
 ) {
   listPostBookmarks(
     id: $id
@@ -2130,6 +2279,7 @@ export const listPostBookmarks = `query ListPostBookmarks(
     filter: $filter
     limit: $limit
     nextToken: $nextToken
+    sortDirection: $sortDirection
   ) {
     items {
       id
@@ -2157,6 +2307,7 @@ export const listPostBookmarks = `query ListPostBookmarks(
         expireRedeemAtUnix
         redeemImage
         redeemDescription
+        active
       }
       userBookmark {
         id
@@ -2183,6 +2334,9 @@ export const listPostBookmarks = `query ListPostBookmarks(
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       userBookmarkCode
       createdAt
@@ -2234,6 +2388,9 @@ export const getPostRadeemSecond = `query GetPostRadeemSecond($id: ID!, $postId:
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -2266,6 +2423,7 @@ export const getPostRadeemSecond = `query GetPostRadeemSecond($id: ID!, $postId:
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     userRadeem {
       id
@@ -2331,6 +2489,12 @@ export const getPostRadeemSecond = `query GetPostRadeemSecond($id: ID!, $postId:
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     postId
     userId
@@ -2344,6 +2508,7 @@ export const listPostRadeemSeconds = `query ListPostRadeemSeconds(
   $filter: ModelPostRadeemSecondFilterInput
   $limit: Int
   $nextToken: String
+  $sortDirection: ModelSortDirection
 ) {
   listPostRadeemSeconds(
     id: $id
@@ -2351,6 +2516,7 @@ export const listPostRadeemSeconds = `query ListPostRadeemSeconds(
     filter: $filter
     limit: $limit
     nextToken: $nextToken
+    sortDirection: $sortDirection
   ) {
     items {
       id
@@ -2378,6 +2544,7 @@ export const listPostRadeemSeconds = `query ListPostRadeemSeconds(
         expireRedeemAtUnix
         redeemImage
         redeemDescription
+        active
       }
       userRadeem {
         id
@@ -2404,6 +2571,9 @@ export const listPostRadeemSeconds = `query ListPostRadeemSeconds(
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       postId
       userId
@@ -2482,6 +2652,12 @@ export const getUserJoinedEvent = `query GetUserJoinedEvent($id: ID!, $eventId: 
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     eventJoined {
       id
@@ -2503,6 +2679,7 @@ export const getUserJoinedEvent = `query GetUserJoinedEvent($id: ID!, $eventId: 
       }
       createdAt
       upcoming
+      hashStatus
       user {
         id
         staffID
@@ -2528,6 +2705,9 @@ export const getUserJoinedEvent = `query GetUserJoinedEvent($id: ID!, $eventId: 
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
     }
     eventStartTimeUnix
@@ -2542,6 +2722,7 @@ export const listUserJoinedEvents = `query ListUserJoinedEvents(
   $filter: ModelUserJoinedEventFilterInput
   $limit: Int
   $nextToken: String
+  $sortDirection: ModelSortDirection
 ) {
   listUserJoinedEvents(
     id: $id
@@ -2549,6 +2730,7 @@ export const listUserJoinedEvents = `query ListUserJoinedEvents(
     filter: $filter
     limit: $limit
     nextToken: $nextToken
+    sortDirection: $sortDirection
   ) {
     items {
       id
@@ -2579,6 +2761,9 @@ export const listUserJoinedEvents = `query ListUserJoinedEvents(
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       eventJoined {
         id
@@ -2590,6 +2775,7 @@ export const listUserJoinedEvents = `query ListUserJoinedEvents(
         quota
         createdAt
         upcoming
+        hashStatus
       }
       eventStartTimeUnix
       eventEndTime
@@ -2635,6 +2821,7 @@ export const getReportComment = `query GetReportComment($id: ID!) {
         expireRedeemAtUnix
         redeemImage
         redeemDescription
+        active
       }
       userComment {
         id
@@ -2661,6 +2848,9 @@ export const getReportComment = `query GetReportComment($id: ID!) {
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       reportComments {
         nextToken
@@ -2731,6 +2921,12 @@ export const getReportComment = `query GetReportComment($id: ID!) {
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     createdAt
   }
@@ -2780,6 +2976,9 @@ export const listReportComments = `query ListReportComments(
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       createdAt
     }
@@ -2856,6 +3055,12 @@ export const getUserBlock = `query GetUserBlock($id: ID!) {
       events {
         nextToken
       }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
     }
     createdAtUnix
     createdAt
@@ -2897,6 +3102,9 @@ export const listUserBlocks = `query ListUserBlocks(
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       createdAtUnix
       createdAt
@@ -2940,7 +3148,77 @@ export const getFeedback = `query GetFeedback($id: ID!) {
     topic
     message
     createdAtUnix
-    userId
+    user {
+      id
+      staffID
+      username
+      birthDate
+      firstName
+      lastName
+      mobilePhone
+      email
+      amgId
+      amgModel
+      amgShowroom
+      nickName
+      citizenId
+      image
+      address
+      subDistrict
+      district
+      province
+      active
+      pushToken
+      type
+      expireAt
+      level
+      createdAt
+      images {
+        nextToken
+      }
+      companies {
+        nextToken
+      }
+      postsOfUser {
+        nextToken
+      }
+      userComments {
+        nextToken
+      }
+      userReports {
+        nextToken
+      }
+      userBookmarks {
+        nextToken
+      }
+      referrers {
+        nextToken
+      }
+      receivers {
+        nextToken
+      }
+      userRadeem {
+        nextToken
+      }
+      userEvents {
+        nextToken
+      }
+      reportComments {
+        nextToken
+      }
+      userBlocks {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+      feedbacks {
+        nextToken
+      }
+      memberShipPrice
+      firstLogin
+      memberExpiredAt
+    }
     createdAt
   }
 }
@@ -2956,7 +3234,35 @@ export const listFeedbacks = `query ListFeedbacks(
       topic
       message
       createdAtUnix
-      userId
+      user {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
+      }
       createdAt
     }
     nextToken
@@ -2966,6 +3272,7 @@ export const listFeedbacks = `query ListFeedbacks(
 export const itemsByPostType = `query ItemsByPostType(
   $type: String
   $createdAt: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
   $filter: ModelPostFilterInput
   $limit: Int
   $nextToken: String
@@ -2973,6 +3280,7 @@ export const itemsByPostType = `query ItemsByPostType(
   itemsByPostType(
     type: $type
     createdAt: $createdAt
+    sortDirection: $sortDirection
     filter: $filter
     limit: $limit
     nextToken: $nextToken
@@ -3017,6 +3325,9 @@ export const itemsByPostType = `query ItemsByPostType(
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -3049,6 +3360,7 @@ export const itemsByPostType = `query ItemsByPostType(
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
     }
     nextToken
   }
@@ -3057,6 +3369,7 @@ export const itemsByPostType = `query ItemsByPostType(
 export const itemsByPin = `query ItemsByPin(
   $pin: String
   $expireAt: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
   $filter: ModelPostFilterInput
   $limit: Int
   $nextToken: String
@@ -3064,6 +3377,7 @@ export const itemsByPin = `query ItemsByPin(
   itemsByPin(
     pin: $pin
     expireAt: $expireAt
+    sortDirection: $sortDirection
     filter: $filter
     limit: $limit
     nextToken: $nextToken
@@ -3108,6 +3422,9 @@ export const itemsByPin = `query ItemsByPin(
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       owner
       type
@@ -3140,6 +3457,272 @@ export const itemsByPin = `query ItemsByPin(
       expireRedeemAtUnix
       redeemImage
       redeemDescription
+      active
+    }
+    nextToken
+  }
+}
+`;
+export const itemsByPinCreated = `query ItemsByPinCreated(
+  $pin: String
+  $createdAt: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelPostFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  itemsByPinCreated(
+    pin: $pin
+    createdAt: $createdAt
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      content
+      enableComment
+      tags
+      location {
+        placeName
+        placeLatLng
+      }
+      postImages {
+        nextToken
+      }
+      postComments {
+        nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
+      }
+      owner
+      type
+      createdAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
+      active
+    }
+    nextToken
+  }
+}
+`;
+export const postsByActive = `query PostsByActive(
+  $active: String
+  $createdAt: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelPostFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  postsByActive(
+    active: $active
+    createdAt: $createdAt
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      content
+      enableComment
+      tags
+      location {
+        placeName
+        placeLatLng
+      }
+      postImages {
+        nextToken
+      }
+      postComments {
+        nextToken
+      }
+      postOfUser {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
+      }
+      owner
+      type
+      createdAt
+      refers {
+        nextToken
+      }
+      postBookmarks {
+        nextToken
+      }
+      reports {
+        nextToken
+      }
+      postRadeem {
+        nextToken
+      }
+      countComment
+      countRefer
+      countRadeem
+      countBookmark
+      countReport
+      countConnect
+      radeemQuota
+      expireAtUnix
+      expireAt
+      expire
+      pin
+      createdAtUnix
+      expireRedeemAt
+      expireRedeemAtUnix
+      redeemImage
+      redeemDescription
+      active
+    }
+    nextToken
+  }
+}
+`;
+export const eventsSortByStartTime = `query EventsSortByStartTime(
+  $hashStatus: String
+  $startTime: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelEventFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  eventsSortByStartTime(
+    hashStatus: $hashStatus
+    startTime: $startTime
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      title
+      startTime
+      endTime
+      description
+      image
+      images {
+        nextToken
+      }
+      quota
+      eventJoineds {
+        nextToken
+      }
+      location {
+        placeName
+        placeLatLng
+      }
+      createdAt
+      upcoming
+      hashStatus
+      user {
+        id
+        staffID
+        username
+        birthDate
+        firstName
+        lastName
+        mobilePhone
+        email
+        amgId
+        amgModel
+        amgShowroom
+        nickName
+        citizenId
+        image
+        address
+        subDistrict
+        district
+        province
+        active
+        pushToken
+        type
+        expireAt
+        level
+        createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
+      }
     }
     nextToken
   }
@@ -3148,6 +3731,7 @@ export const itemsByPin = `query ItemsByPin(
 export const redeemByPost = `query RedeemByPost(
   $postId: String
   $userId: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
   $filter: ModelPostRadeemSecondFilterInput
   $limit: Int
   $nextToken: String
@@ -3155,6 +3739,7 @@ export const redeemByPost = `query RedeemByPost(
   redeemByPost(
     postId: $postId
     userId: $userId
+    sortDirection: $sortDirection
     filter: $filter
     limit: $limit
     nextToken: $nextToken
@@ -3185,6 +3770,7 @@ export const redeemByPost = `query RedeemByPost(
         expireRedeemAtUnix
         redeemImage
         redeemDescription
+        active
       }
       userRadeem {
         id
@@ -3211,6 +3797,9 @@ export const redeemByPost = `query RedeemByPost(
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
       postId
       userId
@@ -3224,7 +3813,7 @@ export const searchEvents = `query SearchEvents(
   $filter: SearchableEventFilterInput
   $sort: SearchableEventSortInput
   $limit: Int
-  $nextToken: Int
+  $nextToken: String
 ) {
   searchEvents(
     filter: $filter
@@ -3252,6 +3841,7 @@ export const searchEvents = `query SearchEvents(
       }
       createdAt
       upcoming
+      hashStatus
       user {
         id
         staffID
@@ -3277,6 +3867,9 @@ export const searchEvents = `query SearchEvents(
         expireAt
         level
         createdAt
+        memberShipPrice
+        firstLogin
+        memberExpiredAt
       }
     }
     nextToken

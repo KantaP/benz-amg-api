@@ -16,57 +16,6 @@
             }
         }
     },
-    "dev": {
-        "awscloudformation": {
-            "AuthRoleName": "benz-api-2-dev-20190625161907-authRole",
-            "UnauthRoleArn": "arn:aws:iam::239703035174:role/benz-api-2-dev-20190625161907-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::239703035174:role/benz-api-2-dev-20190625161907-authRole",
-            "Region": "ap-southeast-1",
-            "DeploymentBucketName": "benz-api-2-dev-20190625161907-deployment",
-            "UnauthRoleName": "benz-api-2-dev-20190625161907-unauthRole",
-            "StackName": "benz-api-2-dev-20190625161907",
-            "StackId": "arn:aws:cloudformation:ap-southeast-1:239703035174:stack/benz-api-2-dev-20190625161907/491ba580-972a-11e9-9417-0a14ee878cf4"
-        },
-        "categories": {
-            "auth": {
-                "benzapi2f0ed0c83": {}
-            }
-        }
-    },
-    "devsecond": {
-        "awscloudformation": {
-            "AuthRoleName": "benz-api-2-devsecond-20190711000342-authRole",
-            "UnauthRoleArn": "arn:aws:iam::445073579367:role/benz-api-2-devsecond-20190711000342-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::445073579367:role/benz-api-2-devsecond-20190711000342-authRole",
-            "Region": "ap-southeast-1",
-            "DeploymentBucketName": "benz-api-2-devsecond-20190711000342-deployment",
-            "UnauthRoleName": "benz-api-2-devsecond-20190711000342-unauthRole",
-            "StackName": "benz-api-2-devsecond-20190711000342",
-            "StackId": "arn:aws:cloudformation:ap-southeast-1:445073579367:stack/benz-api-2-devsecond-20190711000342/abc8a0f0-a334-11e9-8ad8-0240f4732b08"
-        },
-        "categories": {
-            "auth": {
-                "benzapi2f0ed0c83": {}
-            }
-        }
-    },
-    "devthrid": {
-        "awscloudformation": {
-            "AuthRoleName": "benz-api-2-devthrid-20190711001406-authRole",
-            "UnauthRoleArn": "arn:aws:iam::445073579367:role/benz-api-2-devthrid-20190711001406-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::445073579367:role/benz-api-2-devthrid-20190711001406-authRole",
-            "Region": "ap-southeast-1",
-            "DeploymentBucketName": "benz-api-2-devthrid-20190711001406-deployment",
-            "UnauthRoleName": "benz-api-2-devthrid-20190711001406-unauthRole",
-            "StackName": "benz-api-2-devthrid-20190711001406",
-            "StackId": "arn:aws:cloudformation:ap-southeast-1:445073579367:stack/benz-api-2-devthrid-20190711001406/219c1770-a336-11e9-a22c-02c89147ba84"
-        },
-        "categories": {
-            "auth": {
-                "benzapi2f0ed0c83": {}
-            }
-        }
-    },
     "devfourth": {
         "awscloudformation": {
             "AuthRoleName": "benz-api-2-devfourth-20190711002237-authRole",
